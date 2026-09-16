@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "_source": "docs/03 §9's tuning file, in the format docs/14 §5.1 chose. Every number below is docs/03's: §6.4's thresholds, §5.2's find-weight matrix, §6.1's award tables, §6.2's factors, §7's master gate table, §8.1's two mitigations. Extraction was value-for-value — nothing here was retuned, and tests/unit/test_reputation_data.gd asserts each table against the literal it replaced.",
+  "_notes": [
+    "FORMAT (docs/15 BL-81): JSON, not the `.tres` docs/03 §9 used to propose. docs/14 §5.1's own deciding row is 'Readable by sim/ without breaking §3 — .tres: No, requires ResourceLoader, which sim/ is forbidden to call', and the consumers here are sim/core/Reputation.gd and sim/core/Recruitment.gd. docs/15 Q-94's '.tres for tuning singletons' survives for the game/-side singletons §5.1 lists beside this one (the UI Theme); it does not reach a table the pure sim reads.",
+    "SCHEMA: §9's fence was written before docs/15 BL-35 and BL-37 changed the award tables, so six of its keys no longer described the code. The reconciliation, divergence by divergence, is docs/15 BL-81; docs/03 §9's fence is the corrected one (2026-09-15). In short: the content gate is tiers rather than an id list (docs/15 §2.3 closed rank->tier gating in §7's favour and had doc 10 delete its rival table); the one `awards` dictionary is four tables because BL-37 split an Adventure across three rungs and §6.2 multiplies only the raid table; `full_tier_bonus` keeps the repeat value BL-35 deliberately preserved.",
+    "SCOPE: this file carries what docs/03 §9's fence claims, plus the three §8.1 scalars the first draft forgot (stall_attempts, catchup_enabled, pity_min_rank) — each stated in §8.1's own prose, and pity_min_rank is the other half of the same two-number M2 rule §9 already carried half of. It does NOT carry docs/04's cost, experience or gear tables: docs/15 BL-81's boundary ruling.",
+    "TOWN UNLOCK (W6-COPY, after audit M3-TUNE-05): `town_unlock` is a list of {building, text} items, one per thing the rank opens in town, each tagged with the docs/02 building id it belongs to (guildhall / tavern / market / board / blacksmith). The prose docs/03 §7 prints is the items' texts joined with '; ' (Reputation.town_unlock); Reputation.town_unlock_for_build drops the items whose building sits behind a feature flag that is off, so the Town never promises a building the executable does not contain. BL-81 deferred the ids until the town screen wanted them; it does now.",
+    "Keys beginning with `_` are provenance and are ignored by every loader and by the key-parity test. JSON has no comments and this file's numbers are only defensible with their citations attached."
+  ],
+
+  "ranks": [
+    {
+      "_doc": "docs/03 §6.4 threshold, §5.2 weights row, §7 gate row. ✅ CANON: 'only ... the worst players' — Common at a hard 1000.",
+      "key": "unknown",
+      "rp_threshold": 0,
+      "find_weights": [1000, 0, 0, 0, 0],
+      "max_raid_tier": 1,
+      "max_adventure": 1,
+      "sell_rate": 0.40,
+      "consumable_price": 1.00,
+      "stock_tier": 1,
+      "town_unlock": [
+        {"building": "guildhall", "text": "Guildhall"},
+        {"building": "tavern", "text": "Tavern"},
+        {"building": "market", "text": "Market"},
+        {"building": "board", "text": "Adventure's Board"}
+      ],
+      "market_stock": "Minor potions"
+    },
+    {
+      "_doc": "✅ CANON C2: Uncommon appears and Common stays. The 700/300 split is docs/03 §5.2's 🔷 PROPOSED rate — §11 Q4 is the sign-off.",
+      "key": "known",
+      "rp_threshold": 120,
+      "find_weights": [700, 300, 0, 0, 0],
+      "max_raid_tier": 2,
+      "max_adventure": 2,
+      "sell_rate": 0.45,
+      "consumable_price": 1.00,
+      "stock_tier": 2,
+      "town_unlock": [
+        {"building": "guildhall", "text": "Guildhall facility upgrade I"},
+        {"building": "board", "text": "Quest board"}
+      ],
+      "market_stock": "Lesser potions"
+    },
+    {
+      "_doc": "✅ CANON C4 'you no longer find common' — the zero is the canon statement, and the load assertion below refuses any later rank that puts it back. ✅ C5 makes Uncommon the modal result.",
+      "key": "respected",
+      "rp_threshold": 400,
+      "find_weights": [0, 650, 350, 0, 0],
+      "max_raid_tier": 3,
+      "max_adventure": 3,
+      "sell_rate": 0.50,
+      "consumable_price": 0.95,
+      "stock_tier": 3,
+      "town_unlock": [
+        {"building": "blacksmith", "text": "Blacksmith opens"}
+      ],
+      "market_stock": "Standard potions; crafting supplies"
+    },
+    {
+      "_doc": "🔷 ENTIRELY PROPOSED. docs/03 §5.4 calls this row 'THE LARGEST HOLE IN THIS DOC' — canon says nothing about Established. §5.4's gap-fill promotes Rare to modal and introduces nothing new, so the row cannot contradict a canon statement in either direction.",
+      "key": "established",
+      "rp_threshold": 900,
+      "find_weights": [0, 350, 650, 0, 0],
+      "max_raid_tier": 4,
+      "max_adventure": 4,
+      "sell_rate": 0.55,
+      "consumable_price": 0.90,
+      "stock_tier": 4,
+      "town_unlock": [
+        {"building": "guildhall", "text": "Guildhall facility upgrade II"},
+        {"building": "market", "text": "Market expansion"},
+        {"building": "blacksmith", "text": "Blacksmith tier 2"}
+      ],
+      "market_stock": "Greater potions"
+    },
+    {
+      "_doc": "✅ CANON C8 'you no longer find uncommon raiders', Epic appears, and a Legendary chance canon gives only as 'VERY SMALL'. The 15 is docs/03 §5.2's ❗ trap: canon's nearby '1%' is the Legendary raider's MISTAKE chance, NOT the find chance.",
+      "key": "renowned",
+      "rp_threshold": 1800,
+      "find_weights": [0, 0, 800, 185, 15],
+      "max_raid_tier": 5,
+      "max_adventure": 5,
+      "sell_rate": 0.60,
+      "consumable_price": 0.85,
+      "stock_tier": 5,
+      "town_unlock": [
+        {"building": "guildhall", "text": "Guildhall facility upgrade III"},
+        {"building": "tavern", "text": "Tavern expansion"}
+      ],
+      "market_stock": "Major potions"
+    },
+    {
+      "_doc": "🔷 ENTIRELY PROPOSED, the second half of §5.4's gap. The terminal rank retires Rare and makes Epic modal. docs/03 §11 Q5 rules it a PRESTIGE rank, which is why its content gate repeats Renowned's rather than opening a Tier 6 that canon's list does not reach.",
+      "key": "legendary",
+      "rp_threshold": 3200,
+      "find_weights": [0, 0, 0, 950, 50],
+      "max_raid_tier": 5,
+      "max_adventure": 5,
+      "sell_rate": 0.65,
+      "consumable_price": 0.80,
+      "stock_tier": 6,
+      "town_unlock": [
+        {"building": "market", "text": "Perfect potions"},
+        {"building": "tavern", "text": "Legendary raiders, one in twenty"}
+      ],
+      "market_stock": "Perfect potions"
+    }
+  ],
+
+  "_awards_doc": "docs/03 §6.1 splits into four tables rather than §9's single `awards` dictionary, and the split is load-bearing. `raid_awards` is keyed by SLOT because §6.1 labels it 'Tier 1 base awards' and §6.2 multiplies it by the encounter's tier — one row serves five tiers. `adventure_awards` is keyed by adventure TIER and is already tier-final: §6.4's pacing table prices Adventure 2 at 50, the §6.1 number unchanged, in the same table where every raid row IS multiplied, so multiplying again would inflate Adventure 5 from 125 to 625 (docs/15 BL-37's recorded trap). `rung_cumulative` then splits one adventure award across the three board rungs BL-24 and doc 10 §8 give it.",
+
+  "raid_awards": {
+    "E1": [10, 2],
+    "E2": [15, 3],
+    "E3": [25, 5],
+    "E4": [35, 7],
+    "E5": [65, 13]
+  },
+
+  "_full_tier_bonus_doc": "docs/03 §6.1's 'Full-tier clear bonus (all 5 in one lockout)', [first time, repeat]. Tier-scaled like the encounters it rewards: §6.4 prices Raid 3's 'Enc 4, 5 + bonus' at 450, which is (35 + 65 + 50) x 3 exactly. docs/15 BL-35 ruled the bonus pays ONCE per tier because canon has no lockout clock, and deliberately kept the repeat value 10 in the table, 'unused and documented, so the day a lockout clock lands the value is already sitting there'. That is why this is a pair and not §9's single `full_clear_bonus_base`.",
+  "full_tier_bonus": [50, 10],
+
+  "adventure_awards": {
+    "1": [25, 5],
+    "2": [50, 10],
+    "3": [75, 15],
+    "4": [100, 20],
+    "5": [125, 25]
+  },
+
+  "_tutorial_awards_doc": "docs/03 §6.1's tutorial rows. Single-encounter content, so no rung split. ✅ CANON makes tutorials skippable; §6.1's 🔷 PROPOSED consequence is that skipping forfeits the RP too — 15 RP total, 'deliberately trivial'.",
+  "tutorial_awards": {
+    "A0": [5, 1],
+    "TR": [10, 2]
+  },
+
+  "_rung_cumulative_doc": "docs/15 BL-37's 20/30/50 split, in the same proportions the gold payout uses (docs/11 §F2's 4/6/10 of 20) so reputation and gold agree about which rung is the payoff. Stored CUMULATIVE and differenced by the code, which makes the three rungs sum to the doc's total exactly at every tier instead of losing a point to rounding: 25 -> 5/7/13, 50 -> 10/15/25, 75 -> 15/22/38.",
+  "rung_cumulative": {
+    "A1": [0.0, 0.20],
+    "A2": [0.20, 0.50],
+    "A3": [0.50, 1.00]
+  },
+
+  "_factors_doc": "docs/03 §6.2 and §6.3. `repeat_halving_period` is §9's own key and had no home in the code — repeat_rp() inlined the 5 — so extracting it is the one place this file gains a lever rather than moving one.",
+  "repeat_halving_period": 5,
+  "obsolescence_mult": 0.25,
+  "catchup_mult": 2.0,
+
+  "_mitigations_doc": "docs/03 §8.1's mitigations against the Recruit Quality Spiral. M2 is the pity pair: 'when pity >= 25 the next recruit is forced to Rare or better ... Active from Respected onward, since Rare does not exist before then' — so pity_min_rank 2 is Enums.ReputationRank.RESPECTED and is meaningless apart from pity_threshold. M3 is the adventure catch-up valve: §8.1 asks for it 'behind a config flag', and docs/15 BL-36 ships that flag ON because an offline game has no telemetry to turn it on later, M3 can only ever ADD progress, and its trigger needs five recorded failures at one encounter.",
+  "catchup_enabled": true,
+  "stall_attempts": 5,
+  "pity_threshold": 25,
+  "pity_min_rank": 2,
+
+  "_disband_doc": "docs/03 §6.5's only reputation loss: a disband costs '-10% of RP earned inside the current rank, clamped to the rank floor'. A fraction, not a percent — §9's `_pct` suffix on a 0.10 is exactly the misreading docs/14 OQ-2 exists to prevent, so the suffix is dropped.",
+  "disband_rp_penalty": 0.10
+}

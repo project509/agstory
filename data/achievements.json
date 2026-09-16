@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "_source": "docs/02 §4.4 (the record wall: ~40 static entries, each name/condition/reward, and the explicit non-goal 'No daily/weekly timers'); docs/11 §11.1 (the five entry types and their ship counts, 12/10/8/6/4) and §11.2 (the five reward kinds and the tier-1 coin scale 10/25/40/120 G, and the ~15%-of-lifetime-income cap); docs/10 §2 (the twelve-entry canon content ladder and its binding 'ship the canon placeholder, do not invent lore names' note); docs/03 §7 (the board is a Known-rank town unlock) and §6.1 (the A0 and TR tutorial slot keys). Loaded and validated by sim/core/Achievements.gd.",
+  "_notes": [
+    "THE COUNTS ARE THE DOC'S. docs/11 §11.1's 'Count at ship' column is 12 Progress, 10 Mastery, 8 Roster, 6 Comedy, 4 Economy = 40. `Achievements.validate()` fails the file if the histogram drifts, so the wall cannot quietly shrink to whatever Tier 1 can reach — docs/10 §13 makes the ~40-entry wall one third of the post-clear activity, and a wall sized to today's content is not a wall.",
+    "EVERY CANON-NAMED EXAMPLE SHIPS. docs/11 §11.1's eleven worked examples are all here as entries: Clear Adventure 0 (prog_adventure_0), Clear Raid 1 (prog_raid_1), Clear Raid 1 with 12/12 alive (mast_no_one_died), Clear an encounter with no mistakes (mast_clean_sheet), Field one of every class (rost_one_of_each), Recruit a Legendary (rost_first_legendary), Keep a Common at 90+ morale (rost_content_common), Big Dumb / lose a Legendary raider to morale (com_big_dumb), Wipe on Encounter 1 five times (com_persistence), Sell 100 items (econ_sell_100). TEN of the eleven ship verbatim; the eleventh, 'Fully upgrade one item', is REPLACED by Q-13's row (RULED 2026-09-15: the Blacksmith is out of 1.0, so the unreachable 'Sharpened, Finally' became 'Pocket Change', econ_first_ten — ten items sold, the same five potions). docs/02 §4.4 supplies the NAMES for three of them — 'First Blood', 'No One Died', 'Big Dumb' — and those three ship verbatim.",
+    "CONDITIONS ARE KEYED BY TIER AND SLOT, NOT BY ENCOUNTER ID. docs/10 §2 note 2 is binding: 'Every string ships as the canon placeholder ... Do not invent lore names, in code, in UI, or in asset filenames.' Only Tier 1 exists in data/, so an entry for Raid 4 written against `t4_raid_e5` is betting on a filename. Tier and slot are what the ladder guarantees; `Achievements._fill_ladder()` resolves them through ContentDB. A condition with a slot and no tier matches that slot at any tier, which is how the two tutorial rungs (docs/03 §6.1's unique slot keys A0 and TR, whose tier nobody has decided) are written without a guess.",
+    "NO ENTRY NAMES A COUNTER THAT DOES NOT EXIST. `Achievements.CONDITION_KINDS` is the closed list the evaluator implements and the validator enforces it. The three lifetime counters (`items_sold_lifetime`, `gold_earned_lifetime`, `rp_earned_lifetime`) landed with audit M5-QAB-5 and are the denominator the ~15% caps are a share OF. No shipped entry reads `items_upgraded_lifetime` any more: the Blacksmith is out of 1.0 (docs/15 Q-13, RULED), and a record whose counter no build can move is a record that names an absent feature — tests/unit/test_achievements.gd asserts none does. Nothing is approximated: docs/15 BL-59's precedent is to record a missing counter rather than fake it.",
+    "WHY COMEDY AND ECONOMY NEVER PAY COIN. docs/11 §11.2's coin row prices exactly four things — 'Coin | 10 G (Progress) · 25 G (Mastery) · 40 G (Roster) · 120 G (a tier capstone)'. It does not price Comedy or Economy. Giving them a coin figure would be inventing a rate, which house rule 1 forbids, so they pay in kind instead: Furnishings (docs/11 §11.2's own 'Straw Cot / Trophy Shelf' row, whose prices docs/11 §8.2 already fixes) and the documented '5 Minor Healing Potions' bundle. §11.2's 'When to use it' column is guidance and is followed everywhere it prices something; the two Economy in-kind rewards are the one deliberate divergence, and the alternative was an invented number.",
+    "REPUTATION REWARDS PAY 15 RP EACH (docs/15 Q-69, RULED 2026-09-15 under the designer's delegation; build/plan/ship/RULINGS.md §2 row 13). Two entries (rost_one_of_each, rost_comfortable) declare `reward.kind = \"reputation\"` with `rp: 15` — docs/03 §6.1's smallest award, the two tutorials' worth — and docs/03 §6.1 gains the row 'Record wall, reputation-kind records | — | 15 | 0'. The board's lifetime RP is capped live at 15% of RP earned exactly as its coin is (`Achievements.rp_cap`; a claim past the share is blocked with a sentence, never paid short), and a claim does not count as EARNED reputation, so the faucet cannot widen its own ceiling. The switch is `GameState.FLAG_DEFAULTS.achievement_rp` (true); off, the entry pays its type's coin figure from docs/11 §11.2 (40 G, Roster) — the recorded alternative. Audit M5-QAB-4 closes.",
+    "THRESHOLDS ARE AUTHORED CONTENT, NOT DOC NUMBERS. docs/11 §11.1 states five of them itself (12/12 alive, 90+ morale, five wipes, 100 items sold, one item upgraded) and those are used verbatim. The rest — ten repeat clears, twenty attempts, fifteen on the books, twelve Furnishings placed, 1,000 G held, 5,000 G earned — are this file's, because docs/README.md:120 records the ~40 achievement names as writing 'required by six docs and owned by none'. They are shaped to be reachable by a player who is not trying, per docs/11 §11's 'the board pays for breadth'.",
+    "VOICE. docs/07 §10.3's five rules, which data/mistake_lines.json answers to, apply to the blurbs: one sentence, the raider is a person with a reason, never explain the mechanic, and — rule 5, the one that matters here — never blame the player. The player is the guild leader reading a record wall; the comedy is affectionate exasperation at the roster, never at the person holding the controller. No blurb contains a proper noun (docs/03 §5.6, 'DO NOT INVENT NAMES') and none references anything outside the setting.",
+    "NOT CERTIFIED FUNNY, AND THE NAMES ARE NOT SIGNED OFF. docs/16 R-3 makes 'is reading it entertaining' the gate the whole game hangs on and says nothing in the doc set can prove it. The validators prove shape, counts, condition reachability and reward provenance. They do not prove the jokes land. This wall needs the same human read data/mistake_lines.json is waiting on — the content-review gate is audit M5-COMEDY-12, blocked on a person, not claimed closed here.",
+    "Keys beginning with `_` are provenance and are dropped by `Achievements.normalize()`. JSON has no comments and these conditions are not defensible without their citations attached."
+  ],
+
+  "achievements": [
+    {
+      "_doc": "docs/11 §11.1 Progress example 'Clear Adventure 0'; NAME is docs/02 §4.4's 'First Blood', verbatim. Reward is docs/11 §11.2's consumable bundle row: '5 Minor Healing Potions | Early Progress entries; teaches the consumable loop by giving it away once'.",
+      "id": "prog_adventure_0",
+      "type": "progress",
+      "name": "First Blood",
+      "blurb": "One trash mob, one guild, and a great deal of shouting about who goes first.",
+      "condition": {"kind": "cleared", "slot": "A0"},
+      "reward": {"kind": "consumables", "consumable_id": "minor_healing_potion",
+                 "consumable_name": "Minor Healing Potion", "amount": 5}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 2, Tutorial Raid. Slot key TR is docs/03 §6.1's own (data/reputation.json `tutorial_awards`).",
+      "id": "prog_tutorial_raid",
+      "type": "progress",
+      "name": "A Boss, Briefly",
+      "blurb": "A whole boss, defeated, and at least half of it on purpose.",
+      "condition": {"kind": "cleared", "slot": "TR"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 3, Adventure 1. An Adventure is three rungs (docs/15 BL-37); A3 is the last of them, so clearing A3 is clearing the Adventure.",
+      "id": "prog_adventure_1",
+      "type": "progress",
+      "name": "Out the Gate",
+      "blurb": "The gate held. Nobody had expected the gate to be the difficult part.",
+      "condition": {"kind": "cleared", "tier": 1, "slot": "A3"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/11 §11.1 Progress example 'Clear Raid 1'. Raid N is five encounters; E5 is the last.",
+      "id": "prog_raid_1",
+      "type": "progress",
+      "name": "The First Real Night",
+      "blurb": "Five encounters in one night, and everyone came home with a different account of it.",
+      "condition": {"kind": "cleared", "tier": 1, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 5.",
+      "id": "prog_adventure_2",
+      "type": "progress",
+      "name": "Second Verse",
+      "blurb": "Back out on the road, this time with boots that match.",
+      "condition": {"kind": "cleared", "tier": 2, "slot": "A3"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 6.",
+      "id": "prog_raid_2",
+      "type": "progress",
+      "name": "Twice Bitten",
+      "blurb": "The second raid went better, which is not quite the same thing as well.",
+      "condition": {"kind": "cleared", "tier": 2, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 7.",
+      "id": "prog_adventure_3",
+      "type": "progress",
+      "name": "The Third Door",
+      "blurb": "Nobody read the map, and it worked out, and nobody has mentioned the map since.",
+      "condition": {"kind": "cleared", "tier": 3, "slot": "A3"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 8.",
+      "id": "prog_raid_3",
+      "type": "progress",
+      "name": "Deeper In",
+      "blurb": "Further in than anyone had booked lodgings for.",
+      "condition": {"kind": "cleared", "tier": 3, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 9.",
+      "id": "prog_adventure_4",
+      "type": "progress",
+      "name": "The Long Way Round",
+      "blurb": "There was a shortcut. There is always a shortcut, and it is always longer.",
+      "condition": {"kind": "cleared", "tier": 4, "slot": "A3"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 10.",
+      "id": "prog_raid_4",
+      "type": "progress",
+      "name": "Four Down",
+      "blurb": "Four raids in and the guild has very nearly stopped apologising to the corpses.",
+      "condition": {"kind": "cleared", "tier": 4, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 11.",
+      "id": "prog_adventure_5",
+      "type": "progress",
+      "name": "The Last Errand",
+      "blurb": "The last errand before the last door, and somebody still forgot the rope.",
+      "condition": {"kind": "cleared", "tier": 5, "slot": "A3"},
+      "reward": {"kind": "coin", "amount": 10}
+    },
+    {
+      "_doc": "docs/10 §2 ladder entry 12 and docs/10 §13 row 1 — the clear the completion beat fires on. `capstone` selects docs/11 §11.2's 120 G tier-capstone figure. docs/10 §13 row 4: 'No Tier 6 ships in 1.0', which the blurb leans on rather than promising more.",
+      "id": "prog_raid_5",
+      "type": "progress",
+      "name": "Nothing Left to Wipe On",
+      "capstone": true,
+      "blurb": "There is no Raid 6. Somebody is going to have to tell the roster.",
+      "condition": {"kind": "cleared", "tier": 5, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 120}
+    },
+
+    {
+      "_doc": "docs/11 §11.1 Mastery example 'Clear Raid 1 with 12/12 alive'; NAME is docs/02 §4.4's 'No One Died', verbatim.",
+      "id": "mast_no_one_died",
+      "type": "mastery",
+      "name": "No One Died",
+      "blurb": "Twelve went to the last door of Raid 1 and twelve came back, which is new.",
+      "condition": {"kind": "full_party_clear", "tier": 1, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "docs/11 §11.1 Mastery example 'Clear an encounter with no mistakes'. No tier and no slot: any encounter, which is what the example says.",
+      "id": "mast_clean_sheet",
+      "type": "mastery",
+      "name": "Clean Sheet",
+      "blurb": "An entire encounter in which nobody improvised.",
+      "condition": {"kind": "flawless_clear"},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "docs/11 §11.1 Mastery, 'Replaying content well rather than more' — the whole of one tier's raid, all five doors.",
+      "id": "mast_all_five_t1",
+      "type": "mastery",
+      "name": "All Five Doors",
+      "blurb": "Every door in Raid 1 opened, eventually, and a couple of them twice.",
+      "condition": {"kind": "cleared_slots", "tier": 1, "slots": ["E1", "E2", "E3", "E4", "E5"]},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "The same row as `mast_no_one_died` (docs/11 §11.1 Mastery example 'Clear Raid 1 with 12/12 alive'; name from docs/02 §4.4), repeated at tier 2. §11.1 prices Mastery at ~10 entries at ship, which is what the per-tier repeats are for: replaying content well rather than more.",
+      "id": "mast_no_one_died_t2",
+      "type": "mastery",
+      "name": "Nobody Left Behind",
+      "blurb": "Twelve out, twelve back, and one of them carried on both legs of it.",
+      "condition": {"kind": "full_party_clear", "tier": 2, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "The same row as `mast_all_five` — clearing every slot of a tier — repeated at tier 2. docs/11 §11.1 Mastery; the five slots are docs/10 §7's E1-E5.",
+      "id": "mast_all_five_t2",
+      "type": "mastery",
+      "name": "Five More Doors",
+      "blurb": "Raid 2, all of it, in the order the doors were built.",
+      "condition": {"kind": "cleared_slots", "tier": 2, "slots": ["E1", "E2", "E3", "E4", "E5"]},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "As `mast_no_one_died_t2`, at tier 3. docs/11 §11.1 Mastery.",
+      "id": "mast_no_one_died_t3",
+      "type": "mastery",
+      "name": "Still All Here",
+      "blurb": "A headcount at the end of Raid 3 that came out at twelve on the first try.",
+      "condition": {"kind": "full_party_clear", "tier": 3, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "As `mast_no_one_died_t2`, at tier 4. docs/11 §11.1 Mastery.",
+      "id": "mast_no_one_died_t4",
+      "type": "mastery",
+      "name": "A Full Table",
+      "blurb": "Everyone who left for Raid 4 is at the table afterwards, complaining about the food.",
+      "condition": {"kind": "full_party_clear", "tier": 4, "slot": "E5"},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "docs/11 §11.2's town-flag row: 'Banner, statue | Free in G and the strongest reward in a game whose progression bar is the town'. The doc names exactly two flags and this file grants exactly two — the statue here, the banner on rost_nine_of_nine.",
+      "id": "mast_no_one_died_t5",
+      "type": "mastery",
+      "name": "Twelve Out, Twelve Back",
+      "blurb": "The hardest night in the game, and the only casualty was the good tabard.",
+      "condition": {"kind": "full_party_clear", "tier": 5, "slot": "E5"},
+      "reward": {"kind": "town_flag", "flag_id": "statue",
+                 "flag_name": "A statue in the square, of twelve people, standing"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Mastery example 'Clear an encounter with no mistakes', at the last tier. The mistake count it reads is docs/07 §5's, and zero of them is the hardest thing this game asks.",
+      "id": "mast_immaculate",
+      "type": "mastery",
+      "name": "Immaculate",
+      "blurb": "A Tier 5 encounter with nothing to put in the report but the loot.",
+      "condition": {"kind": "flawless_clear", "tier": 5},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+    {
+      "_doc": "docs/10 §13 row 2's third continuing activity, 'repeat clears under §11's flat rewards'. Ten is authored, not a doc number — see the THRESHOLDS note.",
+      "id": "mast_regulars",
+      "type": "mastery",
+      "name": "Regulars",
+      "blurb": "The first boss of Raid 1 knows everyone by name and has stopped asking why.",
+      "condition": {"kind": "clear_count", "tier": 1, "slot": "E1", "count": 10},
+      "reward": {"kind": "coin", "amount": 25}
+    },
+
+    {
+      "_doc": "docs/11 §11.1 Roster example 'Field one of every class'. Reputation reward, 15 RP under docs/15 Q-69 (RULED): see the REPUTATION REWARDS note. Earned on day one — the starting twelve cover all nine classes — which is the record's condition, accepted. With the switch off it pays docs/11 §11.2's Roster figure, 40 G.",
+      "id": "rost_one_of_each",
+      "type": "roster",
+      "name": "One of Each",
+      "_rp": "docs/03 §6.1's smallest award — the two tutorials' 15 — taken as the board's rate under docs/15 Q-69 (RULED 2026-09-15).",
+      "blurb": "All nine classes on the books at once, and not one of them will sit near another.",
+      "condition": {"kind": "class_coverage", "count": 9},
+      "reward": {"kind": "reputation", "rp": 15}
+    },
+    {
+      "_doc": "docs/11 §11.1 Roster example 'Recruit a Legendary'. Furnishing reward is §11.2's 'Roster and Comedy entries — thematic' row; the Trophy Shelf is one of the two the row names.",
+      "id": "rost_first_legendary",
+      "type": "roster",
+      "name": "A Name Worth Knowing",
+      "blurb": "Somebody with an actual reputation has agreed to be seen with this guild.",
+      "condition": {"kind": "legendaries_found", "count": 1},
+      "reward": {"kind": "furnishing", "furnishing_id": "trophy_shelf",
+                 "furnishing_name": "Trophy Shelf"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Roster example 'Keep a Common at 90+ morale', verbatim including the figure and the rarity.",
+      "id": "rost_content_common",
+      "type": "roster",
+      "name": "Content, Somehow",
+      "blurb": "One Common, on ninety, with no idea how bad the odds against that were.",
+      "condition": {"kind": "morale_at_least", "morale": 90, "rarity": "common"},
+      "reward": {"kind": "furnishing", "furnishing_id": "straw_cot",
+                 "furnishing_name": "Straw Cot"}
+    },
+    {
+      "_doc": "docs/10 §13 row 2's first continuing activity: 'Legendary collection to 9 of 9', ✅ CANON's one Legendary per class. The nine here is the length of the class list (sim/model/Enums.CLASS_KEYS) and tests/unit/test_achievements.gd asserts it against `Achievements.legendary_goal()` so it cannot drift. Second and last town flag.",
+      "id": "rost_nine_of_nine",
+      "type": "roster",
+      "name": "Nine of Nine",
+      "blurb": "Every named hero in the world, in one hall, arguing about the rota.",
+      "condition": {"kind": "legendaries_found", "count": 9},
+      "reward": {"kind": "town_flag", "flag_id": "banner",
+                 "flag_name": "A banner over the guildhall door"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Roster ('Using the whole class list'), against docs/04 §12.1's roster cap of 15 at the top rank — so the condition is 'fill the roster canon allows', not a number chosen here.",
+      "id": "rost_standing_room",
+      "type": "roster",
+      "name": "Standing Room Only",
+      "blurb": "Fifteen on the books and a bench that seats four.",
+      "condition": {"kind": "roster_size", "count": 15},
+      "reward": {"kind": "coin", "amount": 40}
+    },
+    {
+      "_doc": "docs/02 §4.2's placed Furnishings — the morale system docs/11 §11.1's Roster row says this type steers toward. Reputation reward, 15 RP under docs/15 Q-69 (RULED); 40 G with the switch off.",
+      "id": "rost_comfortable",
+      "type": "roster",
+      "name": "Comfortable",
+      "_rp": "docs/03 §6.1's smallest award — the two tutorials' 15 — taken as the board's rate under docs/15 Q-69 (RULED 2026-09-15).",
+      "blurb": "Twelve Furnishings bought and placed, and the complaints have moved on to the food.",
+      "condition": {"kind": "furnishings_placed", "count": 12},
+      "reward": {"kind": "reputation", "rp": 15}
+    },
+    {
+      "_doc": "docs/02 §4.3's Guildhall upgrade track, which docs/02 §4.1 calls 'the building's upgrade track *is* a morale system'. Tier 3 is the top rung (docs/02 §4.2 maps L1-L4 to facility tiers 0-3).",
+      "id": "rost_roof",
+      "type": "roster",
+      "name": "A Roof That Holds",
+      "blurb": "The Guildhall at its best, which is to say the rain now lands outside it.",
+      "condition": {"kind": "facility_tier", "tier": 3},
+      "reward": {"kind": "coin", "amount": 40}
+    },
+    {
+      "_doc": "docs/03 §6.4's ladder. Rank 2 is Enums.ReputationRank.RESPECTED.",
+      "id": "rost_respected",
+      "type": "roster",
+      "name": "Known in Town",
+      "blurb": "The town has started saying the guild's name without the pause first.",
+      "condition": {"kind": "reputation_rank", "rank": 2},
+      "reward": {"kind": "coin", "amount": 40}
+    },
+
+    {
+      "_doc": "docs/11 §11.1 Comedy example 'Big Dumb — lose a Legendary raider to morale'; NAME is docs/02 §4.4's 'Big Dumb', verbatim. Fires off docs/04 §11.3's departure, which GameState already computes (`_refresh_big_dumb`, `_apply_pending_departures`). The emit is NOT wired: `Achievements.evaluate()` has no caller anywhere in game/, so no event record can fire and nothing writes `achievements_earned`. Audit M5-QAB-6.",
+      "id": "com_big_dumb",
+      "type": "comedy",
+      "name": "Big Dumb",
+      "blurb": "Somebody with a statue in another town has resigned over the bedding.",
+      "condition": {"kind": "event", "name": "legendary_departed",
+                    "text": "Lose a Legendary raider to morale."},
+      "reward": {"kind": "furnishing", "furnishing_id": "trophy_shelf",
+                 "furnishing_name": "Trophy Shelf"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Comedy example 'Wipe on Encounter 1 five times', verbatim including the figure. A lifetime wipe count, not a streak — attempts minus clears, both already persisted — so nothing here is the approximation docs/15 BL-59 refused.",
+      "id": "com_persistence",
+      "type": "comedy",
+      "name": "Persistence",
+      "blurb": "Five goes at the first door of Raid 1. The door remains in excellent condition.",
+      "condition": {"kind": "wipes", "tier": 1, "slot": "E1", "count": 5},
+      "reward": {"kind": "furnishing", "furnishing_id": "straw_cot",
+                 "furnishing_name": "Straw Cot"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Comedy, 'Rewards failure, because failure is the game's genre'.",
+      "id": "com_by_a_thread",
+      "type": "comedy",
+      "name": "By a Thread",
+      "blurb": "One raider left standing, and they are not certain which part of it they did.",
+      "condition": {"kind": "survivors_at_most", "count": 1},
+      "reward": {"kind": "furnishing", "furnishing_id": "straw_cot",
+                 "furnishing_name": "Straw Cot"}
+    },
+    {
+      "_doc": "docs/11 §11.1 Comedy example 'Wipe on Encounter 1 five times', widened to twenty attempts at E1 because §11.1's steer for Comedy is 'nothing — rewards failure, because failure is the game's genre'. The reward is a furnishing rather than coin for the same reason.",
+      "id": "com_long_night",
+      "type": "comedy",
+      "name": "A Long Night",
+      "blurb": "Twenty attempts at one encounter, and the kitchen has stopped keeping food warm.",
+      "condition": {"kind": "attempts", "tier": 1, "slot": "E1", "count": 20},
+      "reward": {"kind": "furnishing", "furnishing_id": "hot_meal",
+                 "furnishing_name": "Hot Meal Standing Order"}
+    },
+    {
+      "_doc": "docs/10 §5's Tutorial Raid is 'a real fail state: a boss with one mechanic, an enrage timer, and the Wipe Report'. Finding it is the most on-theme thing this guild can do.",
+      "id": "com_nobodys_fault",
+      "type": "comedy",
+      "name": "Nobody's Fault",
+      "blurb": "The tutorial has a fail state. The guild located it immediately.",
+      "condition": {"kind": "wipes", "slot": "TR", "count": 1},
+      "reward": {"kind": "furnishing", "furnishing_id": "trophy_shelf",
+                 "furnishing_name": "Trophy Shelf"}
+    },
+    {
+      "_doc": "docs/05 §6.3's guild crisis counter, already persisted as `crisis_strikes`. One strike, not the disband — the joke is the sulk, and the disband is not funny.",
+      "id": "com_whole_room_sulks",
+      "type": "comedy",
+      "name": "The Whole Room Sulks",
+      "blurb": "Morale reached the point where the hall went quiet and stayed that way.",
+      "condition": {"kind": "crisis_strikes", "count": 1},
+      "reward": {"kind": "furnishing", "furnishing_id": "hot_meal",
+                 "furnishing_name": "Hot Meal Standing Order"}
+    },
+
+    {
+      "_doc": "docs/11 §11.1 Economy example 'Sell 100 items', verbatim including the figure. Needs `items_sold_lifetime`: `sold_recently` is docs/02 §6.1's six-slot buy-back shelf, not a counter. Audit M5-QAB-5.",
+      "id": "econ_sell_100",
+      "type": "economy",
+      "name": "The Back of the Cart",
+      "blurb": "A hundred items sold, and the Market has started keeping a chair free.",
+      "condition": {"kind": "items_sold", "count": 100},
+      "reward": {"kind": "consumables", "consumable_id": "minor_healing_potion",
+                 "consumable_name": "Minor Healing Potion", "amount": 5}
+    },
+    {
+      "_doc": "docs/15 Q-13 (RULED 2026-09-15): the Blacksmith is out of 1.0, so docs/11 §11.1's Economy example 'Fully upgrade one item' ('Sharpened, Finally') is replaced by this row — the same slot, the same five Minor Healing Potions, a counter the build keeps (`items_sold_lifetime`, audit M5-QAB-5). Ten is the first rung of docs/11 §11.1's 'Sell 100 items'.",
+      "id": "econ_first_ten",
+      "type": "economy",
+      "name": "Pocket Change",
+      "blurb": "Ten items sold. The Merchant has stopped inspecting them, which is either trust or fatigue.",
+      "condition": {"kind": "items_sold", "count": 10},
+      "reward": {"kind": "consumables", "consumable_id": "minor_healing_potion",
+                 "consumable_name": "Minor Healing Potion", "amount": 5}
+    },
+    {
+      "_doc": "docs/11 §11.1 Economy ('Touching the systems in this doc at least once') — the gold half, against docs/11 §6's valuation: 1,000 G is roughly the point at which selling has become a habit rather than an accident.",
+      "id": "econ_coffers",
+      "type": "economy",
+      "name": "Coffers",
+      "blurb": "A thousand gold in hand, briefly, before somebody mentioned the roof.",
+      "condition": {"kind": "gold_at_least", "amount": 1000},
+      "reward": {"kind": "furnishing", "furnishing_id": "trophy_shelf",
+                 "furnishing_name": "Trophy Shelf"}
+    },
+    {
+      "_doc": "The board's own cap denominator, made visible: docs/11 §11.2 caps board coin at ~15% of lifetime income, and this is the only entry that reads that figure as a goal rather than as a limit.",
+      "id": "econ_turnover",
+      "type": "economy",
+      "name": "Turnover",
+      "blurb": "Five thousand gold has passed through this guild. None of it stayed.",
+      "condition": {"kind": "gold_earned", "amount": 5000},
+      "reward": {"kind": "furnishing", "furnishing_id": "feather_bed",
+                 "furnishing_name": "Feather Bed"}
+    }
+  ]
+}

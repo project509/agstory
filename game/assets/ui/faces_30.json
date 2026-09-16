@@ -1,0 +1,16 @@
+{
+  "size": [30, 30],
+  "ramp": {"0-2": "DANGER", "3-5": "CAUTION", "6-9": "POSITIVE"},
+  "frames": [
+    {"band": 0, "name": "Very Upset", "file": "faces_30.png", "x": 0, "y": 0, "w": 30, "h": 30},
+    {"band": 1, "name": "Upset", "file": "faces_30.png", "x": 30, "y": 0, "w": 30, "h": 30},
+    {"band": 2, "name": "Unhappy", "file": "faces_30.png", "x": 60, "y": 0, "w": 30, "h": 30},
+    {"band": 3, "name": "Annoyed", "file": "faces_30.png", "x": 90, "y": 0, "w": 30, "h": 30},
+    {"band": 4, "name": "Slightly Annoyed", "file": "faces_30.png", "x": 120, "y": 0, "w": 30, "h": 30},
+    {"band": 5, "name": "Content", "file": "faces_30.png", "x": 150, "y": 0, "w": 30, "h": 30},
+    {"band": 6, "name": "Happy", "file": "faces_30.png", "x": 180, "y": 0, "w": 30, "h": 30},
+    {"band": 7, "name": "Quite Happy", "file": "faces_30.png", "x": 210, "y": 0, "w": 30, "h": 30},
+    {"band": 8, "name": "Very Happy", "file": "faces_30.png", "x": 240, "y": 0, "w": 30, "h": 30},
+    {"band": 9, "name": "Loves Their Guild", "file": "faces_30.png", "x": 270, "y": 0, "w": 30, "h": 30}
+  ]
+}

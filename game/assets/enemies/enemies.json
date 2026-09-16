@@ -1,0 +1,101 @@
+{
+ "_note": [
+  "The boss table (W0-MANIFEST, PIPE-17). Each rank the game loads by name (Cards.gd encounter_art,",
+  "RaidView.gd boss plate) is a byte copy of one sliced export: tools/art/place_enemies.py copies",
+  "art/export/boss/<export>.png -> game/assets/enemies/<rank>.png (--check compares instead).",
+  "The export's sheet rect lives ONLY in art/ref/manifests/all.json under its `export` name, so",
+  "the chain sheet -> export -> rank is one lookup per hop and no rect is stored twice.",
+  "W3-ENEMIES: this file is WRITTEN by tools/aseprite/gen_boss_anims.lua (build_art.sh --gen; --check",
+  "gates it) — never hand-edit. `strip` / `glow` are the animation strips derived from the still",
+  "(anim/<rank>.png body, anim/<rank>_glow.png the emissive eye layer drawn at `glow_modulate`),",
+  "`frames` x `frame_w` by `frame_h` in one row; `fps` is the idle rate; `tags` maps a tag name",
+  "-> [first_frame, last_frame, fps]; scale 1.0 = plate-native (Q02 rules whether an integer",
+  "upscale is ever allowed); anchor = [x, y] of the feet-centre in normalized frame space",
+  "(SceneStage.place_boss plants offset.y = -h/2, i.e. [0.5, 1.0]).",
+  "tests/unit/test_art_sources.gd asserts every rank here is byte-identical to its export."
+ ],
+ "export_dir": "art/export/boss",
+ "target_dir": "game/assets/enemies",
+ "manifest": "art/ref/manifests/all.json",
+ "glow_modulate": 1.6,
+ "ranks": {
+  "boss_main": {
+   "export": "sludge_maw_leviathan",
+   "strip": "anim/boss_main.png",
+   "glow": "anim/boss_main_glow.png",
+   "frames": 12,
+   "frame_w": 155,
+   "frame_h": 131,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 28,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  },
+  "boss_main_2": {
+   "export": "void_colossus_core",
+   "strip": "anim/boss_main_2.png",
+   "glow": "anim/boss_main_2_glow.png",
+   "frames": 12,
+   "frame_w": 200,
+   "frame_h": 121,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 99,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  },
+  "boss_mini": {
+   "export": "boss_spiked_crawler",
+   "strip": "anim/boss_mini.png",
+   "glow": "anim/boss_mini_glow.png",
+   "frames": 12,
+   "frame_w": 149,
+   "frame_h": 105,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 20,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  },
+  "boss_mini_2": {
+   "export": "boss_stone_brute",
+   "strip": "anim/boss_mini_2.png",
+   "glow": "anim/boss_mini_2_glow.png",
+   "frames": 12,
+   "frame_w": 181,
+   "frame_h": 165,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 10,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  },
+  "boss_elite": {
+   "export": "boss_flame_brute",
+   "strip": "anim/boss_elite.png",
+   "glow": "anim/boss_elite_glow.png",
+   "frames": 12,
+   "frame_w": 123,
+   "frame_h": 91,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 8,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  },
+  "boss_trash": {
+   "export": "void_tentacle_a",
+   "strip": "anim/boss_trash.png",
+   "glow": "anim/boss_trash_glow.png",
+   "frames": 12,
+   "frame_w": 76,
+   "frame_h": 82,
+   "fps": 5,
+   "scale": 1.0,
+   "anchor": [0.5, 1.0],
+   "glow_px": 27,
+   "tags": {"idle": [0, 3, 5], "hit": [4, 5, 11], "death": [6, 11, 9]}
+  }
+ }
+}

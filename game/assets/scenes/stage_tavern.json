@@ -1,0 +1,111 @@
+{
+ "note": [
+  "The tavern common room on the BARE plate (1536x1024). Canon's hiring hall, so",
+  "the crowd is the point: docs/04 §3.5's candidates are the people in this room.",
+  "",
+  "One fire sprite, on the hearth. Everything else lit in here is a 6-10px candle",
+  "or a wall sconce, and a 16x24 flame strip would be bigger than the candle it is",
+  "supposed to be in, so those are breathing PointLight2Ds with no sprite.",
+  "",
+  "figure_scale 1 (W1-STAGE, STAGE-02): stools are ~22px and tables ~90px on this plate, so",
+  "the 1x strips are already nearly plate-native (Q01 rules 1x vs 1.5x). The hearth strip is",
+  "cut at 64, the width gen_fire.lua draws it at — 48 made every window straddle two flames",
+  "(STAGE-11).",
+  "",
+  "Fourteen figures at the bar, the tables, the stage and the door. Checked with",
+  "`python tools/art/preview_scene.py stage_tavern`.",
+  "",
+  "Bubbles (W2-STAGE2, TOWN-26): mugs at the bar and the near table, a note over the figure",
+  "on the stage, zzz at the door; three are up at a time (a full room). `speech.speaker` is",
+  "a list of bubble-free patrons — the line's hash picks its mouth.",
+  "",
+  "`furniture` (W7-STAGE, UI-07): the plate's table tops, the two long tables with their benches,",
+  "and the bar counter with its stools, as [x, y, w, h] in plate pixels — where nobody can STAND.",
+  "test_scene_stage asserts no actor mark lies inside one; the speaker at the long table's bench",
+  "(792,722) moved to the floor beside it (836,730), and three more marks that sat on a bench edge",
+  "moved a few pixels off it. The stage's speech plate is sized for the 1x figures: `speech.size`",
+  "is the authored box and the Label takes `size.x - 16`, so 156 is a 140px line — the same wrap",
+  "SceneStage.SAY_WRAP_1X gives an in-fight line on a 1x scene, rather than the camp's 182/166."
+ ],
+ "plate": "res://game/assets/bg/stage_tavern.png",
+ "figure_scale": 1,
+ "props": [
+  {
+   "strip": "res://game/assets/vfx/fire_hearth.png",
+   "frame_w": 64,
+   "fps": 9,
+   "pos": [1000, 208],
+   "anchor": "bottom",
+   "emissive": 1.3
+  }
+ ],
+ "lights": [
+  {"pos": [1000, 178], "color": "#FFA050", "energy": 0.5, "radius": 265, "flicker": 0.35},
+  {"pos": [385, 232], "color": "#FFC888", "energy": 0.13, "radius": 62, "flicker": 0.3},
+  {"pos": [655, 236], "color": "#FFC888", "energy": 0.13, "radius": 62, "flicker": 0.3},
+  {"pos": [820, 236], "color": "#FFC888", "energy": 0.13, "radius": 62, "flicker": 0.3},
+  {"pos": [500, 388], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [795, 357], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [1050, 422], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [645, 542], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [497, 588], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [745, 667], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [1030, 602], "color": "#FFC888", "energy": 0.12, "radius": 56, "flicker": 0.32},
+  {"pos": [845, 122], "color": "#FFB878", "energy": 0.11, "radius": 52, "flicker": 0.26},
+  {"pos": [1240, 302], "color": "#FFB878", "energy": 0.11, "radius": 52, "flicker": 0.26},
+  {"pos": [1245, 472], "color": "#FFB878", "energy": 0.11, "radius": 52, "flicker": 0.26},
+  {"pos": [340, 742], "color": "#FFB878", "energy": 0.11, "radius": 52, "flicker": 0.26},
+  {"pos": [120, 322], "color": "#FFB878", "energy": 0.1, "radius": 48, "flicker": 0.26}
+ ],
+ "embers": [
+  {"pos": [1000, 200], "amount": 10, "spread": 12, "height": 46}
+ ],
+ "actors": [
+  {"who": "knight_unlabelled_b", "pos": [600, 232]},
+  {"who": "variant_r02_brown", "pos": [470, 302]},
+  {"who": "variant_r07_black", "pos": [630, 302]},
+  {"who": "variant_r09_grey", "pos": [800, 300], "flip": true},
+  {"who": "cleric", "pos": [440, 432]},
+  {"who": "rogue", "pos": [536, 426], "flip": true},
+  {"who": "mage_b", "pos": [912, 400], "flip": true},
+  {"who": "warrior_b", "pos": [1010, 466]},
+  {"who": "variant_r04_ginger", "pos": [1090, 460], "flip": true},
+  {"who": "ranger_as_rogue", "pos": [594, 546]},
+  {"who": "variant_r11_brown", "pos": [452, 642]},
+  {"who": "cleric_b", "pos": [836, 730], "flip": true},
+  {"who": "variant_r06_black", "pos": [1098, 662], "flip": true},
+  {"who": "mage", "pos": [1390, 472], "flip": true}
+ ],
+ "furniture": [
+  [330, 240, 530, 60],
+  [425, 350, 120, 70],
+  [740, 355, 160, 68],
+  [1005, 408, 78, 50],
+  [600, 455, 100, 150],
+  [445, 578, 80, 52],
+  [695, 632, 108, 130],
+  [980, 575, 105, 125]
+ ],
+ "bubbles": [
+  [434, 341, "emote:mug"],
+  [530, 338],
+  [1004, 372, "emote:mug"],
+  [588, 457, "emote:note"],
+  [1384, 381, "emote:zzz"]
+ ],
+ "bubble_visible": 3,
+ "glow_threshold": 1.3,
+ "speech": {
+  "pos": [880, 466],
+  "size": [156, 64],
+  "speaker": [12, 11, 6],
+  "lines": [
+   "I have killed a rat. Professionally.",
+   "I can start today. I can start now.",
+   "My last guild? We don't talk about it.",
+   "I own my own sword. Mostly own it.",
+   "I read the strategy. Most of it.",
+   "Do we still get paid if we run?"
+  ]
+ }
+}

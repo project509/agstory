@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "tier": 1,
+  "source": "raid",
+  "_source": {
+    "tables": "docs/_source/ideaboard-transcription.md §3 (CANON, cell for cell)",
+    "statless_items": "docs/09-items-and-itemization.md §10.2 (PROPOSED — canon names these with no stat block)",
+    "drop_pattern": "docs/_source/lead-designer-notes-raw.md — Raid Layout and loot drops (CANON)"
+  },
+  "_notes": [
+    "Canon drop pattern: B1 Feet + basic weapon, B2 Legs + healer off-hand,",
+    "B3 Head, B4 Chest + strong weapon, B5 class capstone + Raid Trinket.",
+    "NAME COLLISIONS ARE CANON and intentional here, as at the starting rung:",
+    "three different 'Basic Raid Staff' (10/11/12 Damage), three different",
+    "'Strong Raid Staff' (14/15/16), three different 'Raider's Leggings'",
+    "(monk_rogue 5AC / healer 3AC / mage_wizard 3AC) and two identical",
+    "'Raider's Boots' in different families. Ids are identity, names are not.",
+    "The Rogue's Basic Raid Dagger is +4 against a +5 Adventure sword, a",
+    "deliberate-looking DROP in weapon damage at the first raid rung.",
+    "docs/09 OQ-11/OQ-15 flag it; transcribed as canon has it, not smoothed.",
+    "Boss 5 drops ONE trinket per clear drawn from boss5_trinket_pool (four",
+    "charms), so fully trinketing 12 raiders takes roughly 12 clears.",
+    "Drop COUNTS per encounter belong to docs/10, not this file."
+  ],
+  "items": [
+    {
+      "id": "ITM_T1_RAID_WARBARD_FEET",
+      "name": "Raider's Boots",
+      "slot": "feet",
+      "family": "warrior_bard_armor",
+      "boss": 1,
+      "stats": {
+        "ac": 4,
+        "hp": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MONKROGUE_FEET",
+      "name": "Raider's Boots",
+      "slot": "feet",
+      "family": "monk_rogue_armor",
+      "boss": 1,
+      "stats": {
+        "ac": 4,
+        "hp": 4
+      },
+      "canon": true,
+      "note": "Identical name and stats to the Warrior/Bard boots, but a different family."
+    },
+    {
+      "id": "ITM_T1_RAID_HEALER_FEET",
+      "name": "Raider's Shoes",
+      "slot": "feet",
+      "family": "healer_armor",
+      "boss": 1,
+      "stats": {
+        "ac": 3,
+        "hp": 4,
+        "mana": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MAGEWIZ_FEET",
+      "name": "Raider's Slippers",
+      "slot": "feet",
+      "family": "mage_wizard_armor",
+      "boss": 1,
+      "stats": {
+        "ac": 3,
+        "hp": 3,
+        "mana": 6
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_W1H_MH_SWORD_BASIC",
+      "name": "Basic Raid Sword",
+      "slot": "main_hand",
+      "family": "wrb_one_hand",
+      "boss": 1,
+      "stats": {
+        "damage": 6
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_W1H_MH_DAGGER_BASIC",
+      "name": "Basic Raid Dagger",
+      "slot": "main_hand",
+      "family": "wrb_one_hand",
+      "boss": 1,
+      "stats": {
+        "damage": 4
+      },
+      "canon": true,
+      "note": "Rogue equips two. Note it is -1 against the +5 Adventure sword; docs/09 OQ-11 flags the step."
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_MONK_BASIC",
+      "name": "Basic Raid Staff",
+      "slot": "main_hand",
+      "family": "monk_two_hand",
+      "boss": 1,
+      "stats": {
+        "damage": 10
+      },
+      "canon": true,
+      "two_handed": true
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_MAGE_BASIC",
+      "name": "Basic Raid Staff",
+      "slot": "main_hand",
+      "family": "mage_two_hand",
+      "boss": 1,
+      "stats": {
+        "damage": 11
+      },
+      "canon": true,
+      "two_handed": true
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_WIZ_BASIC",
+      "name": "Basic Raid Staff",
+      "slot": "main_hand",
+      "family": "wizard_two_hand",
+      "boss": 1,
+      "stats": {
+        "damage": 12
+      },
+      "canon": true,
+      "two_handed": true,
+      "note": "Canon keeps the Wizard exactly +1 over the Mage at every staff rung."
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_CLR_BASIC",
+      "name": "Basic Healing Weapon",
+      "slot": "main_hand",
+      "family": "cleric_weapon",
+      "boss": 1,
+      "stats": {
+        "mana": 11
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G4 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 16
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_DRU_BASIC",
+      "name": "Basic Healing Weapon",
+      "slot": "main_hand",
+      "family": "druid_weapon",
+      "boss": 1,
+      "stats": {
+        "mana": 11
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G4 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 16
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_SHM_BASIC",
+      "name": "Basic Healing Weapon",
+      "slot": "main_hand",
+      "family": "shaman_weapon",
+      "boss": 1,
+      "stats": {
+        "mana": 11
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G4 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 16
+    },
+    {
+      "id": "ITM_T1_RAID_WARBARD_LEGS",
+      "name": "Raider's Greaves",
+      "slot": "legs",
+      "family": "warrior_bard_armor",
+      "boss": 2,
+      "stats": {
+        "ac": 5,
+        "hp": 6,
+        "power": 1
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MONKROGUE_LEGS",
+      "name": "Raider's Leggings",
+      "slot": "legs",
+      "family": "monk_rogue_armor",
+      "boss": 2,
+      "stats": {
+        "ac": 5,
+        "hp": 6,
+        "power": 1
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_HEALER_LEGS",
+      "name": "Raider's Leggings",
+      "slot": "legs",
+      "family": "healer_armor",
+      "boss": 2,
+      "stats": {
+        "ac": 3,
+        "hp": 4,
+        "mana": 6
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MAGEWIZ_LEGS",
+      "name": "Raider's Leggings",
+      "slot": "legs",
+      "family": "mage_wizard_armor",
+      "boss": 2,
+      "stats": {
+        "ac": 3,
+        "hp": 4,
+        "mana": 8
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_HEALOFF_OH",
+      "name": "Blessed Raider's Tome",
+      "slot": "off_hand",
+      "family": "healer_off_hand",
+      "boss": 2,
+      "stats": {
+        "ac": 2,
+        "mana": 5
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_WARBARD_HEAD",
+      "name": "Raider's Helm",
+      "slot": "head",
+      "family": "warrior_bard_head",
+      "boss": 3,
+      "stats": {
+        "ac": 5,
+        "hp": 5,
+        "power": 1
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MONKHEAD_HEAD",
+      "name": "Raider's Headband",
+      "slot": "head",
+      "family": "monk_head",
+      "boss": 3,
+      "stats": {
+        "ac": 5,
+        "hp": 5
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_ROGUEHEAD_HEAD",
+      "name": "Raider's Eyepatch",
+      "slot": "head",
+      "family": "rogue_head",
+      "boss": 3,
+      "stats": {
+        "ac": 4,
+        "hp": 4,
+        "power": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_HEALER_HEAD",
+      "name": "Raider's Circlet",
+      "slot": "head",
+      "family": "healer_armor",
+      "boss": 3,
+      "stats": {
+        "ac": 3,
+        "hp": 4,
+        "mana": 7
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MAGEWIZ_HEAD",
+      "name": "Raider's Cap",
+      "slot": "head",
+      "family": "mage_wizard_armor",
+      "boss": 3,
+      "stats": {
+        "ac": 3,
+        "hp": 3,
+        "mana": 8
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_WARBARD_CHEST",
+      "name": "Raider's Cuirass",
+      "slot": "chest",
+      "family": "warrior_bard_armor",
+      "boss": 4,
+      "stats": {
+        "ac": 7,
+        "hp": 9,
+        "power": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MONKROGUE_CHEST_MONK",
+      "name": "Raider's Vest",
+      "slot": "chest",
+      "family": "monk_rogue_armor",
+      "boss": 4,
+      "stats": {
+        "ac": 6,
+        "hp": 7,
+        "power": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MONKROGUE_CHEST_ROGUE",
+      "name": "Raider's Leather Vest",
+      "slot": "chest",
+      "family": "monk_rogue_armor",
+      "boss": 4,
+      "stats": {
+        "ac": 6,
+        "hp": 7,
+        "power": 2
+      },
+      "canon": true,
+      "note": "Same stats as the Monk chest; canon gives it a distinct name."
+    },
+    {
+      "id": "ITM_T1_RAID_HEALER_CHEST",
+      "name": "Raider's Vestments",
+      "slot": "chest",
+      "family": "healer_armor",
+      "boss": 4,
+      "stats": {
+        "ac": 4,
+        "hp": 7,
+        "mana": 10
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_MAGEWIZ_CHEST",
+      "name": "Raider's Robe",
+      "slot": "chest",
+      "family": "mage_wizard_armor",
+      "boss": 4,
+      "stats": {
+        "ac": 4,
+        "hp": 6,
+        "mana": 12
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_W1H_MH_SWORD_STRONG",
+      "name": "Strong Raid Sword",
+      "slot": "main_hand",
+      "family": "wrb_one_hand",
+      "boss": 4,
+      "stats": {
+        "damage": 8
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_RAID_W1H_MH_DAGGER_STRONG",
+      "name": "Strong Raid Dagger",
+      "slot": "main_hand",
+      "family": "wrb_one_hand",
+      "boss": 4,
+      "stats": {
+        "damage": 6
+      },
+      "canon": true,
+      "note": "Rogue equips two."
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_MONK_STRONG",
+      "name": "Strong Raid Staff",
+      "slot": "main_hand",
+      "family": "monk_two_hand",
+      "boss": 4,
+      "stats": {
+        "damage": 14
+      },
+      "canon": true,
+      "two_handed": true
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_MAGE_STRONG",
+      "name": "Strong Raid Staff",
+      "slot": "main_hand",
+      "family": "mage_two_hand",
+      "boss": 4,
+      "stats": {
+        "damage": 15
+      },
+      "canon": true,
+      "two_handed": true
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_WIZ_STRONG",
+      "name": "Strong Raid Staff",
+      "slot": "main_hand",
+      "family": "wizard_two_hand",
+      "boss": 4,
+      "stats": {
+        "damage": 16
+      },
+      "canon": true,
+      "two_handed": true
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_CLR_STRONG",
+      "name": "Strong Healing Weapon",
+      "slot": "main_hand",
+      "family": "cleric_weapon",
+      "boss": 4,
+      "stats": {
+        "mana": 15
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G5 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 19
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_DRU_STRONG",
+      "name": "Strong Healing Weapon",
+      "slot": "main_hand",
+      "family": "druid_weapon",
+      "boss": 4,
+      "stats": {
+        "mana": 15
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G5 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 19
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_SHM_STRONG",
+      "name": "Strong Healing Weapon",
+      "slot": "main_hand",
+      "family": "shaman_weapon",
+      "boss": 4,
+      "stats": {
+        "mana": 15
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G5 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 19
+    },
+    {
+      "id": "ITM_T1_RAID_SHIELD_OH",
+      "name": "Warrior Shield",
+      "slot": "off_hand",
+      "family": "warrior_shield",
+      "boss": 5,
+      "stats": {
+        "ac": 7,
+        "hp": 8,
+        "power": 1
+      },
+      "canon": true,
+      "note": "Canon's single largest AC value, and the biggest defensive item in Tier 1."
+    },
+    {
+      "id": "ITM_T1_RAID_INSTR_OH",
+      "name": "Bard Instrument",
+      "slot": "off_hand",
+      "family": "instrument",
+      "boss": 5,
+      "stats": {
+        "mana": 20
+      },
+      "canon": true,
+      "note": "Canon's largest Mana value in Tier 1. What it does is docs/06's open question."
+    },
+    {
+      "id": "ITM_T1_RAID_MONKHEAD_HEAD_FINAL",
+      "name": "Final Headband",
+      "slot": "head",
+      "family": "monk_head",
+      "boss": 5,
+      "stats": {
+        "ac": 6,
+        "hp": 6,
+        "power": 2
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G2"
+    },
+    {
+      "id": "ITM_T1_RAID_ROGUEHEAD_HEAD_FINAL",
+      "name": "Final Eyepatch",
+      "slot": "head",
+      "family": "rogue_head",
+      "boss": 5,
+      "stats": {
+        "ac": 5,
+        "hp": 5,
+        "power": 3
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G3"
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_CLR_FINAL",
+      "name": "Cleric Weapon",
+      "slot": "main_hand",
+      "family": "cleric_weapon",
+      "boss": 5,
+      "stats": {
+        "mana": 19,
+        "ac": 2
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G6 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 22
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_DRU_FINAL",
+      "name": "Druid Weapon",
+      "slot": "main_hand",
+      "family": "druid_weapon",
+      "boss": 5,
+      "stats": {
+        "mana": 19,
+        "hp": 4
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G7 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 22
+    },
+    {
+      "id": "ITM_T1_RAID_WPN_SHM_FINAL",
+      "name": "Shaman Weapon",
+      "slot": "main_hand",
+      "family": "shaman_weapon",
+      "boss": 5,
+      "stats": {
+        "mana": 19,
+        "ac": 1,
+        "hp": 2
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G8 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 22
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_MAGE_FINAL",
+      "name": "Mage Staff",
+      "slot": "main_hand",
+      "family": "mage_two_hand",
+      "boss": 5,
+      "stats": {
+        "damage": 19
+      },
+      "canon": false,
+      "two_handed": true,
+      "note": "docs/09 §10.2 G9"
+    },
+    {
+      "id": "ITM_T1_RAID_W2H_WIZ_FINAL",
+      "name": "Wizard Staff",
+      "slot": "main_hand",
+      "family": "wizard_two_hand",
+      "boss": 5,
+      "stats": {
+        "damage": 20
+      },
+      "canon": false,
+      "two_handed": true,
+      "note": "docs/09 §10.2 G10"
+    },
+    {
+      "id": "ITM_T1_RAID_UNIV_TRINKET_HEALTH",
+      "name": "Raider's Charm of Health",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "boss": 5,
+      "stats": {
+        "hp": 11
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G1"
+    },
+    {
+      "id": "ITM_T1_RAID_UNIV_TRINKET_ARMOR",
+      "name": "Raider's Charm of Armor",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "boss": 5,
+      "stats": {
+        "ac": 3
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G1"
+    },
+    {
+      "id": "ITM_T1_RAID_UNIV_TRINKET_MANA",
+      "name": "Raider's Charm of Mana",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "boss": 5,
+      "stats": {
+        "mana": 20
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G1"
+    },
+    {
+      "id": "ITM_T1_RAID_UNIV_TRINKET_POWER",
+      "name": "Raider's Charm of Power",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "boss": 5,
+      "stats": {
+        "power": 3
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G1"
+    }
+  ],
+  "class_tables": {
+    "warrior": {
+      "1": [
+        "ITM_T1_RAID_WARBARD_FEET",
+        "ITM_T1_RAID_W1H_MH_SWORD_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_WARBARD_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_WARBARD_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_WARBARD_CHEST",
+        "ITM_T1_RAID_W1H_MH_SWORD_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_SHIELD_OH"
+      ]
+    },
+    "bard": {
+      "1": [
+        "ITM_T1_RAID_WARBARD_FEET",
+        "ITM_T1_RAID_W1H_MH_SWORD_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_WARBARD_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_WARBARD_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_WARBARD_CHEST",
+        "ITM_T1_RAID_W1H_MH_SWORD_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_INSTR_OH"
+      ]
+    },
+    "monk": {
+      "1": [
+        "ITM_T1_RAID_MONKROGUE_FEET",
+        "ITM_T1_RAID_W2H_MONK_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_MONKROGUE_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_MONKHEAD_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_MONKROGUE_CHEST_MONK",
+        "ITM_T1_RAID_W2H_MONK_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_MONKHEAD_HEAD_FINAL"
+      ]
+    },
+    "rogue": {
+      "1": [
+        "ITM_T1_RAID_MONKROGUE_FEET",
+        "ITM_T1_RAID_W1H_MH_DAGGER_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_MONKROGUE_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_ROGUEHEAD_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_MONKROGUE_CHEST_ROGUE",
+        "ITM_T1_RAID_W1H_MH_DAGGER_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_ROGUEHEAD_HEAD_FINAL"
+      ]
+    },
+    "cleric": {
+      "1": [
+        "ITM_T1_RAID_HEALER_FEET",
+        "ITM_T1_RAID_WPN_CLR_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_HEALER_LEGS",
+        "ITM_T1_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T1_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_HEALER_CHEST",
+        "ITM_T1_RAID_WPN_CLR_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_WPN_CLR_FINAL"
+      ]
+    },
+    "druid": {
+      "1": [
+        "ITM_T1_RAID_HEALER_FEET",
+        "ITM_T1_RAID_WPN_DRU_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_HEALER_LEGS",
+        "ITM_T1_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T1_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_HEALER_CHEST",
+        "ITM_T1_RAID_WPN_DRU_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_WPN_DRU_FINAL"
+      ]
+    },
+    "shaman": {
+      "1": [
+        "ITM_T1_RAID_HEALER_FEET",
+        "ITM_T1_RAID_WPN_SHM_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_HEALER_LEGS",
+        "ITM_T1_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T1_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_HEALER_CHEST",
+        "ITM_T1_RAID_WPN_SHM_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_WPN_SHM_FINAL"
+      ]
+    },
+    "mage": {
+      "1": [
+        "ITM_T1_RAID_MAGEWIZ_FEET",
+        "ITM_T1_RAID_W2H_MAGE_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_MAGEWIZ_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_MAGEWIZ_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_MAGEWIZ_CHEST",
+        "ITM_T1_RAID_W2H_MAGE_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_W2H_MAGE_FINAL"
+      ]
+    },
+    "wizard": {
+      "1": [
+        "ITM_T1_RAID_MAGEWIZ_FEET",
+        "ITM_T1_RAID_W2H_WIZ_BASIC"
+      ],
+      "2": [
+        "ITM_T1_RAID_MAGEWIZ_LEGS"
+      ],
+      "3": [
+        "ITM_T1_RAID_MAGEWIZ_HEAD"
+      ],
+      "4": [
+        "ITM_T1_RAID_MAGEWIZ_CHEST",
+        "ITM_T1_RAID_W2H_WIZ_STRONG"
+      ],
+      "5": [
+        "ITM_T1_RAID_W2H_WIZ_FINAL"
+      ]
+    }
+  },
+  "boss5_trinket_pool": [
+    "ITM_T1_RAID_UNIV_TRINKET_HEALTH",
+    "ITM_T1_RAID_UNIV_TRINKET_ARMOR",
+    "ITM_T1_RAID_UNIV_TRINKET_MANA",
+    "ITM_T1_RAID_UNIV_TRINKET_POWER"
+  ]
+}

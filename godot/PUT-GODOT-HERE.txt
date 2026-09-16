@@ -1,0 +1,8 @@
+Drop a Godot 4 Windows executable in this folder to make play.cmd self-contained.
+
+  1. https://godotengine.org/download/windows/  (Godot 4.7, standard build)
+  2. unzip; put Godot_v4.7.x-stable_win64.exe here (the _console.exe too if you like)
+  3. zip the whole project folder and send it; play.cmd finds it first
+
+The .gdignore file beside this note keeps Godot's importer from scanning the
+executable, and .gitignore keeps the 100+ MB binary out of the repository.

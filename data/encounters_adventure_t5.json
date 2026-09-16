@@ -1,0 +1,174 @@
+{
+  "_notes": [
+    "GENERATED FILE. tools/gen_items.gd writes it; re-run rather than hand-editing.",
+    "PARTY SIZE 6, TANKS REQUIRED 1 (docs/10 §3).",
+    "THE GEAR ASSUMPTION (docs/10 §8): Adventure tier N is played in tier N-1's",
+    "gear, and EACH RUNG IS SIZED FOR THE GEAR THE RUNG BEFORE IT DROPPED.",
+    "Sizing all three rungs at one stage is the mistake docs/10 §8 made twice",
+    "and warns about in writing; A1 here is the previous tier's full raid",
+    "clear, A2 adds this tier's Adventure feet and weapon, A3 its legs.",
+    "UNHEALED TANK CLOCKS are docs/10 §8's intended 5.5 / 4.3 / 3.5 rounds,",
+    "evaluated at each rung's OWN tank AC, not the tier's entry AC.",
+    "M02 IS HELD CONSTANT PER HEALER, not per raider: a party of six with one",
+    "healer carries docs/08 §9.5's pulse 1.5x harder than a 12-raid with three.",
+    "M04's add HP is a fraction of the pull, not a fixed number, so re-sizing",
+    "the pull cannot change the encounter's shape (docs/10 §8 knock-on 1).",
+    "Names are canon placeholders; the designer has not named this content."
+  ],
+  "_source": {
+    "generator": "tools/gen_items.gd (numbers); mechanics and comedy authored in it",
+    "stat_blocks": "docs/08 §9.6's Adventure rows",
+    "structure": "docs/10 §8 (Adventure anatomy), and docs/15's ruling that Adventures 2-5 keep the A1/A2/A3 shape at each tier's numbers"
+  },
+  "encounters": [
+    {
+      "comedy_line": "The last Adventure in the game, fought by six people who still cannot agree who pulls.",
+      "display_name": "Adventure 5 — Encounter 1",
+      "enemies": [
+        {
+          "count": 3,
+          "hp": 3000,
+          "name": "Trash",
+          "raw_swing": 57,
+          "swings_per_round": 1,
+          "threat_rule": "independent"
+        }
+      ],
+      "enrage_round": 12,
+      "id": "t5_adv_a1",
+      "kind": "trash",
+      "loot_slots": [
+        "feet",
+        "weapon"
+      ],
+      "mechanics": [
+        {
+          "id": "m04",
+          "params": {
+            "count": 1,
+            "hp": 810,
+            "round": 5,
+            "swing": 31
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "mage_overpull",
+        "warrior_lost_aggro"
+      ],
+      "party_size": 6,
+      "slot": "A1",
+      "stars": 1,
+      "tanks_required": 1,
+      "target_rounds": 8,
+      "tier": 5
+    },
+    {
+      "comedy_line": "Two enormous trash mobs and one healer, and the healer is the one who suggested this.",
+      "display_name": "Adventure 5 — Encounter 2",
+      "enemies": [
+        {
+          "count": 2,
+          "hp": 6200,
+          "name": "Harder Trash",
+          "raw_swing": 111,
+          "swings_per_round": 1,
+          "threat_rule": "independent"
+        }
+      ],
+      "enrage_round": 14,
+      "id": "t5_adv_a2",
+      "kind": "hard_trash",
+      "loot_slots": [
+        "legs"
+      ],
+      "mechanics": [
+        {
+          "id": "m04",
+          "params": {
+            "count": 1,
+            "hp": 992,
+            "round": 6,
+            "swing": 40
+          }
+        },
+        {
+          "id": "m02",
+          "params": {
+            "damage": 35,
+            "every": 4,
+            "ignores_ac": true
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "druid_skipped_heal",
+        "rogue_faced_the_boss"
+      ],
+      "party_size": 6,
+      "slot": "A2",
+      "stars": 2,
+      "tanks_required": 1,
+      "target_rounds": 10,
+      "tier": 5
+    },
+    {
+      "comedy_line": "The final warm-up before the final raid, and your party treats it exactly like the first one.",
+      "display_name": "Adventure 5 — Mini Boss",
+      "enemies": [
+        {
+          "count": 1,
+          "hp": 15050,
+          "name": "Mini Boss",
+          "raw_swing": 138,
+          "swings_per_round": 2,
+          "threat_rule": "highest_threat"
+        }
+      ],
+      "enrage_round": 17,
+      "id": "t5_adv_a3",
+      "kind": "mini_boss",
+      "loot_slots": [
+        "head",
+        "chest"
+      ],
+      "mechanics": [
+        {
+          "id": "m01",
+          "params": {
+            "stack_damage_pct": 50,
+            "swap_at": 3
+          }
+        },
+        {
+          "id": "m02",
+          "params": {
+            "damage": 35,
+            "every": 4,
+            "ignores_ac": true
+          }
+        },
+        {
+          "id": "m03",
+          "params": {
+            "damage_per_round": 33,
+            "escape_chance_bp": 5000
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "warrior_lost_aggro",
+        "cleric_wrong_target",
+        "monk_panicked_stance"
+      ],
+      "party_size": 6,
+      "slot": "A3",
+      "stars": 3,
+      "tanks_required": 1,
+      "target_rounds": 12,
+      "tier": 5
+    }
+  ],
+  "schema_version": 1,
+  "tier": 5
+}

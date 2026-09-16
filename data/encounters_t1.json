@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "tier": 1,
+  "_source": {
+    "structure": "docs/_source/lead-designer-notes-raw.md — Raid Layout and loot drops (CANON: 5 encounters, star ratings, loot slots)",
+    "stat_blocks": "docs/10-content-and-encounters.md §7 (PROPOSED), quoting docs/08 §9.2/§9.3's damage budget",
+    "mechanics": "docs/10-content-and-encounters.md §10 vocabulary"
+  },
+  "_notes": [
+    "Encounter HP totals and per-round raw swing are QUOTED from docs/08 §9.2/§9.3.",
+    "docs/10 only decides how those totals split across actors and swings.",
+    "If docs/08 retunes a value, edit it here — do not re-derive a new one.",
+    "docs/08 §9.2 HP:  E1 2200 · E2 2500 · E3 3200 · E4 4100 · E5 7150",
+    "docs/08 §9.3 raw: E1 61 · E2 63 · E3 65 · E4 68 · E5 73 per round",
+    "ONE MECHANIC PER STAR is a hard rule (docs/10 §6) and is validated on load.",
+    "Names are canon placeholders; the designer has not named this content yet.",
+    "Reconciled 2026-09-11 (docs/15 BL-71). The older five — 2100/2350/3000/3800/6200 and",
+    "55/58/62/68/74 — were docs/10 §5.2's copy of an EARLIER §9.2, taken before the +2",
+    "Power correction on the Boss-4 chests moved the DPS-at-attempt column. docs/15 Q-17",
+    "rules docs/08 §9 authoritative for all arithmetic; this is that ruling applied."
+  ],
+
+  "encounters": [
+    {
+      "id": "t1_raid_e1",
+      "display_name": "Raid 1 — Encounter 1",
+      "tier": 1, "slot": "E1", "stars": 1, "kind": "trash",
+      "party_size": 12, "tanks_required": 2,
+      "enemies": [
+        { "name": "Trash", "count": 4, "hp": 505, "raw_swing": 15,
+          "swings_per_round": 1, "threat_rule": "independent" },
+        { "name": "Late Add", "count": 1, "hp": 180, "raw_swing": 8,
+          "swings_per_round": 1, "threat_rule": "lowest_hp", "spawn_round": 5 }
+      ],
+      "mechanics": [
+        { "id": "m04", "params": { "count": 1, "hp": 180, "swing": 8, "round": 5 } }
+      ],
+      "mistakes_invited": ["mage_overpull", "warrior_lost_aggro"],
+      "loot_slots": ["feet", "weapon_basic"],
+      "target_rounds": 12,
+      "enrage_round": 17,
+      "comedy_line": "Four mobs, two tanks, and a Mage who AoEs the pack he was told not to touch — the first wipe of the tier is a pull the player did not make."
+    },
+    {
+      "id": "t1_raid_e2",
+      "display_name": "Raid 1 — Encounter 2",
+      "tier": 1, "slot": "E2", "stars": 2, "kind": "hard_trash",
+      "party_size": 12, "tanks_required": 2,
+      "enemies": [
+        { "name": "Elite", "count": 2, "hp": 1100, "raw_swing": 31,
+          "swings_per_round": 1, "threat_rule": "standard" },
+        { "name": "Add", "count": 4, "hp": 75, "raw_swing": 8,
+          "swings_per_round": 1, "threat_rule": "lowest_hp", "spawn_round": 4 }
+      ],
+      "mechanics": [
+        { "id": "m04", "params": { "count": 2, "hp": 75, "swing": 8, "round": 4, "every": 4 } },
+        { "id": "m02", "params": { "damage": 26, "every": 4, "ignores_ac": true } }
+      ],
+      "mistakes_invited": ["druid_skipped_heal", "mage_overpull"],
+      "loot_slots": ["legs", "offhand_healer"],
+      "target_rounds": 13,
+      "enrage_round": 19,
+      "comedy_line": "Adds that hunt the weakest raider, in a fight where the Druid whose job is topping everyone up occasionally just… doesn't."
+    },
+    {
+      "id": "t1_raid_e3",
+      "display_name": "Raid 1 — Encounter 3",
+      "tier": 1, "slot": "E3", "stars": 3, "kind": "mini_boss",
+      "party_size": 12, "tanks_required": 2,
+      "enemies": [
+        { "name": "Mini Boss", "count": 1, "hp": 3050, "raw_swing": 33,
+          "swings_per_round": 2, "threat_rule": "standard" },
+        { "name": "Add", "count": 3, "hp": 50, "raw_swing": 6,
+          "swings_per_round": 1, "threat_rule": "lowest_hp", "spawn_round": 6 }
+      ],
+      "mechanics": [
+        { "id": "m01", "params": { "stack_damage_pct": 50, "swap_at": 3 } },
+        { "id": "m02", "params": { "damage": 27, "every": 4, "ignores_ac": true } },
+        { "id": "m04", "params": { "count": 3, "hp": 50, "swing": 6, "round": 6 } }
+      ],
+      "mistakes_invited": ["monk_panicked_stance", "warrior_lost_aggro", "cleric_wrong_target"],
+      "loot_slots": ["head"],
+      "target_rounds": 15,
+      "enrage_round": 21,
+      "comedy_line": "The whole fight is \"two tanks take turns\", and the Monk's failure mode is picking the wrong stance at exactly the moment it is his turn."
+    },
+    {
+      "id": "t1_raid_e4",
+      "display_name": "Raid 1 — Encounter 4",
+      "tier": 1, "slot": "E4", "stars": 4, "kind": "mini_boss",
+      "party_size": 12, "tanks_required": 2,
+      "enemies": [
+        { "name": "Mini Boss", "count": 1, "hp": 4100, "raw_swing": 34,
+          "swings_per_round": 2, "threat_rule": "standard" }
+      ],
+      "mechanics": [
+        { "id": "m03", "params": { "damage_per_round": 22, "escape_chance_bp": 5000 } },
+        { "id": "m05", "params": { "round": 4, "every": 5, "requires_melee": 1 } },
+        { "id": "m08", "params": { "rounds": 5, "every": 5 } },
+        { "id": "m09", "params": { "reduction_pct": 40, "rounds": 3, "target": "active_tank" } }
+      ],
+      "mistakes_invited": ["rogue_faced_the_boss", "wizard_broke_the_ramp",
+                           "shaman_bad_bounce", "bard_wrong_song"],
+      "loot_slots": ["chest", "weapon_strong"],
+      "target_rounds": 17,
+      "enrage_round": 24,
+      "comedy_line": "An interrupt check in a game where you do not press the button — you just watch to see whether the Rogue you brought was facing the right way."
+    },
+    {
+      "id": "t1_raid_e5",
+      "display_name": "Raid 1 — Encounter 5",
+      "tier": 1, "slot": "E5", "stars": 5, "kind": "main_boss",
+      "party_size": 12, "tanks_required": 2,
+      "enemies": [
+        { "name": "Main Boss", "count": 1, "hp": 7150, "raw_swing": 37,
+          "swings_per_round": 2, "threat_rule": "standard" }
+      ],
+      "mechanics": [
+        { "id": "m01", "params": { "stack_damage_pct": 50, "swap_at": 3 } },
+        { "id": "m02", "params": { "damage": 28, "every": 4, "ignores_ac": true } },
+        { "id": "m03", "params": { "damage_per_round": 26, "escape_chance_bp": 5000 } },
+        { "id": "m04", "params": { "count": 2, "hp": 90, "swing": 9, "rounds": [10, 20] } },
+        { "id": "m06", "params": { "round": 31, "damage_multiplier_pct": 200 } }
+      ],
+      "mistakes_invited": ["warrior_lost_aggro", "monk_panicked_stance", "rogue_faced_the_boss",
+                           "cleric_wrong_target", "druid_skipped_heal", "shaman_bad_bounce",
+                           "mage_overpull", "wizard_broke_the_ramp", "bard_wrong_song"],
+      "loot_slots": ["capstone", "trinket"],
+      "target_rounds": 22,
+      "enrage_round": 31,
+      "comedy_line": "Twenty-two rounds of your guild being nearly competent, and then Steve — morale 14, whom you brought anyway — stands in the fire on round 21."
+    }
+  ]
+}

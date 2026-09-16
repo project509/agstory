@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "_source": "docs/04 §7 (Names) and §7.1's forty sample outputs. Canon anchor: raw notes name their raiders Bob, Greg and Steve, and docs/04 §7 states the reason the pool looks like this — 'the joke is that this reads like a real guild roster, and canon's own examples are aggressively ordinary. A fantasy name generator would kill the premise on sight.'",
+  "_notes": [
+    "THE CONTENT-REVIEW GATE (docs/04 §7): 'no entry, and no shape-B/C combination of entries, reads as a real identifiable person being mocked. Given names only, no surnames, no full-name pairs, no names of public figures, no names matching anyone on the dev team or in the community.'",
+    "Every given name below appears in docs/04 §7.1's own sample table, plus Ron, which §7.1 uses in sample 40 ('Big Ron') without listing separately. Nothing is invented here that the doc did not already print.",
+    "Shape C is the risk case the review names: 'an epithet plus a common given name can accidentally land on a real player handle', so the epithet list is deliberately short and every entry is a generic fantasy compound with no real-world referent.",
+    "docs/04 §7 asks for `data/names/mundane.txt` and `data/names/epithets.txt`. One JSON file instead, because the shape weights and the mangle rules are data too and splitting them across three files would put one system's tuning in three places. Hot-reloadable either way."
+  ],
+
+  "shape_weights": {
+    "_doc": "docs/04 §7's table, per-mille so it sums exactly: A 620, B 260, C 120.",
+    "bare": 620,
+    "mangled": 260,
+    "epithet": 120
+  },
+
+  "given": [
+    "Bob", "Greg", "Steve", "Dave", "Gary", "Terry", "Barry", "Kevin",
+    "Doug", "Randy", "Neil", "Phil", "Dennis", "Marv", "Carl", "Wayne",
+    "Deb", "Brenda", "Sharon", "Janice", "Ron", "Colin", "Trevor", "Linda",
+    "Maureen", "Keith", "Nigel", "Sandra", "Roy", "Pauline", "Clive", "Yvonne",
+    "Alan", "Beryl", "Derek", "Glenda"
+  ],
+
+  "epithets": [
+    {"form": "suffix", "text": "Bloodfang"},
+    {"form": "suffix", "text": "Doomhowl"},
+    {"form": "suffix", "text": "Skullmender"},
+    {"form": "suffix", "text": "Grimwater"},
+    {"form": "suffix", "text": "Ironbelly"},
+    {"form": "suffix", "text": "Ashfoot"},
+    {"form": "suffix", "text": "Nightpiper"},
+    {"form": "suffix", "text": "Stonemumble"},
+    {"form": "phrase", "text": "the Bold"},
+    {"form": "phrase", "text": "the Unready"},
+    {"form": "phrase", "text": "the Adequate"},
+    {"form": "phrase", "text": "the Thrice-Warned"},
+    {"form": "phrase", "text": "of the Ninefold Path"},
+    {"form": "phrase", "text": "of No Fixed Guild"},
+    {"form": "phrase", "text": "of the Late Arrival"},
+    {"form": "prefix", "text": "Big"},
+    {"form": "prefix", "text": "Old"},
+    {"form": "prefix", "text": "Lucky"},
+    {"form": "prefix", "text": "Wee"},
+    {"form": "prefix", "text": "Two-Sword"}
+  ],
+
+  "mangles": [
+    {"kind": "double_final_consonant", "_example": "Bob -> Bobb, Greg -> Gregg"},
+    {"kind": "drop_final_vowel", "_example": "Randy -> Rand"},
+    {"kind": "swap_final_vowel", "_example": "Steve -> Steev, Randy -> Randee"},
+    {"kind": "trailing_digit", "_example": "Kevin -> Kevin7"},
+    {"kind": "underscore_digit", "_example": "Dave -> Dave_2"},
+    {"kind": "trailing_double_digit", "_example": "Barry -> Barry99"}
+  ]
+}

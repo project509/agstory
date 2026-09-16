@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "tier": 1,
+  "source": "adventure",
+  "_source": {
+    "armor": "docs/_source/ideaboard-transcription.md §2 (CANON, cell for cell)",
+    "weapons": "docs/_source/lead-designer-notes-raw.md — Weapons (CANON)",
+    "trinkets": "docs/_source/lead-designer-notes-raw.md — Trinkets (CANON)",
+    "healer_weapons": "docs/09-items-and-itemization.md §10.2 G11 (PROPOSED — canon says 'Stats TBD until we establish the healing/Mana formulas')",
+    "id_format": "docs/09-items-and-itemization.md §12.1"
+  },
+  "_notes": [
+    "Canon Tier 1 Adventure gear has NO off-hand items for any class. Off-hands",
+    "first appear at Raid rung (Boss 2 healer Tome, Boss 5 Shield and Instrument).",
+    "That is canon as written, not an omission in this file.",
+    "The three healer weapons share one display name on purpose: canon itself",
+    "names all three raid healer weapons identically ('Basic Healing Weapon'),",
+    "so identical naming across the healer families is canon-consistent.",
+    "Canon writes 'Adventures Charm of Power' without the apostrophe. Treated as",
+    "a typo and normalised to 'Adventure's Charm of Power'; stats are untouched."
+  ],
+  "items": [
+    {
+      "id": "ITM_T1_ADV_WARBARD_HEAD",
+      "name": "Iron Adventurer's Helm",
+      "slot": "head",
+      "family": "warrior_bard_head",
+      "stats": {
+        "ac": 3,
+        "hp": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_WARBARD_CHEST",
+      "name": "Iron Adventurer's Cuirass",
+      "slot": "chest",
+      "family": "warrior_bard_armor",
+      "stats": {
+        "ac": 5,
+        "hp": 6
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_WARBARD_LEGS",
+      "name": "Iron Adventurer's Greaves",
+      "slot": "legs",
+      "family": "warrior_bard_armor",
+      "stats": {
+        "ac": 4,
+        "hp": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_WARBARD_FEET",
+      "name": "Iron Adventurer's Boots",
+      "slot": "feet",
+      "family": "warrior_bard_armor",
+      "stats": {
+        "ac": 3,
+        "hp": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MONKHEAD_HEAD",
+      "name": "Ironbound Headband",
+      "slot": "head",
+      "family": "monk_head",
+      "stats": {
+        "ac": 4,
+        "hp": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_ROGUEHEAD_HEAD",
+      "name": "Reinforced Rogue Eyepatch",
+      "slot": "head",
+      "family": "rogue_head",
+      "stats": {
+        "ac": 3,
+        "hp": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MONKROGUE_CHEST",
+      "name": "Reinforced Leather Vest",
+      "slot": "chest",
+      "family": "monk_rogue_armor",
+      "stats": {
+        "ac": 4,
+        "hp": 5
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MONKROGUE_LEGS",
+      "name": "Reinforced Leather Leggings",
+      "slot": "legs",
+      "family": "monk_rogue_armor",
+      "stats": {
+        "ac": 3,
+        "hp": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MONKROGUE_FEET",
+      "name": "Reinforced Leather Boots",
+      "slot": "feet",
+      "family": "monk_rogue_armor",
+      "stats": {
+        "ac": 3,
+        "hp": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_HEALER_HEAD",
+      "name": "Blessed Adventurer's Circlet",
+      "slot": "head",
+      "family": "healer_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 2,
+        "mana": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_HEALER_CHEST",
+      "name": "Blessed Adventurer's Robe",
+      "slot": "chest",
+      "family": "healer_armor",
+      "stats": {
+        "ac": 3,
+        "hp": 5,
+        "mana": 5
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_HEALER_LEGS",
+      "name": "Blessed Adventurer's Leggings",
+      "slot": "legs",
+      "family": "healer_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 3,
+        "mana": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_HEALER_FEET",
+      "name": "Blessed Adventurer's Shoes",
+      "slot": "feet",
+      "family": "healer_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 2,
+        "mana": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MAGEWIZ_HEAD",
+      "name": "Apprentice's Reinforced Cap",
+      "slot": "head",
+      "family": "mage_wizard_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 2,
+        "mana": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MAGEWIZ_CHEST",
+      "name": "Reinforced Spellweave Robe",
+      "slot": "chest",
+      "family": "mage_wizard_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 4,
+        "mana": 6
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MAGEWIZ_LEGS",
+      "name": "Spellweave Leggings",
+      "slot": "legs",
+      "family": "mage_wizard_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 2,
+        "mana": 4
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_MAGEWIZ_FEET",
+      "name": "Spellweave Slippers",
+      "slot": "feet",
+      "family": "mage_wizard_armor",
+      "stats": {
+        "ac": 2,
+        "hp": 2,
+        "mana": 3
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_W1H_MH",
+      "name": "Iron Adventurer's Sword",
+      "slot": "main_hand",
+      "family": "wrb_one_hand",
+      "stats": {
+        "damage": 5
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_W2H_MONK_MH",
+      "name": "Iron Adventurer's Staff",
+      "slot": "main_hand",
+      "family": "monk_two_hand",
+      "stats": {
+        "damage": 9
+      },
+      "two_handed": true,
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_W2H_MAGE_MH",
+      "name": "Apprentice's Firestaff",
+      "slot": "main_hand",
+      "family": "mage_two_hand",
+      "stats": {
+        "damage": 10
+      },
+      "two_handed": true,
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_W2H_WIZ_MH",
+      "name": "Apprentice's Arcstaff",
+      "slot": "main_hand",
+      "family": "wizard_two_hand",
+      "stats": {
+        "damage": 10
+      },
+      "two_handed": true,
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_WPN_CLR_MH",
+      "name": "Adventurer's Healing Focus",
+      "slot": "main_hand",
+      "family": "cleric_weapon",
+      "stats": {
+        "mana": 10
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G11 — parity with the +10 Firestaff/Arcstaff and the +10 Charm of Mana. Canon: stats TBD. heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 14
+    },
+    {
+      "id": "ITM_T1_ADV_WPN_DRU_MH",
+      "name": "Adventurer's Healing Focus",
+      "slot": "main_hand",
+      "family": "druid_weapon",
+      "stats": {
+        "mana": 10
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G11 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 14
+    },
+    {
+      "id": "ITM_T1_ADV_WPN_SHM_MH",
+      "name": "Adventurer's Healing Focus",
+      "slot": "main_hand",
+      "family": "shaman_weapon",
+      "stats": {
+        "mana": 10
+      },
+      "canon": false,
+      "note": "docs/09 §10.2 G11 heal_base per docs/08 §8.5. Canon leaves healer weapon stats TBD; without a flat component a Mana-derived heal is zero at game start, because canon starting armour carries no Mana at all (docs/10 §5.2 OQ-11).",
+      "heal_base": 14
+    },
+    {
+      "id": "ITM_T1_ADV_UNIV_TRINKET_HEALTH",
+      "name": "Adventure's Charm of Health",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "stats": {
+        "hp": 7
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_UNIV_TRINKET_ARMOR",
+      "name": "Adventure's Charm of Armor",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "stats": {
+        "ac": 2
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_UNIV_TRINKET_MANA",
+      "name": "Adventure's Charm of Mana",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "stats": {
+        "mana": 10
+      },
+      "canon": true
+    },
+    {
+      "id": "ITM_T1_ADV_UNIV_TRINKET_POWER",
+      "name": "Adventure's Charm of Power",
+      "slot": "trinket",
+      "family": "universal_trinket",
+      "stats": {
+        "power": 2
+      },
+      "canon": true
+    }
+  ]
+}

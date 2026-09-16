@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "_source": "docs/04 §8 (Backstories): §8.1's four-field format, §8.3's eighteen reusable tags with their 'Bullet reads like' and 'Listens for' columns, and §8.1's draw rules. Canon anchor: raw notes, Morale — 'Gaining and losing Morale will be based on their back stories largely we can have bullet points for each raider that is recruited'.",
+  "_notes": [
+    "docs/04 §8.3's rule for this file, verbatim: 'Every tag must be listenable, or it does not ship.' The `listens` field on every tag below is that column, kept so a reader can check the claim rather than trust it.",
+    "docs/04 §8.1: 'Written per-tag with 3-6 variants for variety.' Every tag carries four, so no tag is the one that always reads the same.",
+    "The `tag` is 'the only field doc 05 reads' (§8.1). `polarity` drives the card icon and §8.1's per-rarity draw rules; `weight` is docs/05's multiplier on that raider's own delta.",
+    "docs/04 §8.3 tag 6 is `class_rival:<class>` — parameterised, so it is stored once here and the class is bound at draw time.",
+    "Bullets are written in the third person and about the RAIDER, never about a real person: docs/04 §7's content-review standard covers this file too."
+  ],
+
+  "exclusions": [
+    ["worships_guild_leader", "resents_authority"],
+    ["only_here_for_loot", "gear_indifferent"],
+    ["scared_of_wipes", "unbothered_by_wipes"],
+    ["gear_snob", "gear_indifferent"]
+  ],
+
+  "_exclusion_notes": [
+    "docs/04 §8.1 names the first two pairs. The other two are the same rule applied to the contradictions §8.3's own table creates: a raider cannot both cry at every wipe and call wipes 'data', and cannot both notice last tier's gear and offer to raid naked.",
+    "`resents_authority` is not one of §8.3's eighteen tags — the doc names it only in the exclusion rule. It is kept in the graph so the rule survives the day that tag ships, and the loader ignores pairs naming a tag it does not have."
+  ],
+
+  "tags": [
+    {
+      "tag": "hates_being_benched",
+      "polarity": "negative",
+      "weight": 1.5,
+      "listens": "Run resolves with this raider not in the 12",
+      "variants": [
+        "Left his last guild over a bench decision.",
+        "Keeps a written record of every night he sat out.",
+        "Asked, twice, what the bench is for.",
+        "Says he understands. He does not understand."
+      ]
+    },
+    {
+      "tag": "only_here_for_loot",
+      "polarity": "mixed",
+      "weight": 1.0,
+      "listens": "Loot awarded — to self (up) or to another raider of the same class (down)",
+      "variants": [
+        "Openly here for the gear. Says so in the interview.",
+        "Asked about the loot rules before asking your name.",
+        "Has a list. The list is gear.",
+        "Would leave for a better shield. Told you so, unprompted."
+      ]
+    },
+    {
+      "tag": "worships_guild_leader",
+      "polarity": "positive",
+      "weight": 1.0,
+      "listens": "Reputation rank increase; any raid win",
+      "variants": [
+        "Has your old raid logs printed out.",
+        "Refers to you, in writing, as 'the boss'.",
+        "Joined the day he heard you were recruiting.",
+        "Tells other guilds about this one. At length."
+      ]
+    },
+    {
+      "tag": "scared_of_wipes",
+      "polarity": "negative",
+      "weight": 1.5,
+      "listens": "Raid wipe with this raider present",
+      "variants": [
+        "Cries during wipes. Every wipe.",
+        "Goes very quiet for a day after a bad night.",
+        "Asked whether dying hurts. Was not joking.",
+        "Counts the wipes. Out loud, afterwards."
+      ]
+    },
+    {
+      "tag": "unbothered_by_wipes",
+      "polarity": "positive",
+      "weight": 1.0,
+      "listens": "Raid wipe with this raider present",
+      "variants": [
+        "Calls every wipe 'data'.",
+        "Has died more times than he can count and finds that funny.",
+        "Was the only one laughing.",
+        "Says the floor is a valid strategy."
+      ]
+    },
+    {
+      "tag": "class_rival",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "Named class present in the same raid roster",
+      "parameterised": "class",
+      "variants": [
+        "Refuses to speak to {class}s.",
+        "Has a long-standing grievance with {class}s. Will explain it.",
+        "Was, he says, wronged by a {class}. Once.",
+        "Will not stand next to a {class}."
+      ]
+    },
+    {
+      "tag": "needs_a_friend",
+      "polarity": "mixed",
+      "weight": 1.0,
+      "listens": "A rostered raider departs or is fired / is in the same raid",
+      "variants": [
+        "Only joined because his mate did.",
+        "Does not raid well alone. Says he does.",
+        "Asked who else was coming before saying yes.",
+        "Brought someone to the interview for support."
+      ]
+    },
+    {
+      "tag": "glory_hound",
+      "polarity": "mixed",
+      "weight": 1.0,
+      "listens": "This raider was top of their role's contribution in a run",
+      "variants": [
+        "Wants his name said out loud after fights.",
+        "Keeps his own numbers. Shares them.",
+        "Asked whether there is a leaderboard.",
+        "Describes his best night to anyone who stands still."
+      ]
+    },
+    {
+      "tag": "chronically_late",
+      "polarity": "negative",
+      "weight": 0.5,
+      "listens": "Every run start (self-inflicted, always fires small)",
+      "variants": [
+        "Was late to the interview.",
+        "Has never once been on time, and is always surprised.",
+        "Owns a clock. Its purpose is decorative.",
+        "Arrives as the pull starts. Every time."
+      ]
+    },
+    {
+      "tag": "gear_snob",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "Own equipment contains an item below CT at run start",
+      "variants": [
+        "Notices when someone is wearing last tier.",
+        "Will not wear anything he considers beneath him.",
+        "Made a comment about the boots. It was not kind.",
+        "Asked whether the guild has standards."
+      ]
+    },
+    {
+      "tag": "gear_indifferent",
+      "polarity": "positive",
+      "weight": 1.0,
+      "listens": "Own equipment below CT at run start (no penalty; small positive when passing loot)",
+      "variants": [
+        "Would raid naked. Has offered to.",
+        "Genuinely does not know what he is wearing.",
+        "Passes on upgrades without being asked.",
+        "Says the gear is not the point. Means it."
+      ]
+    },
+    {
+      "tag": "wants_to_tank",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "Role assignment for the run does not include a tank slot for them",
+      "variants": [
+        "Insists he is a tank. He is not.",
+        "Stands in front regardless of instruction.",
+        "Has strong opinions about being hit, all of them wrong.",
+        "Asked for the tank slot before giving his name."
+      ]
+    },
+    {
+      "tag": "superstitious",
+      "polarity": "mixed",
+      "weight": 0.5,
+      "listens": "First attempt of a boss; attempt number is a multiple of 13",
+      "variants": [
+        "Will not pull without saying the thing.",
+        "Has a lucky item. It does nothing.",
+        "Refuses to count the attempts out loud.",
+        "Turns around three times before every boss."
+      ]
+    },
+    {
+      "tag": "homesick",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "runs_attended crosses each multiple of 5 without a rest week",
+      "variants": [
+        "Talks about going home a lot.",
+        "Has a letter he has not opened in weeks.",
+        "Asks, every few nights, how long this goes on for.",
+        "Says the guildhall does not smell like anywhere."
+      ]
+    },
+    {
+      "tag": "in_debt",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "Guild gold below a threshold at payday",
+      "variants": [
+        "Being followed by someone he owes.",
+        "Asked when payday is, then asked again.",
+        "Sold his old guild's tabard. It was not his.",
+        "Winces at the word 'interest'."
+      ]
+    },
+    {
+      "tag": "loves_the_tavern",
+      "polarity": "positive",
+      "weight": 1.0,
+      "listens": "Comfort item purchased; guild facility upgraded",
+      "variants": [
+        "Has a tab. It is large.",
+        "Knows the tavern staff by name. All of them.",
+        "Considers the tavern part of the guildhall.",
+        "Was recruited at the bar and has not really left."
+      ]
+    },
+    {
+      "tag": "mentor",
+      "polarity": "positive",
+      "weight": 1.0,
+      "listens": "A Common or Uncommon raider is recruited",
+      "variants": [
+        "Keeps trying to teach the new people.",
+        "Wrote a guide. Nobody asked. It is quite good.",
+        "Takes the worst raider aside after every wipe.",
+        "Says he was terrible once too, and is not lying."
+      ]
+    },
+    {
+      "tag": "blames_the_healers",
+      "polarity": "negative",
+      "weight": 1.0,
+      "listens": "This raider dies during an encounter",
+      "variants": [
+        "Has a theory about why he died.",
+        "Says he was not healed. He was healed.",
+        "Checks the healing numbers before checking his own.",
+        "Died standing in the fire, and has questions for the Cleric."
+      ]
+    }
+  ]
+}

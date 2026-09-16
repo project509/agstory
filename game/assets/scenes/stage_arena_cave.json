@@ -1,0 +1,306 @@
+{
+ "note": [
+  "The crystal cave arena on the BARE plate (1536x1024) — RaidPrep, RaidView and",
+  "Results for the cave encounters.",
+  "",
+  "NO ambient actors here, on purpose. spec 09 §4.3 row 5 gives the twelve",
+  "combatants to the raid screen, placed from the party that actually departed;",
+  "a scene that shipped its own crowd would put strangers in the fight. What the",
+  "scene owns is the room: the miners' lanterns, the crystal light, and the motes.",
+  "",
+  "Two light temperatures, and they are not interchangeable. The lantern chain down",
+  "the left and along the right gallery is #FFB060 at low energy; the crystals are",
+  "#78C8FF and get no flame sprite, because a crystal does not burn — it pulses,",
+  "which is what a breathing PointLight2D already does.",
+  "",
+  "Checked with `python tools/art/preview_scene.py stage_arena_cave --view raidview --marks`.",
+  "",
+  "`marks` (W1-STAGE, STAGE-01/06/21) is the fight's blocking, in plate pixels: `view` is the",
+  "offset RaidView/Results apply (plate rows 280..1015 are on screen), `party.ranks` are feet",
+  "points on the lower-left lantern floor (tanks nearest the bridge, facing right), `boss.pos`",
+  "is the feet point on the lower-right railed ledge, `boss.floor` the stone it may stand on,",
+  "flipped to face the party. `party.scale` 2 is figure_scale; `boss.scale` is 2 (BL-103, Q02's",
+  "'upscale ok'). The big cold crystal above the plateau (900,230) was authored under",
+  "the boss plate's chrome, so its light, motes and pulse moved to the pool spire under the",
+  "bridge (STAGE-21) — in the band, between the two sides.",
+  "",
+  "W7-STAGE (2026-09-15; UI-21, UI-22, BL-103): the party stands across the plateau's width — the",
+  "front rank at an 84px pitch, the ranks staggered by half a pitch and 44px apart, so every head",
+  "shows between the two in front of it and no two body rects overlap by more than a quarter",
+  "(test_scene_stage measures the widest class strip, the wizard's 78x90, in every slot); the",
+  "back rank's feet (y 604) stand on the plateau floor behind the lantern post. The boss is 2x now,",
+  "like the party (Q02 ruled 'upscale ok' — one pixel pitch on the floor), and stands IN FRONT of",
+  "the ledge's fence, at the bridge's far landing: feet (1030, 790) on the lip below the near rail,",
+  "which puts a 2x Main Boss (310x262) at x 875..1185 — clear of the front rank's rightmost figure",
+  "(x 660 + 39) by 176px, and a 400px footprint (boss_main_2) by 131 and of the ledge lantern's",
+  "flame sprite (1236..1252) by 6. `boss.floor` is that lip, 150x40, and RaidView.boss_feet_y keeps",
+  "every creature's feet on it.",
+  "",
+  "spec 09 §5 rows 4 and 5, both in one room: the pools shimmer, and the crystal clusters",
+  "pulse ±10% on a 3-second period — the row's own numbers. The crystals get a quad rather",
+  "than another PointLight2D because §5 row 5 asks for a value pulse on a masked quad, and",
+  "because three more lights on the screen that already carries the most work is a cost",
+  "with no picture behind it."
+ ],
+ "plate": "res://game/assets/bg/stage_arena_cave.png",
+ "figure_scale": 2,
+ "props": [
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [44, 232],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 0
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [258, 232],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 2
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [204, 298],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 4
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [302, 552],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 1
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [510, 612],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 3
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1014, 664],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 5
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1216, 500],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 2
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1244, 812],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 0
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [204, 806],
+   "anchor": "bottom",
+   "emissive": 1.2,
+   "phase": 4
+  }
+ ],
+ "lights": [
+  {
+   "pos": [44, 216],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [258, 216],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [204, 282],
+   "color": "#FFB060",
+   "energy": 0.18,
+   "radius": 88,
+   "flicker": 0.3
+  },
+  {
+   "pos": [302, 536],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [510, 596],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [1014, 648],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [1216, 484],
+   "color": "#FFB060",
+   "energy": 0.2,
+   "radius": 96,
+   "flicker": 0.3
+  },
+  {
+   "pos": [1244, 796],
+   "color": "#FFB060",
+   "energy": 0.18,
+   "radius": 88,
+   "flicker": 0.3
+  },
+  {
+   "pos": [204, 790],
+   "color": "#FFB060",
+   "energy": 0.18,
+   "radius": 88,
+   "flicker": 0.3
+  },
+  {
+   "pos": [1330, 330],
+   "color": "#FFB060",
+   "energy": 0.22,
+   "radius": 150,
+   "flicker": 0.2
+  },
+  {
+   "pos": [910, 880],
+   "color": "#78C8FF",
+   "energy": 0.28,
+   "radius": 150,
+   "flicker": 0.12
+  },
+  {
+   "pos": [1230, 110],
+   "color": "#78C8FF",
+   "energy": 0.24,
+   "radius": 150,
+   "flicker": 0.1
+  },
+  {
+   "pos": [130, 480],
+   "color": "#78C8FF",
+   "energy": 0.22,
+   "radius": 140,
+   "flicker": 0.1
+  },
+  {
+   "pos": [1500, 780],
+   "color": "#78C8FF",
+   "energy": 0.24,
+   "radius": 150,
+   "flicker": 0.1
+  },
+  {
+   "pos": [1080, 610],
+   "color": "#A890FF",
+   "energy": 0.2,
+   "radius": 110,
+   "flicker": 0.14
+  },
+  {
+   "pos": [470, 450],
+   "color": "#5AA8E0",
+   "energy": 0.16,
+   "radius": 170,
+   "flicker": 0.08
+  }
+ ],
+ "embers": [
+  {
+   "pos": [910, 860],
+   "preset": "motes",
+   "amount": 14,
+   "spread": 30,
+   "height": 26
+  },
+  {
+   "pos": [470, 470],
+   "preset": "motes",
+   "amount": 10,
+   "spread": 80,
+   "height": 20
+  }
+ ],
+ "actors": [],
+ "bubbles": [],
+ "bubble_visible": 0,
+ "glow_threshold": 1.25,
+ "shimmer": [
+  {
+   "rect": [380, 380, 330, 200],
+   "color": "#7FC8FF"
+  },
+  {
+   "rect": [560, 760, 540, 264],
+   "color": "#7FC8FF"
+  }
+ ],
+ "pulse": [
+  {
+   "rect": [868, 838, 84, 120],
+   "color": "#78C8FF"
+  },
+  {
+   "rect": [1440, 690, 96, 220],
+   "color": "#78C8FF"
+  },
+  {
+   "rect": [55, 430, 150, 110],
+   "color": "#78C8FF"
+  }
+ ],
+ "marks": {
+  "view": [0, -280],
+  "party": {
+   "scale": 2,
+   "face": "right",
+   "ranks": [
+    {"y": 692, "xs": [408, 492, 576, 660]},
+    {"y": 648, "xs": [366, 450, 534, 618]},
+    {"y": 604, "xs": [408, 492, 576, 660]}
+   ]
+  },
+  "boss": {
+   "pos": [1030, 790],
+   "scale": 2,
+   "flip": true,
+   "floor": [960, 770, 150, 40]
+  }
+ }
+}

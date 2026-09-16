@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "tier": 0,
+  "source": "tutorial",
+  "_source": {
+    "table": "docs/09-items-and-itemization.md §10.2 (G12, Tutorial trinkets) — 🔷 PROPOSED, and docs/09 owns item stat blocks in terms at §10.2's own heading",
+    "canon_anchor": "docs/_source/lead-designer-notes-raw.md — Adventure's Board: \"Adventure 0 - 1 Trash mob (Just for learning - 1 crap trinket)\", \"Tutorial Raid - 1 Boss (Just for learning - 1 crap trinket)\", described as \"Like a +1 dps trinket or something\"",
+    "id_format": "docs/09-items-and-itemization.md §12.1, with the TUT source token ruled in docs/15 BL-77"
+  },
+  "_notes": [
+    "THE ONBOARDING REWARD, AND NOTHING ELSE EVER LIVES HERE. docs/10 §9 gives the ladder exactly two tutorial rungs for the whole game, so this file is authored once and is not repeated per tier — the same reason data/encounters_tutorial_t1.json sits in ContentDB's DEFAULT_PATHS rather than in tier_paths.",
+    "TIER 0, DESPITE THE RUNGS BEING MOUNTED AT TIER 1. docs/09 §12.1's tier column reads \"0 = starting gear AND TUTORIAL REWARDS\", so the items are tier 0 and the ids begin ITM_T0_. The filename therefore carries no _t1 suffix, which would be a lie about the tier; the encounters file carries one because the rungs really are mounted at tier 1.",
+    "SOURCE 'tutorial' IS LOAD-BEARING, NOT A LABEL. sim/core/Loot.gd's non-raid drop pool selects on `it.source == \"adventure\"`, so a trinket declared here can never enter any rolled pool by construction — which is the hazard docs/10 §9.2 names: the tutorials must not be able to hand out Adventure's Charm of Health (+7 HP) or Charm of Power (+2 Power), the very items the crap trinkets have to be visibly worse than. Putting these two rows in data/items_starting.json instead would have made them source=='start' and just as safe, but would also have made that file's own note — \"CANON: no weapon, off-hand or trinket — a Common recruit shows up unarmed\" — false.",
+    "STATS ARE docs/09 §10.2's, NOT docs/10 §9.2's. docs/09 owns item stat blocks and says so at §10.2; docs/10 §9.2's placeholders name a '+1 Damage' trinket, which cannot be expressed as an item row at all because docs/09 §12.2 restricts `damage` to weapons. §10.2 rules canon's \"+1 dps\" to be +1 Power, agreeing with docs/11 §14 Q5.",
+    "canon: false ON BOTH ROWS, on purpose. §10.2 is 🔷 PROPOSED rather than ✅ CANON: canon asked for \"a crap trinket\" twice and never gave a stat line, so the numbers are derived and each row carries its derivation in `note`, which sim/content/ContentDB.gd requires of any non-canon item.",
+    "WORSE THAN THE WEAKEST ADVENTURE CHARM, BY DESIGN AND BY TEST. +1 Power against Adventure's +2, and +2 HP against Adventure's +7. docs/10 §9.3 requires the skip warning to name what is forfeited, and a tutorial reward that beat the first real rung's would make that warning a lie. tests/unit/test_items_tutorial.gd holds the inequality against the live Adventure rows rather than against a copied number.",
+    "THE GRANT IS FIXED AND ONCE-ONLY, and it lives in game/core/GameState.record_attempt, not here: docs/10 §9.3 keeps a resolved tutorial \"replayable for gold\" while the trinket is gone after the first clear, and that is campaign state rather than a property of the item."
+  ],
+
+  "items": [
+    {
+      "id": "ITM_T0_TUT_UNIV_TRINKET_POWER",
+      "name": "Cracked Charm of Power", "slot": "trinket", "family": "universal_trinket",
+      "stats": { "power": 1 }, "canon": false,
+      "note": "docs/09 §10.2 G12: canon's \"Like a +1 dps trinket or something\" for Adventure 0, ruled to +1 Power because §12.2 restricts `damage` to weapons. Half Adventure's Charm of Power (+2) so the skip warning is true."
+    },
+    {
+      "id": "ITM_T0_TUT_UNIV_TRINKET_HEALTH",
+      "name": "Cracked Charm of Health", "slot": "trinket", "family": "universal_trinket",
+      "stats": { "hp": 2 }, "canon": false,
+      "note": "docs/09 §10.2 G12: the Tutorial Raid's pair to the above, at +2 HP — deliberately far under Adventure's Charm of Health (+7), per canon's \"not a great piece\"."
+    }
+  ]
+}

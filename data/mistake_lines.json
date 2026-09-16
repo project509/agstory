@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "_source": "docs/07 §10.3's five writing rules and its sample log block; docs/14 §5.3.5's `log_templates` field and §5.4 assertion 7; presented per docs/13 §11.1's italic quoted joke line under the mistake header.",
+  "_notes": [
+    "THE FIVE WRITING RULES, docs/07 §10.3, verbatim. Every line in this file answers to them and a human read against them is the ship gate (docs/16 R-3):",
+    "  1. One sentence. The joke is in the sentence, not in a paragraph.",
+    "  2. The raider is a person with a reason, not a random number generator. 'Greg saw a big number' beats 'Greg made an error'.",
+    "  3. Never explain the mechanic in the joke line — the mechanical effect is already on the structured entry and tier 2 shows the math.",
+    "  4. Each mistake type needs at least 6 template variants so a long raid does not repeat. Legendary raiders get their own variants, because a named legendary failing is inherently funnier than Steve failing.",
+    "  5. Never blame the player. The player is the guild leader reading a report; the comedy is affectionate exasperation, not scolding.",
+    "TOKEN CONTRACT. `{actor}` is the ONLY substitution token, because it is the only field a `Mistakes.MistakeEvent` can resolve — the event carries `actor_id`, type, severity, round and cascade, and NO target. docs/07 §10.3's own sample line 'Cindy heals Natsuna…' names a second person, and that name is unresolvable here; it is adapted rather than copied. A `{target}` or `{tank}` token would be a crash waiting for a specific fight, so `MistakeLines._check_tokens` rejects every token but `{actor}`.",
+    "RULES 1 AND 4 AS MACHINE CHECKS. The envelope is taken from docs/07 §10.3's own sample block rather than from a preference: the sample's 'Bob assumed someone else was handling it. Bob was the someone else.' is two sentences and names the raider twice, so the checkable form of rule 1 is at most two sentences and one-or-two `{actor}` tokens. Length is capped at twice docs/13 §11.1's 74-character measure. Both constants live in `sim/content/MistakeLines.gd`; see `build/plan/q-comedy.md`.",
+    "RULE 3 AS A MACHINE CHECK. Banned substrings, case-insensitive: 'threat', 'hp', 'dps', 'cooldown', 'mitigat', '%'. A line that reaches for one of those is explaining the mechanic that tier 2 already prints.",
+    "BUDGET. docs/07 §10.3 rule 4 and docs/14 §5.4 assertion 7 both say >= 6. The shipped goldens fire one type up to 12 times inside a single encounter (Forgot to Taunt, e1_commons_starting, 22 rounds), so six repeats verbatim twice in a raid the player watches tonight. Eight measured-hot types carry 14 variants and the other ten carry 8. The floor of 6 is still enforced, on the UNGATED subset of every type, so a class gate can only ever add.",
+    "OPTIONAL KEYS. `severity` and `classes` are absent on an unrestricted variant, which means 'any'; `null` and `[]` mean the same thing and both load. A gate is an EXTRA on top of the floor, never part of it.",
+    "LEGENDARY VARIANTS live in this file, not in `data/legendaries/*.json` — the reasoning, and the counter-argument from `dialogue_barks`, are in `build/plan/q-comedy.md`. Eight of the nine legendaries are deliberately nameless (docs/03 §5.6: 'DO NOT INVENT NAMES'), so every line here uses `{actor}` and no line contains a proper noun; `MistakeLines._check_capitals` enforces that.",
+    "NOT CERTIFIED FUNNY. docs/16 R-3 makes 'is reading it entertaining' the question the whole game is gated on and says nothing in the doc set can prove it. The validators prove shape, coverage and non-repetition. They do not prove rule 2 or rule 5. This corpus needs a human read before the backlog item is done."
+  ],
+  "types": [
+    {
+      "type": "MIS_FIRE",
+      "_name": "Stood in the Fire",
+      "variants": [
+        {"id": "MIS_FIRE.01", "text": "{actor} moved out of the fire, checked, and moved back in to be sure."},
+        {"id": "MIS_FIRE.02", "text": "The ground was glowing, and {actor} decided that was decoration."},
+        {"id": "MIS_FIRE.03", "text": "{actor} was mid-swing, and stopping mid-swing feels like giving up."},
+        {"id": "MIS_FIRE.04", "text": "{actor} is standing in the only lit part of the room, which is warm and clearly a bad idea."},
+        {"id": "MIS_FIRE.05", "text": "{actor} saw the fire, noted where it was, and remembered a moment too late that fire moves."},
+        {"id": "MIS_FIRE.06", "text": "{actor} is not standing in the fire. The fire is standing on {actor}."},
+        {"id": "MIS_FIRE.07", "text": "{actor} stepped out, then stepped back for the one item on the floor."},
+        {"id": "MIS_FIRE.08", "text": "{actor} assumed somebody would say something, and they were all busy."},
+        {"id": "MIS_FIRE.09", "text": "{actor} is in the fire on purpose, briefly, for reasons {actor} will explain later."},
+        {"id": "MIS_FIRE.10", "text": "{actor} looked down at exactly the wrong moment and up at exactly the wrong moment."},
+        {"id": "MIS_FIRE.11", "text": "{actor} was following the person in front, who was also wrong."},
+        {"id": "MIS_FIRE.12", "text": "{actor} left the fire immediately, having stood in it for the whole round first."},
+        {"id": "MIS_FIRE.13", "text": "{actor} was behind the boss, and behind the boss is where the fire went.", "classes": ["rogue"]},
+        {"id": "MIS_FIRE.14", "text": "{actor} does not retreat from things, and this is a thing.", "classes": ["warrior"]}
+      ]
+    },
+    {
+      "type": "MIS_AGGRO",
+      "_name": "Pulled Aggro Off the Tank",
+      "variants": [
+        {"id": "MIS_AGGRO.01", "text": "{actor} saw a big number, chased a bigger one, and is now the big number."},
+        {"id": "MIS_AGGRO.02", "text": "{actor} was told to hold back until the tank had it, held back for one round, and decided that was long enough."},
+        {"id": "MIS_AGGRO.03", "text": "{actor} has been waiting all fight to do the thing, and the boss has now noticed {actor} doing the thing."},
+        {"id": "MIS_AGGRO.04", "text": "The boss was busy with somebody else, which {actor} read as an opportunity rather than as the plan working."},
+        {"id": "MIS_AGGRO.05", "text": "{actor} did the arithmetic, concluded the tank was underperforming, and generously stepped in."},
+        {"id": "MIS_AGGRO.06", "text": "{actor} opened at full strength on round one, because opening at half strength has never once felt good."},
+        {"id": "MIS_AGGRO.07", "text": "Nobody asked {actor} to go first, and nobody has ever needed to."},
+        {"id": "MIS_AGGRO.08", "text": "{actor} would like it on record that the boss turned around of its own accord."},
+        {"id": "MIS_AGGRO.09", "text": "{actor} is now the most interesting person in the room and would very much like to stop being that."},
+        {"id": "MIS_AGGRO.10", "text": "{actor} assumed the tank would take it back, and the tank assumed {actor} had a plan."},
+        {"id": "MIS_AGGRO.11", "text": "{actor} is being chased by something enormous and is telling everybody about it as it happens."},
+        {"id": "MIS_AGGRO.12", "text": "{actor} has one spell that is far better than the others and has now cast it four times running.", "classes": ["wizard"]},
+        {"id": "MIS_AGGRO.13", "text": "{actor} was behind the boss, technically, right up until the boss stopped being where it was.", "classes": ["rogue"]},
+        {"id": "MIS_AGGRO.14", "text": "{actor} was aiming at the adds, and the boss was standing in the adds, and here we are.", "classes": ["mage"]}
+      ]
+    },
+    {
+      "type": "MIS_TAUNT_LAPSE",
+      "_name": "Forgot to Taunt",
+      "variants": [
+        {"id": "MIS_TAUNT_LAPSE.01", "text": "{actor} assumed someone else was handling it. {actor} was the someone else."},
+        {"id": "MIS_TAUNT_LAPSE.02", "text": "{actor} was watching the fight closely and appreciatively, the way you watch a fight you are not in."},
+        {"id": "MIS_TAUNT_LAPSE.03", "text": "{actor} had one job this round and got absorbed in a different, more interesting job."},
+        {"id": "MIS_TAUNT_LAPSE.04", "text": "{actor} shouted at the boss, which felt like taunting and was in fact just shouting."},
+        {"id": "MIS_TAUNT_LAPSE.05", "text": "{actor} was mid-sentence about last week's wipe when the round came round again."},
+        {"id": "MIS_TAUNT_LAPSE.06", "text": "{actor} counted to three and waited for the other tank's nod, and the other tank was counting too."},
+        {"id": "MIS_TAUNT_LAPSE.07", "text": "{actor} genuinely thought it was the other one's turn, and can explain the rotation to you afterwards."},
+        {"id": "MIS_TAUNT_LAPSE.08", "text": "{actor} looked over at the boss, decided it seemed settled, and let it settle."},
+        {"id": "MIS_TAUNT_LAPSE.09", "text": "{actor} is holding the line beautifully, several steps to the left of where the line is."},
+        {"id": "MIS_TAUNT_LAPSE.10", "text": "{actor} did taunt. Very quietly, and slightly too late, and while facing the wall."},
+        {"id": "MIS_TAUNT_LAPSE.11", "text": "{actor} was checking whether the healers looked worried, which they now do."},
+        {"id": "MIS_TAUNT_LAPSE.12", "text": "{actor} assumed the boss had understood the arrangement."},
+        {"id": "MIS_TAUNT_LAPSE.13", "text": "{actor} was in the wrong stance for exactly one round, and it was this one.", "classes": ["monk"]},
+        {"id": "MIS_TAUNT_LAPSE.14", "text": "{actor} refuses to yield the front, and also refuses to say anything while standing on it.", "classes": ["warrior"]}
+      ]
+    },
+    {
+      "type": "MIS_INTERRUPT_MISS",
+      "_name": "Missed the Interrupt",
+      "variants": [
+        {"id": "MIS_INTERRUPT_MISS.01", "text": "{actor} was ready for the cast, and was ready for it slightly after it finished."},
+        {"id": "MIS_INTERRUPT_MISS.02", "text": "{actor} was waiting for the right cast and is now waiting for the next one."},
+        {"id": "MIS_INTERRUPT_MISS.03", "text": "{actor} saved it for something bigger, and this was the bigger thing."},
+        {"id": "MIS_INTERRUPT_MISS.04", "text": "{actor} went for the interrupt and arrived just behind the boss's last syllable."},
+        {"id": "MIS_INTERRUPT_MISS.05", "text": "{actor} was in position, watching carefully, and blinked."},
+        {"id": "MIS_INTERRUPT_MISS.06", "text": "{actor} assumed the other one had it, and the other one assumed the same thing back."},
+        {"id": "MIS_INTERRUPT_MISS.07", "text": "{actor} interrupted the air directly beside the boss with total commitment."},
+        {"id": "MIS_INTERRUPT_MISS.08", "text": "{actor} noticed the cast a beat early and moved a beat late, which averages out to nothing.", "classes": ["monk"]}
+      ]
+    },
+    {
+      "type": "MIS_INTERRUPT_WRONG",
+      "_name": "Interrupted the Wrong Cast",
+      "variants": [
+        {"id": "MIS_INTERRUPT_WRONG.01", "text": "{actor} interrupted something, confidently, and it was the harmless one."},
+        {"id": "MIS_INTERRUPT_WRONG.02", "text": "{actor} stopped the short cast and left the long one to finish in peace."},
+        {"id": "MIS_INTERRUPT_WRONG.03", "text": "{actor} could not tell the two casts apart and picked the one that sounded worse."},
+        {"id": "MIS_INTERRUPT_WRONG.04", "text": "{actor} interrupted the boss mid-boast, which was satisfying and not the assignment."},
+        {"id": "MIS_INTERRUPT_WRONG.05", "text": "{actor} heard a cast start, panicked productively, and spent it on nothing."},
+        {"id": "MIS_INTERRUPT_WRONG.06", "text": "{actor} was told to save it for the big one and saved everybody from a small one."},
+        {"id": "MIS_INTERRUPT_WRONG.07", "text": "{actor} has now used it, learned which cast it was, and cannot use it again."},
+        {"id": "MIS_INTERRUPT_WRONG.08", "text": "{actor} went in fast, got there first, and got the wrong one first.", "classes": ["rogue"]}
+      ]
+    },
+    {
+      "type": "MIS_HEAL_WRONG",
+      "_name": "Healed the Wrong Target",
+      "variants": [
+        {"id": "MIS_HEAL_WRONG.01", "text": "{actor} heals somebody who was at full health, who did not need it, and who says thank you."},
+        {"id": "MIS_HEAL_WRONG.02", "text": "{actor} is topping up the raider who is fine, because the one who is not fine is hard to look at."},
+        {"id": "MIS_HEAL_WRONG.03", "text": "{actor} healed the loudest raider rather than the quietest one, and the quiet one is the problem."},
+        {"id": "MIS_HEAL_WRONG.04", "text": "{actor} picked a name off the list, and the list is sorted alphabetically."},
+        {"id": "MIS_HEAL_WRONG.05", "text": "{actor} healed a tank, just not the tank that was being hit."},
+        {"id": "MIS_HEAL_WRONG.06", "text": "{actor} was watching the wrong raider with total dedication."},
+        {"id": "MIS_HEAL_WRONG.07", "text": "{actor} is saving the big heal for somebody who deserves it more, which is a philosophy, not a plan."},
+        {"id": "MIS_HEAL_WRONG.08", "text": "{actor} healed the raider who asked, rather than the one who is too busy to ask."},
+        {"id": "MIS_HEAL_WRONG.09", "text": "{actor} got there first, which counts for something, and healed the wrong person, which counts for less."},
+        {"id": "MIS_HEAL_WRONG.10", "text": "{actor} is keeping somebody alive who was never in any danger, and doing it beautifully."},
+        {"id": "MIS_HEAL_WRONG.11", "text": "{actor} healed {actor}, who had taken one hit and felt it keenly."},
+        {"id": "MIS_HEAL_WRONG.12", "text": "{actor} put the slow heal on the raider who is about to be fine and the fast one on nobody.", "classes": ["druid"]},
+        {"id": "MIS_HEAL_WRONG.13", "text": "{actor} has notes on why the other healer should have had that, and used this round to write them.", "classes": ["cleric"]},
+        {"id": "MIS_HEAL_WRONG.14", "text": "{actor} set the totem down beside somebody lovely and entirely out of the way.", "classes": ["shaman"]}
+      ]
+    },
+    {
+      "type": "MIS_HEAL_CORPSE",
+      "_name": "Healed a Corpse",
+      "variants": [
+        {"id": "MIS_HEAL_CORPSE.01", "text": "{actor} is healing somebody who stopped needing it a round ago."},
+        {"id": "MIS_HEAL_CORPSE.02", "text": "{actor} has not looked up and is still faithfully topping up the fallen."},
+        {"id": "MIS_HEAL_CORPSE.03", "text": "{actor} refuses to accept the situation and is treating it as a temporary setback."},
+        {"id": "MIS_HEAL_CORPSE.04", "text": "{actor} would like the record to show that the heal landed."},
+        {"id": "MIS_HEAL_CORPSE.05", "text": "{actor} is doing everything right for somebody it is too late to do anything for."},
+        {"id": "MIS_HEAL_CORPSE.06", "text": "{actor} started the cast while they were still up, and finishing it felt like the decent thing."},
+        {"id": "MIS_HEAL_CORPSE.07", "text": "{actor} has faith, a plan, and a target who has neither.", "classes": ["cleric"]},
+        {"id": "MIS_HEAL_CORPSE.08", "text": "{actor} set a totem beside somebody who is beyond the reach of totems.", "classes": ["shaman"]}
+      ]
+    },
+    {
+      "type": "MIS_CHAIN_FIZZLE",
+      "_name": "Bounced the Chain Heal Into Nobody",
+      "variants": [
+        {"id": "MIS_CHAIN_FIZZLE.01", "text": "{actor} bounced the chain heal off one raider and into a beautifully empty room."},
+        {"id": "MIS_CHAIN_FIZZLE.02", "text": "{actor} aimed it at the group, and the group had already moved on."},
+        {"id": "MIS_CHAIN_FIZZLE.03", "text": "{actor} threw it perfectly at where everybody had been standing a moment before."},
+        {"id": "MIS_CHAIN_FIZZLE.04", "text": "{actor} healed one raider, then the wall, then the wall again."},
+        {"id": "MIS_CHAIN_FIZZLE.05", "text": "{actor} did not know the raid had spread out, and the raid did not know {actor} was casting."},
+        {"id": "MIS_CHAIN_FIZZLE.06", "text": "{actor} put a great deal of care into a heal that reached exactly one delighted person."},
+        {"id": "MIS_CHAIN_FIZZLE.07", "text": "{actor} sent it out hopefully and got nothing back but the sound of it landing."},
+        {"id": "MIS_CHAIN_FIZZLE.08", "text": "{actor} needed two raiders standing near each other, which is more than this raid can promise."}
+      ]
+    },
+    {
+      "type": "MIS_AFK",
+      "_name": "Went AFK",
+      "variants": [
+        {"id": "MIS_AFK.01", "text": "{actor} is not here. {actor}'s body is here."},
+        {"id": "MIS_AFK.02", "text": "{actor} stepped away for one moment, at the start of a fight that has moments in it."},
+        {"id": "MIS_AFK.03", "text": "{actor} said 'one second' four rounds ago and has been extremely quiet since."},
+        {"id": "MIS_AFK.04", "text": "{actor} is standing perfectly still with the calm of somebody who has gone to answer the door."},
+        {"id": "MIS_AFK.05", "text": "{actor} has been asked twice whether {actor} is there, which is twice more than usual."},
+        {"id": "MIS_AFK.06", "text": "Something has happened at {actor}'s house, and it is more interesting than this."},
+        {"id": "MIS_AFK.07", "text": "{actor} is present, attentive, and facing entirely the wrong way."},
+        {"id": "MIS_AFK.08", "text": "{actor} has decided this is a good round to sit out, and told nobody."},
+        {"id": "MIS_AFK.09", "text": "{actor} is reading something. It is not the fight."},
+        {"id": "MIS_AFK.10", "text": "{actor} has not moved, blinked, or contributed, and is doing all three with great dignity."},
+        {"id": "MIS_AFK.11", "text": "{actor} was here at the pull and is a rumour by round four."},
+        {"id": "MIS_AFK.12", "text": "{actor} will be back. {actor} has said so, repeatedly, from somewhere else."},
+        {"id": "MIS_AFK.13", "text": "{actor} has stopped playing, which everybody noticed, and nobody mentions.", "classes": ["bard"]},
+        {"id": "MIS_AFK.14", "text": "{actor} has been away long enough that people have started dividing up {actor}'s job.", "severity": "severe"}
+      ]
+    },
+    {
+      "type": "MIS_MECHANIC_DROP",
+      "_name": "Dropped a Mechanic",
+      "variants": [
+        {"id": "MIS_MECHANIC_DROP.01", "text": "{actor} had the one job the whole raid was told about, and had it right up until it mattered."},
+        {"id": "MIS_MECHANIC_DROP.02", "text": "{actor} was watching the boss, which is usually right, and this round it was the floor that mattered."},
+        {"id": "MIS_MECHANIC_DROP.03", "text": "{actor} handed the job off to nobody in particular and walked away confident."},
+        {"id": "MIS_MECHANIC_DROP.04", "text": "{actor} did it beautifully, one round earlier than anybody needed it."},
+        {"id": "MIS_MECHANIC_DROP.05", "text": "{actor} was counting, lost count, and rounded down."},
+        {"id": "MIS_MECHANIC_DROP.06", "text": "{actor} thought the announcement was for somebody else, because it usually is."},
+        {"id": "MIS_MECHANIC_DROP.07", "text": "{actor} understood it perfectly in the plan and has met it in person for the first time."},
+        {"id": "MIS_MECHANIC_DROP.08", "text": "{actor} was ready, alert, and looking at the wrong side of the room."},
+        {"id": "MIS_MECHANIC_DROP.09", "text": "{actor} put it down somewhere sensible, and sensible turned out to be where everybody was."},
+        {"id": "MIS_MECHANIC_DROP.10", "text": "{actor} was going to call it out, then assumed somebody with a louder voice would."},
+        {"id": "MIS_MECHANIC_DROP.11", "text": "{actor} did exactly what the raid did last week, which is when it worked."},
+        {"id": "MIS_MECHANIC_DROP.12", "text": "{actor} is very sorry and would like one more go at it, please."},
+        {"id": "MIS_MECHANIC_DROP.13", "text": "The boss did the thing the boss does, and {actor} was still deciding."},
+        {"id": "MIS_MECHANIC_DROP.14", "text": "{actor} dropped it, picked it up, and dropped it again in front of everybody.", "severity": "severe"}
+      ]
+    },
+    {
+      "type": "MIS_WRONG_TARGET",
+      "_name": "Attacked the Wrong Target",
+      "variants": [
+        {"id": "MIS_WRONG_TARGET.01", "text": "{actor} committed to a target early and is seeing it through on principle."},
+        {"id": "MIS_WRONG_TARGET.02", "text": "{actor} is hitting the add that was going to die anyway, and is making very sure of it."},
+        {"id": "MIS_WRONG_TARGET.03", "text": "{actor} was told to focus the marked one and has focused the one closest to being marked."},
+        {"id": "MIS_WRONG_TARGET.04", "text": "Two of them look identical, and {actor} has picked the one nobody else is on."},
+        {"id": "MIS_WRONG_TARGET.05", "text": "{actor} is attacking the thing that is attacking {actor}, which is a rule from a different game."},
+        {"id": "MIS_WRONG_TARGET.06", "text": "{actor} would rather finish something than start something, and finished the wrong something."},
+        {"id": "MIS_WRONG_TARGET.07", "text": "{actor} heard 'left' and, from where {actor} was standing, was entirely correct."},
+        {"id": "MIS_WRONG_TARGET.08", "text": "{actor} spent the whole round on a target that had eleven other people on it."},
+        {"id": "MIS_WRONG_TARGET.09", "text": "{actor} lost the marked one in the crowd and settled for enthusiasm."},
+        {"id": "MIS_WRONG_TARGET.10", "text": "{actor} is very confident about which one is the dangerous one, and very wrong."},
+        {"id": "MIS_WRONG_TARGET.11", "text": "Somebody called a switch, and {actor} switched to the thing they had just switched off."},
+        {"id": "MIS_WRONG_TARGET.12", "text": "{actor} is politely killing the least important creature in the room."},
+        {"id": "MIS_WRONG_TARGET.13", "text": "{actor} was already behind something, and moving would have wasted the position.", "classes": ["rogue"]},
+        {"id": "MIS_WRONG_TARGET.14", "text": "{actor} had the long cast half done and was not about to throw that away.", "classes": ["wizard"]}
+      ]
+    },
+    {
+      "type": "MIS_BROKE_CC",
+      "_name": "AoE'd the Sleeping Add",
+      "variants": [
+        {"id": "MIS_BROKE_CC.01", "text": "{actor} casts an area spell. The area contained a plan."},
+        {"id": "MIS_BROKE_CC.02", "text": "{actor} was told not to touch the sleeping one and has touched everything else at once."},
+        {"id": "MIS_BROKE_CC.03", "text": "{actor} saw four targets and could not see a reason not to hit four targets."},
+        {"id": "MIS_BROKE_CC.04", "text": "{actor} is very good at hitting several things and was asked, once, not to."},
+        {"id": "MIS_BROKE_CC.05", "text": "{actor} forgot which one was asleep, because asleep and dead look similar from the back."},
+        {"id": "MIS_BROKE_CC.06", "text": "{actor} woke it up gently, with fire."},
+        {"id": "MIS_BROKE_CC.07", "text": "{actor} had the spell ready and a room full of reasons to use it."},
+        {"id": "MIS_BROKE_CC.08", "text": "{actor} would like to point out that the sleeping one was in the way."}
+      ]
+    },
+    {
+      "type": "MIS_FACEPULL",
+      "_name": "Facepulled the Next Group",
+      "variants": [
+        {"id": "MIS_FACEPULL.01", "text": "{actor} went to scout ahead and has come back with company."},
+        {"id": "MIS_FACEPULL.02", "text": "{actor} stepped forward to check something and checked it thoroughly."},
+        {"id": "MIS_FACEPULL.03", "text": "{actor} was sure they had not seen {actor}, and they had."},
+        {"id": "MIS_FACEPULL.04", "text": "{actor} wanted a look at the next group, and the next group is now getting a look at us."},
+        {"id": "MIS_FACEPULL.05", "text": "{actor} moved before the call, because waiting had started to feel like standing around."},
+        {"id": "MIS_FACEPULL.06", "text": "{actor} took one step too many, which is the shortest distance to a disaster."},
+        {"id": "MIS_FACEPULL.07", "text": "{actor} thought the group was already pulled and helpfully confirmed it."},
+        {"id": "MIS_FACEPULL.08", "text": "{actor} read the room, moved a beat early, and brought the room along.", "classes": ["monk"]}
+      ]
+    },
+    {
+      "type": "MIS_NINJAPULL",
+      "_name": "Ninja-Pulled During the Break",
+      "variants": [
+        {"id": "MIS_NINJAPULL.01", "text": "{actor} did not hear the word 'break' and heard the word 'go'."},
+        {"id": "MIS_NINJAPULL.02", "text": "{actor} pulled during the break, because the break was going on a while."},
+        {"id": "MIS_NINJAPULL.03", "text": "{actor} was bored, and boredom in this guild is load-bearing."},
+        {"id": "MIS_NINJAPULL.04", "text": "{actor} wanted to be helpful and started the fight everybody was still discussing."},
+        {"id": "MIS_NINJAPULL.05", "text": "{actor} assumed the plan had been agreed, which is a hopeful reading of that conversation."},
+        {"id": "MIS_NINJAPULL.06", "text": "{actor} tested one thing to see what it did, and it did all of this."},
+        {"id": "MIS_NINJAPULL.07", "text": "{actor} stood up to stretch and pulled the boss on the way."},
+        {"id": "MIS_NINJAPULL.08", "text": "{actor} is being shouted at from four directions and pulling regardless."}
+      ]
+    },
+    {
+      "type": "MIS_NO_CONSUMABLE",
+      "_name": "Forgot Their Consumable",
+      "variants": [
+        {"id": "MIS_NO_CONSUMABLE.01", "text": "{actor} has arrived for the raid with nothing in {actor}'s pockets but confidence."},
+        {"id": "MIS_NO_CONSUMABLE.02", "text": "{actor} meant to buy the potions and bought something else on the way."},
+        {"id": "MIS_NO_CONSUMABLE.03", "text": "{actor} is saving the good one for a fight that matters, and has been saving it for months."},
+        {"id": "MIS_NO_CONSUMABLE.04", "text": "{actor} used them all on the last attempt and did not think there would be another."},
+        {"id": "MIS_NO_CONSUMABLE.05", "text": "{actor} does not believe the potions do anything, and has not tested that."},
+        {"id": "MIS_NO_CONSUMABLE.06", "text": "{actor} brought a consumable, checked it at the door, and it was food."},
+        {"id": "MIS_NO_CONSUMABLE.07", "text": "{actor} was going to ask somebody for a spare and could not find the moment."},
+        {"id": "MIS_NO_CONSUMABLE.08", "text": "{actor} has one left and is not opening it for this."}
+      ]
+    },
+    {
+      "type": "MIS_ARGUMENT",
+      "_name": "Started an Argument in Raid Chat",
+      "variants": [
+        {"id": "MIS_ARGUMENT.01", "text": "{actor} has raised a point about loot distribution, and has raised it now."},
+        {"id": "MIS_ARGUMENT.02", "text": "{actor} is explaining, at length, what should have happened on round two."},
+        {"id": "MIS_ARGUMENT.03", "text": "{actor} would like everybody to know who pulled that, and everybody now does."},
+        {"id": "MIS_ARGUMENT.04", "text": "{actor} has opinions about the composition and has been waiting for a gap to share them."},
+        {"id": "MIS_ARGUMENT.05", "text": "{actor} said one word about the healing and the fight has become a meeting."},
+        {"id": "MIS_ARGUMENT.06", "text": "{actor} is arguing about a wipe from three weeks ago that {actor} has clearly not let go of."},
+        {"id": "MIS_ARGUMENT.07", "text": "{actor} has asked who is in charge here, which is a fair question, badly timed."},
+        {"id": "MIS_ARGUMENT.08", "text": "{actor} is typing. Everybody can see that {actor} is typing."},
+        {"id": "MIS_ARGUMENT.09", "text": "{actor} brought up the seating plan for the guild dinner, mid-pull."},
+        {"id": "MIS_ARGUMENT.10", "text": "{actor} has apologised in a tone that has started a second argument."},
+        {"id": "MIS_ARGUMENT.11", "text": "{actor} corrected somebody's pronunciation of the boss's name and the room turned."},
+        {"id": "MIS_ARGUMENT.12", "text": "{actor} is defending a friend who has not asked to be defended, and is losing."},
+        {"id": "MIS_ARGUMENT.13", "text": "{actor} tried to defuse it with a song, and is now part of it.", "classes": ["bard"]},
+        {"id": "MIS_ARGUMENT.14", "text": "{actor} has said the thing everybody was thinking, and everybody is now thinking about that instead.", "severity": "severe"}
+      ]
+    },
+    {
+      "type": "MIS_LOOT_CALL",
+      "_name": "Called Loot Before the Boss Died",
+      "variants": [
+        {"id": "MIS_LOOT_CALL.01", "text": "{actor} has called the axe. The boss is still using the axe."},
+        {"id": "MIS_LOOT_CALL.02", "text": "{actor} asked about the loot rules with the boss visibly still standing."},
+        {"id": "MIS_LOOT_CALL.03", "text": "{actor} would like to register an interest early, in case there is a queue."},
+        {"id": "MIS_LOOT_CALL.04", "text": "{actor} has done the arithmetic on who deserves the drop and shared the working."},
+        {"id": "MIS_LOOT_CALL.05", "text": "{actor} started a conversation about who needs what, and it has become the main event."},
+        {"id": "MIS_LOOT_CALL.06", "text": "{actor} thinks it is basically dead, which is a word doing a great deal of work."},
+        {"id": "MIS_LOOT_CALL.07", "text": "{actor} is not being greedy, {actor} is being organised, and is being it very loudly."},
+        {"id": "MIS_LOOT_CALL.08", "text": "{actor} asked who the dagger goes to before the boss had finished using it."}
+      ]
+    },
+    {
+      "type": "MIS_AVOIDABLE_DEATH",
+      "_name": "Died to Something Extremely Avoidable",
+      "variants": [
+        {"id": "MIS_AVOIDABLE_DEATH.01", "text": "{actor} was warned, twice, by two different people, in a friendly tone."},
+        {"id": "MIS_AVOIDABLE_DEATH.02", "text": "{actor} went down to the one thing on the floor that everybody else walked around."},
+        {"id": "MIS_AVOIDABLE_DEATH.03", "text": "{actor} had a whole round to move and used it to consider moving."},
+        {"id": "MIS_AVOIDABLE_DEATH.04", "text": "{actor} went down to something small, slow and clearly signposted."},
+        {"id": "MIS_AVOIDABLE_DEATH.05", "text": "{actor} could have stepped left. {actor} thought about it."},
+        {"id": "MIS_AVOIDABLE_DEATH.06", "text": "{actor} is gone, and the raid has spent a moment working out how that was possible."},
+        {"id": "MIS_AVOIDABLE_DEATH.07", "text": "{actor} was doing something brave immediately beside something obvious."},
+        {"id": "MIS_AVOIDABLE_DEATH.08", "text": "{actor} chose the moment, and the moment was a poor one."}
+      ]
+    }
+  ],
+  "legendaries": [
+    {
+      "legendary_def_id": "legendary_warrior",
+      "_class": "warrior",
+      "variants": [
+        {"id": "legendary_warrior.01", "text": "{actor} has done this before, done it worse, and will tell you so afterwards."},
+        {"id": "legendary_warrior.02", "text": "{actor} did not forget. {actor} decided the other one needed to learn something.", "types": ["MIS_TAUNT_LAPSE"]},
+        {"id": "legendary_warrior.03", "text": "{actor} finds this funny, which is somehow more unnerving than panic would be."},
+        {"id": "legendary_warrior.04", "text": "{actor} stayed exactly where {actor} promised to stay, flames and all.", "types": ["MIS_FIRE"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_monk",
+      "_class": "monk",
+      "variants": [
+        {"id": "legendary_monk.01", "text": "{actor} turned around three times, which takes a round, and this round needed it."},
+        {"id": "legendary_monk.02", "text": "{actor} saw it coming a beat before anybody else and moved a beat after.", "types": ["MIS_INTERRUPT_MISS"]},
+        {"id": "legendary_monk.03", "text": "{actor} genuinely does not know what {actor} is wearing, and it has finally come up."},
+        {"id": "legendary_monk.04", "text": "{actor} read the room correctly and walked straight into the next one.", "types": ["MIS_FACEPULL"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_rogue",
+      "_class": "rogue",
+      "variants": [
+        {"id": "legendary_rogue.01", "text": "{actor} was behind it the whole time and would like that noted, loudly, from under it.", "types": ["MIS_AGGRO"]},
+        {"id": "legendary_rogue.02", "text": "{actor} has already worked out which piece is {actor}'s, and shared the conclusion mid-fight.", "types": ["MIS_LOOT_CALL"]},
+        {"id": "legendary_rogue.03", "text": "{actor} stopped to check {actor}'s own figures at the exact wrong moment."},
+        {"id": "legendary_rogue.04", "text": "{actor} went ahead to see what was worth taking, and found out.", "types": ["MIS_FACEPULL"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_cleric",
+      "_class": "cleric",
+      "variants": [
+        {"id": "legendary_cleric.01", "text": "{actor} has a theory about why that happened, and it begins with the other healer."},
+        {"id": "legendary_cleric.02", "text": "{actor} found one more cast, which is remarkable, and spent it a round too late.", "types": ["MIS_HEAL_CORPSE"]},
+        {"id": "legendary_cleric.03", "text": "{actor} is writing this one down for the log {actor} keeps about you."},
+        {"id": "legendary_cleric.04", "text": "{actor} asked the raid to stand still, please, once, in a voice that stopped the fight.", "types": ["MIS_ARGUMENT"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_druid",
+      "_class": "druid",
+      "variants": [
+        {"id": "legendary_druid.01", "text": "{actor} filled the gap the raid had and left the gap {actor} was standing in."},
+        {"id": "legendary_druid.02", "text": "{actor} was talking about trees again at the one moment it mattered."},
+        {"id": "legendary_druid.03", "text": "{actor} brought nothing at all, as usual, and has offered to bring less.", "types": ["MIS_NO_CONSUMABLE"]},
+        {"id": "legendary_druid.04", "text": "{actor} covered whichever role was missing and healed whoever was nearest to it.", "types": ["MIS_HEAL_WRONG"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_shaman",
+      "_class": "shaman",
+      "variants": [
+        {"id": "legendary_shaman.01", "text": "{actor} logs this one as data and sets it down without further comment."},
+        {"id": "legendary_shaman.02", "text": "{actor} sent it out to a raid that had scattered, and blames the raid, gently, later.", "types": ["MIS_CHAIN_FIZZLE"]},
+        {"id": "legendary_shaman.03", "text": "{actor} was terrible once too, and points that out to whoever is standing nearest."},
+        {"id": "legendary_shaman.04", "text": "{actor} healed the raider who needed it least and the person who needed it most.", "types": ["MIS_HEAL_WRONG"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_bard",
+      "_class": "bard",
+      "variants": [
+        {"id": "legendary_bard.01", "text": "{actor} arrived as the pull started, which is on time by {actor}'s reckoning."},
+        {"id": "legendary_bard.02", "text": "{actor} is at the bar. {actor} knows the person behind the bar by name.", "types": ["MIS_AFK"]},
+        {"id": "legendary_bard.03", "text": "{actor} offered to buy a round to settle it and made it considerably worse.", "types": ["MIS_ARGUMENT"]},
+        {"id": "legendary_bard.04", "text": "{actor} kept the beat and lost the words, and the words were the instruction."}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_mage",
+      "_class": "mage",
+      "variants": [
+        {"id": "legendary_mage.01", "text": "{actor} said to watch this one, and everybody did, including the sleeping add.", "types": ["MIS_BROKE_CC"]},
+        {"id": "legendary_mage.02", "text": "{actor} paused to note that somebody is wearing last tier, and the pause was the mistake."},
+        {"id": "legendary_mage.03", "text": "{actor} wanted you to see the good one and picked a poor moment to be seen."},
+        {"id": "legendary_mage.04", "text": "{actor} chose the target that would look best in the report.", "types": ["MIS_WRONG_TARGET"]}
+      ]
+    },
+    {
+      "legendary_def_id": "legendary_wizard",
+      "_class": "wizard",
+      "variants": [
+        {"id": "legendary_wizard.01", "text": "{actor} knew the timer to the second and stood entirely alone at the end of it."},
+        {"id": "legendary_wizard.02", "text": "{actor} asked somebody to stand nearby, for no reason, and then earned the reason.", "types": ["MIS_AGGRO"]},
+        {"id": "legendary_wizard.03", "text": "{actor} announced how long was left and spent a good part of it announcing."},
+        {"id": "legendary_wizard.04", "text": "{actor} found this funnier than the raid did, and said so during it."}
+      ]
+    }
+  ]
+}

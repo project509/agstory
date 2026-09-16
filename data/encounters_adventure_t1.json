@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "tier": 1,
+  "_source": "docs/10-content-and-encounters.md §8 (Adventure anatomy), authored verbatim from its table. Canon anchor: raw notes, *Adventure's Board* — \"Adventure 1 - a few trash encounters and a mini boss\".",
+  "_notes": [
+    "PARTY SIZE 6, TANKS REQUIRED 1 (docs/10 §3). Adventures are half-headcount on purpose: it makes them a roster puzzle rather than a gear puzzle, because with six slots you cannot bring one of everything.",
+    "THE GEAR ASSUMPTION THAT SETS THESE NUMBERS (docs/10 §8): Adventure tier N is played in tier N-1's gear, so Adventure 1 is played in canon STARTING ARMOUR — Warrior 7 AC, Mage 4 AC, no HP and no Mana on any piece. This is the content Raid 1 assumes you have already cleared; docs/08 §9.2 sizes Boss 1 for a raid that already owns Tier 1 Adventure gear.",
+    "HP BUDGET — RE-DERIVED, and this supersedes docs/10 §8's printed 705/880/1055. That table used ~88/round, which is HALF OF STAGE A (full Tier 1 Adventure gear), and the doc flagged it in writing as an upper bound because Adventures are played BELOW stage A: 'doc 08 publishes no starting-gear DPS stage, so 88 is an upper bound for A1-A3 at Tier 1 - see §14 Q17. Do not replace it with a locally invented figure; ask doc 08 for the stage.' The stage is now published (docs/08 §9.1a, docs/15 BL-28), measured with docs/08 §9.1's own nominal method on the benchmark six: stage 0 (canon starting armour) 16.5/round, after A1 (feet + first weapon) 54.9/round, after A2 (+ legs) 58.2/round. The 88 figure was 5.3x too high for A1.",
+    "EACH RUNG IS SIZED FOR THE GEAR THE RUNG BEFORE IT DROPPED, which is exactly the rule docs/08 §9.2 already applies to the raid tier ('the boss is fought in the gear the boss before it dropped'). A1 = 16.5 x 8 = 132 -> 3 x 45 = 135. A2 = 54.9 x 10 = 549 -> 2 x 275 = 550. A3 = 58.2 x 12 = 698 -> 1 x 700. The jump from A1 to A2 is large (16.5 -> 54.9, a 3.3x) because the FIRST WEAPON is everything to a party that started with none - which is the correct progression beat for canon's '1-2 pieces of basic adventure gear' at Unknown rank.",
+    "SWINGS RECOMPUTED AT EACH RUNG'S OWN STAGE (docs/15 BL-30). docs/08 §9.3's rule is boss_auto_raw = tank_max_hp / (TANK_DEATH_CLOCK x (1 - mitigation)), and docs/10 §8 applied it at 7 AC / 120 HP for ALL THREE rungs while its own loot column says each rung is fought in the gear the one before it dropped. Restoring the doc's INTENDED unhealed clocks (5.5 / 4.3 / 3.5 rd) at the real stages: A1 stage 0, 7 AC, 120 HP, 18.9% mit -> 26.9 raw/rd, and the authored 27 was ALREADY EXACTLY RIGHT because A1 is the one rung genuinely fought at stage 0. A2 after-A1, 9 AC, 123 HP, 23.1% mit -> 37.2, so 17 -> 19 per swing. A3 after-A2, 11 AC, 127 HP, 26.8% mit -> 49.6, so 21 -> 25 per swing. This RAISES the pressure by the doc's own formula rather than against it, which is the opposite of the softening docs/10 §8 forbids.",
+    "M02 MAGNITUDE 15, NOT docs/10 §8's 23 — and this is a judgment call, logged as docs/15 BL-29. The 23 comes from docs/08 §9.5's 0.35 x 65 cloth HP, which sizes SURVIVABILITY per target correctly, but its healing-coverage assumption is a 12-raid with three healers. A raid-wide proc costs 23 x 12 = 276 there, carried by 3 healers = 92 each. At party 6 with ONE healer (docs/10 §8's own stated assumption) the same magnitude costs 23 x 6 = 138 carried by 1 healer, a 1.5x heavier burden per healer. Holding raid-wide damage PER HEALER constant gives 92 / 6 = ~15. Measured, 23 made A2 and A3 unwinnable by killing the party outright rather than by out-timing it. A3's AUTO-SWING is untouched at docs/10's 42 raw/round, which is the one number that doc forbids moving.",
+    "M04 ADD HP SCALES WITH THE PULL. At the old 705 HP the A1 add was 8% of the fight; left unchanged against the re-derived 135 it would have been 44%, which changes the encounter's SHAPE and not just its size. Adds are held at their original fraction: A1 60 -> 12, A2 70 -> 44.",
+    "ENRAGE is ceil(1.4 x target_rounds), which ContentDB validates and every Tier 1 raid encounter already follows (E1 12->17, E5 22->31). docs/10 §8's table prints no enrage column, so the existing rule governs: A1 8->12, A2 10->14, A3 12->17. The A3 value also matches docs/10 §9.1's Tutorial Raid line (12->17) independently.",
+    "A3 IS THE KNOWN HEALING PRESSURE POINT. docs/10 §8 warns that A3 demands ~34.1 post-mitigation single-target healing per round against a party with one healer in 0-Mana starting armour, and instructs in terms: do NOT soften A3's swing to hide it. The swing here is docs/10's 21 x 2, unmodified. Our Formulas.heal_power carries a weapon heal_base floor precisely so a 0-Mana healer is not decorative (docs/15 Q-02, Model A+); whether that floor is enough is a measured question, not a reason to edit this file."
+  ],
+  "encounters": [
+    {
+      "id": "t1_adv_a1",
+      "display_name": "Adventure 1 — Encounter 1",
+      "tier": 1,
+      "slot": "A1",
+      "stars": 1,
+      "kind": "trash",
+      "party_size": 6,
+      "tanks_required": 1,
+      "enemies": [
+        {
+          "name": "Trash",
+          "count": 3,
+          "hp": 45,
+          "raw_swing": 9,
+          "swings_per_round": 1,
+          "threat_rule": "independent"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "m04",
+          "params": { "count": 1, "hp": 12, "swing": 5, "round": 5 }
+        }
+      ],
+      "mistakes_invited": [
+        "mage_overpull",
+        "warrior_lost_aggro"
+      ],
+      "loot_slots": [
+        "feet",
+        "weapon"
+      ],
+      "target_rounds": 8,
+      "enrage_round": 12,
+      "comedy_line": "Three mobs and a party of six who have never met. Someone pulls before the tank; someone else is still reading their own spellbook."
+    },
+    {
+      "id": "t1_adv_a2",
+      "display_name": "Adventure 1 — Encounter 2",
+      "tier": 1,
+      "slot": "A2",
+      "stars": 2,
+      "kind": "hard_trash",
+      "party_size": 6,
+      "tanks_required": 1,
+      "enemies": [
+        {
+          "name": "Harder Trash",
+          "count": 2,
+          "hp": 275,
+          "raw_swing": 19,
+          "swings_per_round": 1,
+          "threat_rule": "independent"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "m04",
+          "params": { "count": 1, "hp": 44, "swing": 6, "round": 6 }
+        },
+        {
+          "id": "m02",
+          "params": { "damage": 15, "every": 4, "ignores_ac": true }
+        }
+      ],
+      "mistakes_invited": [
+        "healer_oom",
+        "rogue_pulled_threat"
+      ],
+      "loot_slots": [
+        "legs"
+      ],
+      "target_rounds": 10,
+      "enrage_round": 14,
+      "comedy_line": "Two of them this time, and something in the room breathes on everyone every fourth round. The healer discovers what a raid-wide is."
+    },
+    {
+      "id": "t1_adv_a3",
+      "display_name": "Adventure 1 — Mini Boss",
+      "tier": 1,
+      "slot": "A3",
+      "stars": 3,
+      "kind": "mini_boss",
+      "party_size": 6,
+      "tanks_required": 1,
+      "enemies": [
+        {
+          "name": "Mini Boss",
+          "count": 1,
+          "hp": 700,
+          "raw_swing": 25,
+          "swings_per_round": 2,
+          "threat_rule": "highest_threat"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "m01",
+          "params": { "stack_damage_pct": 50, "swap_at": 3 }
+        },
+        {
+          "id": "m02",
+          "params": { "damage": 15, "every": 4, "ignores_ac": true }
+        },
+        {
+          "id": "m03",
+          "params": { "damage_per_round": 18, "escape_chance_bp": 5000 }
+        }
+      ],
+      "mistakes_invited": [
+        "warrior_missed_swap",
+        "stood_in_the_fire",
+        "healer_oom"
+      ],
+      "loot_slots": [
+        "head",
+        "chest"
+      ],
+      "target_rounds": 12,
+      "enrage_round": 17,
+      "comedy_line": "It has a tank swap, a raid-wide and a puddle. Your six idiots have one healer and no Mana on any piece of armour they own."
+    }
+  ]
+}

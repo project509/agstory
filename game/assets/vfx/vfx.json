@@ -1,0 +1,25 @@
+{
+ "note": [
+  "Every PNG under game/assets/vfx and the geometry its generator wrote it at. frame_w is",
+  "the width of ONE frame; the PNG is frames * frame_w wide and frame_h tall (one row).",
+  "fps is the source rate stamped in the .aseprite; the scene JSON that mounts a strip",
+  "declares the rate the game runs it at. Written by tools/aseprite/gen_vfx.lua — never",
+  "hand-edit; tests/unit/test_vfx_assets.gd holds every PNG to its row."
+ ],
+ "strips": {
+  "fx_spark_hit": {"frames": 4, "frame_w": 32, "frame_h": 32, "fps": 16, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_slash_arc": {"frames": 5, "frame_w": 64, "frame_h": 48, "fps": 15, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_bolt_arcane": {"frames": 4, "frame_w": 24, "frame_h": 48, "fps": 12, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_bolt_trail": {"frames": 1, "frame_w": 8, "frame_h": 2, "fps": 0, "tag": "", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_heal_sparkle": {"frames": 6, "frame_w": 32, "frame_h": 32, "fps": 12, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_burst_impact": {"frames": 5, "frame_w": 64, "frame_h": 64, "fps": 15, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fx_poof_smoke": {"frames": 5, "frame_w": 48, "frame_h": 48, "fps": 10, "tag": "play", "generator": "tools/aseprite/gen_vfx.lua"},
+  "fire_hearth": {"frames": 8, "frame_w": 64, "frame_h": 56, "fps": 9, "tag": "burn", "generator": "tools/aseprite/gen_fire.lua"},
+  "fire_camp": {"frames": 8, "frame_w": 40, "frame_h": 52, "fps": 9, "tag": "burn", "generator": "tools/aseprite/gen_fire.lua"},
+  "fire_torch": {"frames": 6, "frame_w": 16, "frame_h": 24, "fps": 8, "tag": "burn", "generator": "tools/aseprite/gen_fire.lua"},
+  "ember": {"frames": 1, "frame_w": 4, "frame_h": 4, "fps": 0, "tag": "", "generator": "tools/aseprite/gen_fire.lua"},
+  "light_soft": {"frames": 1, "frame_w": 64, "frame_h": 64, "fps": 0, "tag": "", "generator": "tools/aseprite/gen_fire.lua"},
+  "clouds_far": {"frames": 1, "frame_w": 1536, "frame_h": 220, "fps": 0, "tag": "", "generator": "tools/art/gen_clouds.py"},
+  "clouds_near": {"frames": 1, "frame_w": 1536, "frame_h": 220, "fps": 0, "tag": "", "generator": "tools/art/gen_clouds.py"}
+ }
+}

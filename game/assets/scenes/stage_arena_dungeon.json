@@ -1,0 +1,378 @@
+{
+ "note": [
+  "The dungeon arena on the BARE plate (1536x1024) — RaidPrep, RaidView and Results",
+  "for the dungeon encounters.",
+  "",
+  "NO ambient actors, for the same reason as the cave: spec 09 §4.3 row 5 gives the",
+  "twelve combatants to the raid screen, from the party that actually departed.",
+  "",
+  "This plate is braziers, so it is the one scene where the fire sprites earn their",
+  "keep: fourteen of them, each on a painted bowl, each on its own phase so the room",
+  "does not pulse in unison. The cyan geyser on the pentagram (~962,230) is the",
+  "encounter's own light and is deliberately cold against all that orange — it is",
+  "where a boss will stand.",
+  "",
+  "Checked with `python tools/art/preview_scene.py stage_arena_dungeon --view raidview --marks`.",
+  "",
+  "`marks` (W1-STAGE, STAGE-01/06): `view` (0,-280) shows plate rows 280..1015, so the upper",
+  "dais with the geyser (870,200) is OFF the band — the party stands on the hall floor below",
+  "the stairs and the boss on the lower ritual circle (965,885), which is where this scene's",
+  "one cold light, its pulse and its motes now are; the two upper-brazier ember emitters",
+  "moved to in-band braziers. Q-96 is ruled (2026-09-15): every raid encounter (E1-E5) fights",
+  "here — SceneStage.arena_for.",
+  "",
+  "The ritual geyser pulses and its pool shimmers: this plate's one cold light is the thing",
+  "a boss stands on, so it is the thing that should be moving.",
+  "",
+  "W7-STAGE (2026-09-15; UI-21, BL-103): the party across the hall floor below the stairs at an 84px",
+  "pitch, ranks staggered by half a pitch and 44px apart (the second rank to the RIGHT — the bridge's",
+  "near parapet is left of x 470 on the y 648 row); the boss at 2x on the ritual circle's right half,",
+  "feet (990, 900): a 2x Main Boss spans x 835..1145 and clears the front rank's rightmost figure",
+  "(722 + 39) by 74, a 400px footprint by 29; the right brazier's flame (1176..1192) stays clear, the",
+  "left one (900..916, feet 796) stands BEHIND the boss and is covered — depth-correct, a creature on",
+  "the circle is nearer the eye than a brazier on the far edge. `boss.floor` is the circle's stone."
+ ],
+ "plate": "res://game/assets/bg/stage_arena_dungeon.png",
+ "figure_scale": 2,
+ "props": [
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [690, 128],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 0
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [906, 128],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 3
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1086, 158],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 5
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [520, 188],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 1
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1320, 248],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 4
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [700, 278],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 2
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [796, 372],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 0
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1002, 376],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 3
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [716, 462],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 5
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [858, 516],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 1
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [642, 562],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 4
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [312, 466],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 2
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [842, 642],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 0
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [908, 796],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 3
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [1184, 796],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 5
+  },
+  {
+   "strip": "res://game/assets/vfx/fire_torch.png",
+   "frame_w": 16,
+   "fps": 8,
+   "pos": [406, 896],
+   "anchor": "bottom",
+   "emissive": 1.25,
+   "phase": 1
+  }
+ ],
+ "lights": [
+  {
+   "pos": [690, 112],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [906, 112],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [1086, 142],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [520, 172],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [1320, 232],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [700, 262],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [796, 356],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [1002, 360],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [716, 446],
+   "color": "#FFA050",
+   "energy": 0.2,
+   "radius": 100,
+   "flicker": 0.34
+  },
+  {
+   "pos": [858, 500],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [642, 546],
+   "color": "#FFA050",
+   "energy": 0.2,
+   "radius": 100,
+   "flicker": 0.34
+  },
+  {
+   "pos": [312, 450],
+   "color": "#FFA050",
+   "energy": 0.2,
+   "radius": 100,
+   "flicker": 0.34
+  },
+  {
+   "pos": [842, 626],
+   "color": "#FFA050",
+   "energy": 0.2,
+   "radius": 100,
+   "flicker": 0.34
+  },
+  {
+   "pos": [908, 780],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [1184, 780],
+   "color": "#FFA050",
+   "energy": 0.22,
+   "radius": 110,
+   "flicker": 0.34
+  },
+  {
+   "pos": [406, 880],
+   "color": "#FFA050",
+   "energy": 0.2,
+   "radius": 100,
+   "flicker": 0.34
+  },
+  {
+   "pos": [965, 870],
+   "color": "#60E0E0",
+   "energy": 0.34,
+   "radius": 190,
+   "flicker": 0.16
+  },
+  {
+   "pos": [1480, 560],
+   "color": "#60C8E0",
+   "energy": 0.2,
+   "radius": 130,
+   "flicker": 0.1
+  },
+  {
+   "pos": [560, 960],
+   "color": "#60C8E0",
+   "energy": 0.2,
+   "radius": 140,
+   "flicker": 0.1
+  }
+ ],
+ "embers": [
+  {
+   "pos": [965, 890],
+   "preset": "motes",
+   "amount": 16,
+   "spread": 14,
+   "height": 70
+  },
+  {
+   "pos": [716, 455],
+   "amount": 8,
+   "spread": 6,
+   "height": 40
+  },
+  {
+   "pos": [858, 509],
+   "amount": 8,
+   "spread": 6,
+   "height": 40
+  }
+ ],
+ "actors": [],
+ "bubbles": [],
+ "bubble_visible": 0,
+ "glow_threshold": 1.25,
+ "shimmer": [
+  {
+   "rect": [440, 690, 190, 330],
+   "color": "#7FC8FF"
+  },
+  {
+   "rect": [960, 630, 120, 90],
+   "color": "#8AE0E0"
+  }
+ ],
+ "pulse": [
+  {
+   "rect": [905, 830, 120, 110],
+   "color": "#60E0E0",
+   "energy": 0.2
+  }
+ ],
+ "marks": {
+  "view": [0, -280],
+  "party": {
+   "scale": 2,
+   "face": "right",
+   "ranks": [
+    {"y": 660, "xs": [470, 554, 638, 722]},
+    {"y": 616, "xs": [512, 596, 680, 764]},
+    {"y": 572, "xs": [470, 554, 638, 722]}
+   ]
+  },
+  "boss": {
+   "pos": [990, 900],
+   "scale": 2,
+   "flip": true,
+   "floor": [905, 850, 145, 90]
+  }
+ }
+}

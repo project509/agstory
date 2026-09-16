@@ -1,0 +1,90 @@
+{
+ "note": [
+  "The town on the BARE plate (1536x1024) — the aerial establishing view, for",
+  "MainMenu, the Town hub and AdventureBoard.",
+  "",
+  "THIS SCENE HAS NO FIGURES, AND THAT IS THE FINDING. The plate is an aerial: a",
+  "house is ~90px tall, so a person is 10-14px. Every actor strip is 21-48px, and",
+  "scaling pixel art down by 0.3 with a nearest filter destroys it — the figures",
+  "would be both wrong-sized and mangled. Putting people here needs new art cut at",
+  "aerial scale, not the strips we have (audit M4B-ACT-04).",
+  "",
+  "It has no lights either, and that is also deliberate: this is the one DAYTIME",
+  "plate. A warm lantern glow on a sunlit street reads as a rendering bug.",
+  "",
+  "What the plate actually wants is in spec 09 §5: water shimmer on the harbour",
+  "(rank 4), cloud drift across the top (rank 7), the windmill sails on the right",
+  "ridge, the fountain in the square, and gulls. Every one of those needs either a",
+  "shader layer SceneStage does not have yet or art that does not exist yet, which",
+  "is audit M4B-VFX-01. So this file is honest about being a plate for now: the",
+  "screen gets the full-frame bare town instead of a mockup crop with baked label",
+  "pills, and the life arrives when the layer that can carry it does.",
+  "",
+  "THE FIGURES ARE STILL ABSENT (see above), but the aerial is no longer inert: spec 09 §5",
+  "row 4's water shimmer runs on the sea, the harbour and the river mouth, and row 7's cloud",
+  "drift landed with W2-STAGE2 (next paragraph). Row 8 (the airship: 160x140px of sky patched",
+  "behind a cut airship) and the windmill sails stay in M4B-VFX-01 until W4-LIFE.",
+  "",
+  "W2-STAGE2 (STAGE-14, PIPE-10, TOWN-12): the sky drifts and the chimneys smoke. `scroll`",
+  "slides W1-VFX's two periodic cloud strips (gen_clouds.py, the plate's own sky tones) over",
+  "rows 0-200 at 3 and 5 px/s, at 0.42 / 0.38 opacity (denser veiled the painted sky) — the strips",
+  "are 220 tall and fade out by row ~180; the quad crops their last sparse rows so nothing moves",
+  "below row 200 (the plan's \"rows 0-200\"; the review measured 73 px drifting in 200-223) and the peaks and the",
+  "castle stay clear; `smoke` emitters sit on three chimney stacks measured at 3x on the",
+  "plate: the hall's left roof (814,362), the east house (990,516), the west house's ridge",
+  "(402,350). Both hold under reduced_motion (the plume is preprocessed, so a held stage",
+  "still shows one) and go under reduced_effects. The airship and the sails stay owed.",
+  "",
+  "W4-LIFE (STAGE-14): the sails turn and the gulls cross. `rotor` spins the two windmills'",
+  "sails — cut from this plate's own pixels by tools/art/patch_plate.py (sail_a hub (1337,328),",
+  "sail_b hub (1291,434); the plate under them is patched by the same recorded step) — about",
+  "their axles at 0.18 / -0.14 rad/s (one turn in ~35-45 s; the two turn opposite ways, as",
+  "two mills in one wind never quite agree). `flyers` sends three gulls (gull.png, 12x6x3)",
+  "round closed splines: two circling the harbour mouth at the bottom right, one crossing",
+  "the sky band under the peaks. Both layers hold under reduced_motion (the sails at",
+  "their painted angle, so that frame IS the painting) and stay under reduced_effects.",
+  "The airship stays owed."
+ ],
+ "plate": "res://game/assets/bg/stage_town.png",
+ "props": [],
+ "lights": [],
+ "embers": [
+  {"pos": [814, 362], "preset": "smoke"},
+  {"pos": [990, 516], "preset": "smoke"},
+  {"pos": [402, 350], "preset": "smoke", "amount": 6}
+ ],
+ "actors": [],
+ "bubbles": [],
+ "bubble_visible": 0,
+ "glow_threshold": 1.4,
+ "rotor": [
+  {"tex": "res://game/assets/vfx/life/sail_a.png", "pos": [1337, 328], "rad_per_s": 0.18},
+  {"tex": "res://game/assets/vfx/life/sail_b.png", "pos": [1291, 434], "rad_per_s": -0.14}
+ ],
+ "flyers": [
+  {"strip": "res://game/assets/vfx/life/gull.png", "frame_w": 12, "fps": 5, "px_per_s": 16,
+   "points": [[1180, 900], [1300, 840], [1440, 880], [1400, 980], [1250, 990]]},
+  {"strip": "res://game/assets/vfx/life/gull.png", "frame_w": 12, "fps": 6, "px_per_s": 13, "phase": 0.45,
+   "points": [[1180, 900], [1300, 840], [1440, 880], [1400, 980], [1250, 990]]},
+  {"strip": "res://game/assets/vfx/life/gull.png", "frame_w": 12, "fps": 4, "px_per_s": 12, "phase": 0.2,
+   "points": [[560, 150], [760, 120], [980, 170], [800, 220], [640, 200]]}
+ ],
+ "scroll": [
+  {"tex": "res://game/assets/vfx/clouds_far.png", "rect": [0, 0, 1536, 200], "px_per_s": 3.0, "opacity": 0.42},
+  {"tex": "res://game/assets/vfx/clouds_near.png", "rect": [0, 0, 1536, 200], "px_per_s": 5.0, "opacity": 0.38}
+ ],
+ "shimmer": [
+  {
+   "rect": [0, 250, 190, 450],
+   "color": "#7FC8FF"
+  },
+  {
+   "rect": [0, 690, 600, 334],
+   "color": "#7FC8FF"
+  },
+  {
+   "rect": [1270, 900, 210, 124],
+   "color": "#7FC8FF"
+  }
+ ]
+}

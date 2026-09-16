@@ -1,0 +1,896 @@
+{
+  "_notes": [
+    "GENERATED FILE. Edit tools/gen_items.gd or sim/content/TierScaling.gd and re-run;",
+    "a hand edit here is lost on the next regeneration. `tools/verify.sh` runs",
+    "`gen_items.gd -- check` as a gate stage, so an edit here fails the build",
+    "and names this file. Mark a row hand_authored: true to keep it (BL-69).",
+    "Row count is held at Tier 1's shape (48): the shipped canon rung is the",
+    "template, which also answers docs/09 §13.1's 27-vs-28 Adventure discrepancy",
+    "in favour of the data (28 = 17 armour + 7 weapons + 4 charms, no off-hands).",
+    "NAMES ARE PLACEHOLDERS. Every row carries name_pending while",
+    "data/tier_words.json marks tier 4 pending. docs/09 §11.4's material and",
+    "title words are a designer decision and nothing here may invent them.",
+    "Stats are docs/09 §13.2's growth rule applied to the CANON Tier 1 totals,",
+    "split by §13.4's shares with the remainder to Chest. docs/08 §9.6 is the",
+    "boss budget these numbers feed, and it is derived from the same ladder."
+  ],
+  "_source": {
+    "budget": "docs/08 §9.6",
+    "generator": "tools/gen_items.gd (run it; do not hand-edit)",
+    "rules": "docs/09 §13.2 growth, §13.4 slot shares and Power, §13.5 capstones, §11 naming",
+    "seed": "data/items_t1_adventure.json + data/items_t1_raid.json (CANON, read only)"
+  },
+  "boss5_trinket_pool": [
+    "ITM_T4_RAID_UNIV_TRINKET_HEALTH",
+    "ITM_T4_RAID_UNIV_TRINKET_ARMOR",
+    "ITM_T4_RAID_UNIV_TRINKET_MANA",
+    "ITM_T4_RAID_UNIV_TRINKET_POWER"
+  ],
+  "class_tables": {
+    "bard": {
+      "1": [
+        "ITM_T4_RAID_WARBARD_FEET",
+        "ITM_T4_RAID_W1H_MH_SWORD_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_WARBARD_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_WARBARD_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_WARBARD_CHEST",
+        "ITM_T4_RAID_W1H_MH_SWORD_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_INSTR_OH"
+      ]
+    },
+    "cleric": {
+      "1": [
+        "ITM_T4_RAID_HEALER_FEET",
+        "ITM_T4_RAID_WPN_CLR_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_HEALER_LEGS",
+        "ITM_T4_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T4_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_HEALER_CHEST",
+        "ITM_T4_RAID_WPN_CLR_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_WPN_CLR_FINAL"
+      ]
+    },
+    "druid": {
+      "1": [
+        "ITM_T4_RAID_HEALER_FEET",
+        "ITM_T4_RAID_WPN_DRU_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_HEALER_LEGS",
+        "ITM_T4_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T4_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_HEALER_CHEST",
+        "ITM_T4_RAID_WPN_DRU_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_WPN_DRU_FINAL"
+      ]
+    },
+    "mage": {
+      "1": [
+        "ITM_T4_RAID_MAGEWIZ_FEET",
+        "ITM_T4_RAID_W2H_MAGE_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_MAGEWIZ_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_MAGEWIZ_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_MAGEWIZ_CHEST",
+        "ITM_T4_RAID_W2H_MAGE_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_W2H_MAGE_FINAL"
+      ]
+    },
+    "monk": {
+      "1": [
+        "ITM_T4_RAID_MONKROGUE_FEET",
+        "ITM_T4_RAID_W2H_MONK_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_MONKROGUE_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_MONKHEAD_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_MONKROGUE_CHEST_MONK",
+        "ITM_T4_RAID_W2H_MONK_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_MONKHEAD_HEAD_FINAL"
+      ]
+    },
+    "rogue": {
+      "1": [
+        "ITM_T4_RAID_MONKROGUE_FEET",
+        "ITM_T4_RAID_W1H_MH_DAGGER_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_MONKROGUE_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_ROGUEHEAD_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_MONKROGUE_CHEST_ROGUE",
+        "ITM_T4_RAID_W1H_MH_DAGGER_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_ROGUEHEAD_HEAD_FINAL"
+      ]
+    },
+    "shaman": {
+      "1": [
+        "ITM_T4_RAID_HEALER_FEET",
+        "ITM_T4_RAID_WPN_SHM_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_HEALER_LEGS",
+        "ITM_T4_RAID_HEALOFF_OH"
+      ],
+      "3": [
+        "ITM_T4_RAID_HEALER_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_HEALER_CHEST",
+        "ITM_T4_RAID_WPN_SHM_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_WPN_SHM_FINAL"
+      ]
+    },
+    "warrior": {
+      "1": [
+        "ITM_T4_RAID_WARBARD_FEET",
+        "ITM_T4_RAID_W1H_MH_SWORD_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_WARBARD_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_WARBARD_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_WARBARD_CHEST",
+        "ITM_T4_RAID_W1H_MH_SWORD_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_SHIELD_OH"
+      ]
+    },
+    "wizard": {
+      "1": [
+        "ITM_T4_RAID_MAGEWIZ_FEET",
+        "ITM_T4_RAID_W2H_WIZ_BASIC"
+      ],
+      "2": [
+        "ITM_T4_RAID_MAGEWIZ_LEGS"
+      ],
+      "3": [
+        "ITM_T4_RAID_MAGEWIZ_HEAD"
+      ],
+      "4": [
+        "ITM_T4_RAID_MAGEWIZ_CHEST",
+        "ITM_T4_RAID_W2H_WIZ_STRONG"
+      ],
+      "5": [
+        "ITM_T4_RAID_W2H_WIZ_FINAL"
+      ]
+    }
+  },
+  "items": [
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "warrior_bard_armor",
+      "id": "ITM_T4_RAID_WARBARD_FEET",
+      "name": "TIER4's Boots",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "feet",
+      "stats": {
+        "ac": 16,
+        "hp": 23
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "monk_rogue_armor",
+      "id": "ITM_T4_RAID_MONKROGUE_FEET",
+      "name": "TIER4's Boots",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "feet",
+      "stats": {
+        "ac": 17,
+        "hp": 22
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "healer_armor",
+      "id": "ITM_T4_RAID_HEALER_FEET",
+      "name": "TIER4's Shoes",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "feet",
+      "stats": {
+        "ac": 11,
+        "hp": 21,
+        "mana": 78
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "mage_wizard_armor",
+      "id": "ITM_T4_RAID_MAGEWIZ_FEET",
+      "name": "TIER4's Slippers",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "feet",
+      "stats": {
+        "ac": 14,
+        "hp": 18,
+        "mana": 97
+      }
+    },
+    {
+      "boss": 2,
+      "canon": false,
+      "family": "warrior_bard_armor",
+      "id": "ITM_T4_RAID_WARBARD_LEGS",
+      "name": "TIER4's Greaves",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "legs",
+      "stats": {
+        "ac": 20,
+        "hp": 29,
+        "power": 4
+      }
+    },
+    {
+      "boss": 2,
+      "canon": false,
+      "family": "monk_rogue_armor",
+      "id": "ITM_T4_RAID_MONKROGUE_LEGS",
+      "name": "TIER4's Leggings",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "legs",
+      "stats": {
+        "ac": 18,
+        "hp": 25,
+        "power": 4
+      }
+    },
+    {
+      "boss": 2,
+      "canon": false,
+      "family": "healer_armor",
+      "id": "ITM_T4_RAID_HEALER_LEGS",
+      "name": "TIER4's Leggings",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "legs",
+      "stats": {
+        "ac": 11,
+        "hp": 22,
+        "mana": 82
+      }
+    },
+    {
+      "boss": 2,
+      "canon": false,
+      "family": "mage_wizard_armor",
+      "id": "ITM_T4_RAID_MAGEWIZ_LEGS",
+      "name": "TIER4's Leggings",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "legs",
+      "stats": {
+        "ac": 16,
+        "hp": 20,
+        "mana": 111
+      }
+    },
+    {
+      "boss": 3,
+      "canon": false,
+      "family": "warrior_bard_head",
+      "id": "ITM_T4_RAID_WARBARD_HEAD",
+      "name": "TIER4's Helm",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "head",
+      "stats": {
+        "ac": 18,
+        "hp": 25,
+        "power": 4
+      }
+    },
+    {
+      "boss": 3,
+      "canon": false,
+      "family": "monk_head",
+      "id": "ITM_T4_RAID_MONKHEAD_HEAD",
+      "name": "TIER4's Headband",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "head",
+      "stats": {
+        "ac": 21,
+        "hp": 29,
+        "power": 4
+      }
+    },
+    {
+      "boss": 3,
+      "canon": false,
+      "family": "rogue_head",
+      "id": "ITM_T4_RAID_ROGUEHEAD_HEAD",
+      "name": "TIER4's Eyepatch",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "head",
+      "stats": {
+        "ac": 17,
+        "hp": 25,
+        "power": 3
+      }
+    },
+    {
+      "boss": 3,
+      "canon": false,
+      "family": "healer_armor",
+      "id": "ITM_T4_RAID_HEALER_HEAD",
+      "name": "TIER4's Circlet",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "head",
+      "stats": {
+        "ac": 11,
+        "hp": 22,
+        "mana": 82
+      }
+    },
+    {
+      "boss": 3,
+      "canon": false,
+      "family": "mage_wizard_armor",
+      "id": "ITM_T4_RAID_MAGEWIZ_HEAD",
+      "name": "TIER4's Cap",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "head",
+      "stats": {
+        "ac": 16,
+        "hp": 20,
+        "mana": 111
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "warrior_bard_armor",
+      "id": "ITM_T4_RAID_WARBARD_CHEST",
+      "name": "TIER4's Cuirass",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "chest",
+      "stats": {
+        "ac": 29,
+        "hp": 39,
+        "power": 9
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "monk_rogue_armor",
+      "id": "ITM_T4_RAID_MONKROGUE_CHEST_MONK",
+      "name": "TIER4's Vest",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "chest",
+      "stats": {
+        "ac": 25,
+        "hp": 33,
+        "power": 8
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "monk_rogue_armor",
+      "id": "ITM_T4_RAID_MONKROGUE_CHEST_ROGUE",
+      "name": "TIER4's Leather Vest",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "chest",
+      "stats": {
+        "ac": 25,
+        "hp": 33,
+        "power": 8
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "healer_armor",
+      "id": "ITM_T4_RAID_HEALER_CHEST",
+      "name": "TIER4's Vestments",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "chest",
+      "stats": {
+        "ac": 18,
+        "hp": 31,
+        "mana": 117
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "mage_wizard_armor",
+      "id": "ITM_T4_RAID_MAGEWIZ_CHEST",
+      "name": "TIER4's Robe",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule + §13.4 slot shares, generated by tools/gen_items.gd from the canon Tier 1 totals. Name is a placeholder: docs/09 §11.4's tier words are pending a designer.",
+      "slot": "chest",
+      "stats": {
+        "ac": 21,
+        "hp": 24,
+        "mana": 126
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "wrb_one_hand",
+      "id": "ITM_T4_RAID_W1H_MH_SWORD_BASIC",
+      "name": "Basic TIER4 Sword",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 25
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "wrb_one_hand",
+      "id": "ITM_T4_RAID_W1H_MH_DAGGER_BASIC",
+      "name": "Basic TIER4 Dagger",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder. The Rogue equips two, and the dagger keeps canon's -2 against the sword at every rung (docs/09 OQ-15: do not silently fix it).",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 23
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "monk_two_hand",
+      "id": "ITM_T4_RAID_W2H_MONK_BASIC",
+      "name": "Basic TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 44
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "mage_two_hand",
+      "id": "ITM_T4_RAID_W2H_MAGE_BASIC",
+      "name": "Basic TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 45
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "wizard_two_hand",
+      "id": "ITM_T4_RAID_W2H_WIZ_BASIC",
+      "name": "Basic TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 51
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "cleric_weapon",
+      "heal_base": 53,
+      "id": "ITM_T4_RAID_WPN_CLR_BASIC",
+      "name": "Basic TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 36
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "druid_weapon",
+      "heal_base": 53,
+      "id": "ITM_T4_RAID_WPN_DRU_BASIC",
+      "name": "Basic TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 36
+      }
+    },
+    {
+      "boss": 1,
+      "canon": false,
+      "family": "shaman_weapon",
+      "heal_base": 53,
+      "id": "ITM_T4_RAID_WPN_SHM_BASIC",
+      "name": "Basic TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 36
+      }
+    },
+    {
+      "boss": 2,
+      "canon": false,
+      "family": "healer_off_hand",
+      "id": "ITM_T4_RAID_HEALOFF_OH",
+      "name": "TIER4 TIER4's Tome",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "off_hand",
+      "stats": {
+        "ac": 8,
+        "mana": 66
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "wrb_one_hand",
+      "id": "ITM_T4_RAID_W1H_MH_SWORD_STRONG",
+      "name": "Strong TIER4 Sword",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 27
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "wrb_one_hand",
+      "id": "ITM_T4_RAID_W1H_MH_DAGGER_STRONG",
+      "name": "Strong TIER4 Dagger",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder. The Rogue equips two.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 25
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "monk_two_hand",
+      "id": "ITM_T4_RAID_W2H_MONK_STRONG",
+      "name": "Strong TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 48
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "mage_two_hand",
+      "id": "ITM_T4_RAID_W2H_MAGE_STRONG",
+      "name": "Strong TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 49
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "wizard_two_hand",
+      "id": "ITM_T4_RAID_W2H_WIZ_STRONG",
+      "name": "Strong TIER4 Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 55
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "cleric_weapon",
+      "heal_base": 56,
+      "id": "ITM_T4_RAID_WPN_CLR_STRONG",
+      "name": "Strong TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 40
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "druid_weapon",
+      "heal_base": 56,
+      "id": "ITM_T4_RAID_WPN_DRU_STRONG",
+      "name": "Strong TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 40
+      }
+    },
+    {
+      "boss": 4,
+      "canon": false,
+      "family": "shaman_weapon",
+      "heal_base": 56,
+      "id": "ITM_T4_RAID_WPN_SHM_STRONG",
+      "name": "Strong TIER4 Healing Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.2 weapon rule (Basic = Adventure +1, +2 Wizard; Strong = Basic +2 one-hand / +4 two-hand; capstone = Strong +4; x1.25 across tiers), generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "mana": 40
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "warrior_shield",
+      "id": "ITM_T4_RAID_SHIELD_OH",
+      "name": "TIER4 Warrior Shield",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "off_hand",
+      "stats": {
+        "ac": 28,
+        "hp": 39,
+        "power": 4
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "instrument",
+      "id": "ITM_T4_RAID_INSTR_OH",
+      "name": "TIER4 Bard Instrument",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "off_hand",
+      "stats": {
+        "mana": 262
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "monk_head",
+      "id": "ITM_T4_RAID_MONKHEAD_HEAD_FINAL",
+      "name": "TIER4 Final Headband",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "head",
+      "stats": {
+        "ac": 24,
+        "hp": 30,
+        "power": 11
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "rogue_head",
+      "id": "ITM_T4_RAID_ROGUEHEAD_HEAD_FINAL",
+      "name": "TIER4 Final Eyepatch",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "head",
+      "stats": {
+        "ac": 20,
+        "hp": 25,
+        "power": 9
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "cleric_weapon",
+      "heal_base": 59,
+      "id": "ITM_T4_RAID_WPN_CLR_FINAL",
+      "name": "TIER4 Cleric Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "ac": 8,
+        "mana": 44
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "druid_weapon",
+      "heal_base": 59,
+      "id": "ITM_T4_RAID_WPN_DRU_FINAL",
+      "name": "TIER4 Druid Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "hp": 20,
+        "mana": 44
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "shaman_weapon",
+      "heal_base": 59,
+      "id": "ITM_T4_RAID_WPN_SHM_FINAL",
+      "name": "TIER4 Shaman Weapon",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "ac": 4,
+        "hp": 10,
+        "mana": 44
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "mage_two_hand",
+      "id": "ITM_T4_RAID_W2H_MAGE_FINAL",
+      "name": "TIER4 Mage Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 53
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "wizard_two_hand",
+      "id": "ITM_T4_RAID_W2H_WIZ_FINAL",
+      "name": "TIER4 Wizard Staff",
+      "name_pending": true,
+      "note": "docs/09 §13.5 hand-authored slot, priced at its Tier 1 ratio against this tier's Raid armour total. Stats generated; the joke docs/10 §6 asks for is NOT written and the name is a placeholder.",
+      "slot": "main_hand",
+      "stats": {
+        "damage": 59
+      },
+      "two_handed": true
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "universal_trinket",
+      "id": "ITM_T4_RAID_UNIV_TRINKET_HEALTH",
+      "name": "TIER4's Charm of Health",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule applied to the canon Tier 1 charm magnitudes, generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "trinket",
+      "stats": {
+        "hp": 56
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "universal_trinket",
+      "id": "ITM_T4_RAID_UNIV_TRINKET_ARMOR",
+      "name": "TIER4's Charm of Armor",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule applied to the canon Tier 1 charm magnitudes, generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "trinket",
+      "stats": {
+        "ac": 10
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "universal_trinket",
+      "id": "ITM_T4_RAID_UNIV_TRINKET_MANA",
+      "name": "TIER4's Charm of Mana",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule applied to the canon Tier 1 charm magnitudes, generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "trinket",
+      "stats": {
+        "mana": 262
+      }
+    },
+    {
+      "boss": 5,
+      "canon": false,
+      "family": "universal_trinket",
+      "id": "ITM_T4_RAID_UNIV_TRINKET_POWER",
+      "name": "TIER4's Charm of Power",
+      "name_pending": true,
+      "note": "docs/09 §13.2 growth rule applied to the canon Tier 1 charm magnitudes, generated by tools/gen_items.gd. Name is a placeholder.",
+      "slot": "trinket",
+      "stats": {
+        "power": 10
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source": "raid",
+  "tier": 4
+}

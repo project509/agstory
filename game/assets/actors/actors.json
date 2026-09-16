@@ -1,0 +1,652 @@
+{
+ "actors": {
+  "cleric": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 41,
+   "frame_w": 33,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "cleric",
+   "moving_px": 1339,
+   "source": "art/export/raider/raider_cleric_idle_*.png"
+  },
+  "cleric_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 38,
+   "frame_w": 33,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "cleric_b",
+   "moving_px": 1247,
+   "source": "art/export/raider/raider_cleric_b_idle_*.png"
+  },
+  "knight_unlabelled": {
+   "dropped_frames": [
+    "raider_knight_unlabelled_idle_1.png (31x82 vs median 25x39)"
+   ],
+   "fps": 5.0,
+   "frame_h": 42,
+   "frame_w": 26,
+   "frames": 4,
+   "kind": "sliced",
+   "label": "knight_unlabelled",
+   "moving_px": 1066,
+   "source": "art/export/raider/raider_knight_unlabelled_idle_*.png"
+  },
+  "knight_unlabelled_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 28,
+   "frames": 4,
+   "kind": "sliced",
+   "label": "knight_unlabelled_b",
+   "moving_px": 1026,
+   "source": "art/export/raider/raider_knight_unlabelled_b_idle_*.png"
+  },
+  "mage": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 41,
+   "frame_w": 31,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "mage",
+   "moving_px": 1250,
+   "source": "art/export/raider/raider_mage_idle_*.png"
+  },
+  "mage_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 45,
+   "frame_w": 39,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "mage_b",
+   "moving_px": 1740,
+   "source": "art/export/raider/raider_mage_b_idle_*.png"
+  },
+  "ranger_as_rogue": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 31,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "ranger_as_rogue",
+   "moving_px": 1121,
+   "source": "art/export/raider/raider_ranger_as_rogue_idle_*.png"
+  },
+  "ranger_as_rogue_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 30,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "ranger_as_rogue_b",
+   "moving_px": 1088,
+   "source": "art/export/raider/raider_ranger_as_rogue_b_idle_*.png"
+  },
+  "rogue": {
+   "dropped_frames": [
+    "raider_rogue_idle_5.png (24x79 vs median 24x38)"
+   ],
+   "fps": 5.0,
+   "frame_h": 38,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "sliced",
+   "label": "rogue",
+   "moving_px": 907,
+   "source": "art/export/raider/raider_rogue_idle_*.png"
+  },
+  "rogue_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 29,
+   "frames": 4,
+   "kind": "sliced",
+   "label": "rogue_b",
+   "moving_px": 1034,
+   "source": "art/export/raider/raider_rogue_b_idle_*.png"
+  },
+  "variant_r01_black": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r01_black",
+   "moving_px": 594,
+   "source": "art/export/raider/raider_variant_r01_black_idle.png"
+  },
+  "variant_r01_brown": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r01_brown",
+   "moving_px": 588,
+   "source": "art/export/raider/raider_variant_r01_brown_idle.png"
+  },
+  "variant_r01_ginger": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r01_ginger",
+   "moving_px": 606,
+   "source": "art/export/raider/raider_variant_r01_ginger_idle.png"
+  },
+  "variant_r01_grey": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r01_grey",
+   "moving_px": 633,
+   "source": "art/export/raider/raider_variant_r01_grey_idle.png"
+  },
+  "variant_r02_black": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r02_black",
+   "moving_px": 631,
+   "source": "art/export/raider/raider_variant_r02_black_idle.png"
+  },
+  "variant_r02_black_walk": {
+   "fps": 6.0,
+   "frame_h": 39,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r02_black",
+   "moving_px": 801,
+   "source": "art/export/raider/raider_variant_r02_black_idle.png",
+   "walk_of": "variant_r02_black"
+  },
+  "variant_r02_brown": {
+   "fps": 5.0,
+   "frame_h": 39,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r02_brown",
+   "moving_px": 638,
+   "source": "art/export/raider/raider_variant_r02_brown_idle.png"
+  },
+  "variant_r02_ginger": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r02_ginger",
+   "moving_px": 638,
+   "source": "art/export/raider/raider_variant_r02_ginger_idle.png"
+  },
+  "variant_r02_grey": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 25,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r02_grey",
+   "moving_px": 649,
+   "source": "art/export/raider/raider_variant_r02_grey_idle.png"
+  },
+  "variant_r03_black": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r03_black",
+   "moving_px": 589,
+   "source": "art/export/raider/raider_variant_r03_black_idle.png"
+  },
+  "variant_r03_brown": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r03_brown",
+   "moving_px": 532,
+   "source": "art/export/raider/raider_variant_r03_brown_idle.png"
+  },
+  "variant_r03_ginger": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r03_ginger",
+   "moving_px": 534,
+   "source": "art/export/raider/raider_variant_r03_ginger_idle.png"
+  },
+  "variant_r03_grey": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r03_grey",
+   "moving_px": 538,
+   "source": "art/export/raider/raider_variant_r03_grey_idle.png"
+  },
+  "variant_r04_black": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r04_black",
+   "moving_px": 555,
+   "source": "art/export/raider/raider_variant_r04_black_idle.png"
+  },
+  "variant_r04_brown": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r04_brown",
+   "moving_px": 509,
+   "source": "art/export/raider/raider_variant_r04_brown_idle.png"
+  },
+  "variant_r04_brown_walk": {
+   "fps": 6.0,
+   "frame_h": 37,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r04_brown",
+   "moving_px": 653,
+   "source": "art/export/raider/raider_variant_r04_brown_idle.png",
+   "walk_of": "variant_r04_brown"
+  },
+  "variant_r04_ginger": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r04_ginger",
+   "moving_px": 541,
+   "source": "art/export/raider/raider_variant_r04_ginger_idle.png"
+  },
+  "variant_r04_grey": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r04_grey",
+   "moving_px": 575,
+   "source": "art/export/raider/raider_variant_r04_grey_idle.png"
+  },
+  "variant_r05_black": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r05_black",
+   "moving_px": 593,
+   "source": "art/export/raider/raider_variant_r05_black_idle.png"
+  },
+  "variant_r05_brown": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r05_brown",
+   "moving_px": 608,
+   "source": "art/export/raider/raider_variant_r05_brown_idle.png"
+  },
+  "variant_r05_ginger": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r05_ginger",
+   "moving_px": 614,
+   "source": "art/export/raider/raider_variant_r05_ginger_idle.png"
+  },
+  "variant_r05_grey": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r05_grey",
+   "moving_px": 624,
+   "source": "art/export/raider/raider_variant_r05_grey_idle.png"
+  },
+  "variant_r06_black": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r06_black",
+   "moving_px": 570,
+   "source": "art/export/raider/raider_variant_r06_black_idle.png"
+  },
+  "variant_r06_brown": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r06_brown",
+   "moving_px": 577,
+   "source": "art/export/raider/raider_variant_r06_brown_idle.png"
+  },
+  "variant_r06_ginger": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r06_ginger",
+   "moving_px": 546,
+   "source": "art/export/raider/raider_variant_r06_ginger_idle.png"
+  },
+  "variant_r06_grey": {
+   "fps": 5.0,
+   "frame_h": 37,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r06_grey",
+   "moving_px": 525,
+   "source": "art/export/raider/raider_variant_r06_grey_idle.png"
+  },
+  "variant_r06_grey_walk": {
+   "fps": 6.0,
+   "frame_h": 37,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r06_grey",
+   "moving_px": 673,
+   "source": "art/export/raider/raider_variant_r06_grey_idle.png",
+   "walk_of": "variant_r06_grey"
+  },
+  "variant_r07_black": {
+   "fps": 5.0,
+   "frame_h": 34,
+   "frame_w": 21,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r07_black",
+   "moving_px": 469,
+   "source": "art/export/raider/raider_variant_r07_black_idle.png"
+  },
+  "variant_r07_brown": {
+   "fps": 5.0,
+   "frame_h": 31,
+   "frame_w": 21,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r07_brown",
+   "moving_px": 461,
+   "source": "art/export/raider/raider_variant_r07_brown_idle.png"
+  },
+  "variant_r07_ginger": {
+   "fps": 5.0,
+   "frame_h": 33,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r07_ginger",
+   "moving_px": 522,
+   "source": "art/export/raider/raider_variant_r07_ginger_idle.png"
+  },
+  "variant_r07_grey": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r07_grey",
+   "moving_px": 527,
+   "source": "art/export/raider/raider_variant_r07_grey_idle.png"
+  },
+  "variant_r09_black": {
+   "fps": 5.0,
+   "frame_h": 34,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r09_black",
+   "moving_px": 556,
+   "source": "art/export/raider/raider_variant_r09_black_idle.png"
+  },
+  "variant_r09_brown": {
+   "fps": 5.0,
+   "frame_h": 34,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r09_brown",
+   "moving_px": 496,
+   "source": "art/export/raider/raider_variant_r09_brown_idle.png"
+  },
+  "variant_r09_ginger": {
+   "fps": 5.0,
+   "frame_h": 34,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r09_ginger",
+   "moving_px": 517,
+   "source": "art/export/raider/raider_variant_r09_ginger_idle.png"
+  },
+  "variant_r09_ginger_walk": {
+   "fps": 6.0,
+   "frame_h": 34,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r09_ginger",
+   "moving_px": 624,
+   "source": "art/export/raider/raider_variant_r09_ginger_idle.png",
+   "walk_of": "variant_r09_ginger"
+  },
+  "variant_r09_grey": {
+   "fps": 5.0,
+   "frame_h": 35,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r09_grey",
+   "moving_px": 552,
+   "source": "art/export/raider/raider_variant_r09_grey_idle.png"
+  },
+  "variant_r10_black": {
+   "fps": 5.0,
+   "frame_h": 33,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r10_black",
+   "moving_px": 458,
+   "source": "art/export/raider/raider_variant_r10_black_idle.png"
+  },
+  "variant_r10_brown": {
+   "fps": 5.0,
+   "frame_h": 34,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r10_brown",
+   "moving_px": 505,
+   "source": "art/export/raider/raider_variant_r10_brown_idle.png"
+  },
+  "variant_r10_ginger": {
+   "fps": 5.0,
+   "frame_h": 33,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r10_ginger",
+   "moving_px": 473,
+   "source": "art/export/raider/raider_variant_r10_ginger_idle.png"
+  },
+  "variant_r10_grey": {
+   "fps": 5.0,
+   "frame_h": 33,
+   "frame_w": 21,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r10_grey",
+   "moving_px": 451,
+   "source": "art/export/raider/raider_variant_r10_grey_idle.png"
+  },
+  "variant_r11_black": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r11_black",
+   "moving_px": 517,
+   "source": "art/export/raider/raider_variant_r11_black_idle.png"
+  },
+  "variant_r11_black_walk": {
+   "fps": 6.0,
+   "frame_h": 36,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r11_black",
+   "moving_px": 650,
+   "source": "art/export/raider/raider_variant_r11_black_idle.png",
+   "walk_of": "variant_r11_black"
+  },
+  "variant_r11_brown": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r11_brown",
+   "moving_px": 531,
+   "source": "art/export/raider/raider_variant_r11_brown_idle.png"
+  },
+  "variant_r11_ginger": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 22,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r11_ginger",
+   "moving_px": 519,
+   "source": "art/export/raider/raider_variant_r11_ginger_idle.png"
+  },
+  "variant_r11_grey": {
+   "fps": 5.0,
+   "frame_h": 36,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r11_grey",
+   "moving_px": 560,
+   "source": "art/export/raider/raider_variant_r11_grey_idle.png"
+  },
+  "variant_r12_black": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 24,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r12_black",
+   "moving_px": 647,
+   "source": "art/export/raider/raider_variant_r12_black_idle.png"
+  },
+  "variant_r12_brown": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r12_brown",
+   "moving_px": 608,
+   "source": "art/export/raider/raider_variant_r12_brown_idle.png"
+  },
+  "variant_r12_brown_walk": {
+   "fps": 6.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "walk",
+   "label": "variant_r12_brown",
+   "moving_px": 759,
+   "source": "art/export/raider/raider_variant_r12_brown_idle.png",
+   "walk_of": "variant_r12_brown"
+  },
+  "variant_r12_ginger": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r12_ginger",
+   "moving_px": 589,
+   "source": "art/export/raider/raider_variant_r12_ginger_idle.png"
+  },
+  "variant_r12_grey": {
+   "fps": 5.0,
+   "frame_h": 40,
+   "frame_w": 23,
+   "frames": 4,
+   "kind": "breath",
+   "label": "variant_r12_grey",
+   "moving_px": 595,
+   "source": "art/export/raider/raider_variant_r12_grey_idle.png"
+  },
+  "warrior": {
+   "dropped_frames": [
+    "raider_warrior_idle_1.png (77x51 vs median 31x48)"
+   ],
+   "fps": 5.0,
+   "frame_h": 48,
+   "frame_w": 32,
+   "frames": 4,
+   "kind": "sliced",
+   "label": "warrior",
+   "moving_px": 1386,
+   "pingpong_padded": true,
+   "source": "art/export/raider/raider_warrior_idle_*.png"
+  },
+  "warrior_b": {
+   "dropped_frames": [],
+   "fps": 5.0,
+   "frame_h": 44,
+   "frame_w": 32,
+   "frames": 5,
+   "kind": "sliced",
+   "label": "warrior_b",
+   "moving_px": 1364,
+   "source": "art/export/raider/raider_warrior_b_idle_*.png"
+  }
+ },
+ "generated_by": "tools/art/gen_actors.py",
+ "label_note": "Keys are the reference sheets' own labels. Which canon class a figure stands for is not decided here.",
+ "why": "spec 09 §4.1 row 4 / §4.2 row 8 owed bg-hall-patrons and bg-camp-figures; the bare plates of 2026-09-11 called them in. A strip is horizontal, frames left to right, each frame bottom-centre aligned so the feet do not move. A scene places an actor by its FEET (game/ui/SceneStage.gd anchors bottom). Every idle loops >= 4 frames at 5 fps (docs/12 §5.2; STAGE-16): a `breath` is 0, -1, -1 with the shoulders up, 0 — see the generator's docstring. A `walk` row (`<key>_walk`, `walk_of` = the pose it was derived from) is a second strip SceneStage plays as that figure's walk animation on a scene's `paths` (TOWN-27, W4-LIFE): the pose, a dip with the right leg lifted, the pose, a dip with the left. build_art.sh --check gates every byte here."
+}

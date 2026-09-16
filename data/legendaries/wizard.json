@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "_source": "docs/04 §11.2's definition file. ✅ CANON (A9): 'You can only ever find 1 Legendary per class - They are also named characters - IE Natsuna(the shaman) or something.'",
+  "_notes": [
+    "docs/04 §11.2's definition file, hand-authored, no procedural fields.",
+    "docs/03 §5.6: 'The other 8 Legendary names — ❓ OPEN, naming pending. Use placeholders `Legendary (Warrior) — name pending`. DO NOT INVENT NAMES.' So `display_name` is null on eight of the nine files and the loader renders that placeholder. Everything that is NOT a name is authored, because it survives the naming pass unchanged.",
+    "docs/04 §11.2 on `starting_morale`: 'Optional override only. Default is null, meaning the computed baseline per docs/05 §4/§7.5 — not a fixed 75.' Null on all nine: canon shows Natsuna at 87 morale in an example ROSTER, which is a snapshot of a played game rather than an arrival value (docs/15 BL-57).",
+    "`subscribed_tags` is docs/04 §11.3's direct expression of ✅ CANON A11 — 'legendary raiders will not be bothered by many things easily'. Only the tags in this character's own backstory reach them; every other morale event is ignored outright. Two bullets each, so eight of the ten trigger families cannot touch them.",
+    "`quirk` is named here and its mechanics belong to docs/07, which has not specced them — so the quirk is inert until it does (docs/15 BL-58). A named-but-inert gift is honest; an invented one would have to be balanced twice."
+  ],
+  "legendary_def_id": "legendary_wizard",
+  "class_id": "wizard",
+  "display_name": null,
+  "name_pending": true,
+  "name_status": "❓ OPEN — docs/03 §5.6 and docs/04 §11.1 both refuse to invent it. Naming is pending the lead designer.",
+  "portrait_set": {
+    "full": "portrait/legendary_wizard_full",
+    "thumb": "portrait/legendary_wizard_thumb",
+    "status": "❓ art pending — hand-drawn, not pooled (docs/04 §11.2)"
+  },
+  "starting_morale": null,
+  "recruit_cost_override": null,
+  "gear_grant": {
+    "source": "raid",
+    "pieces": 3,
+    "forced_slot": null,
+    "_doc": "docs/04 §6.2: '3-4 pieces from raid_set(class, CT)', canon's 'a few' (A8). Three, so the fourth stays something the player earns."
+  },
+  "quirk": {
+    "id": "quirk_wizard",
+    "name": "Reads the Whole Fight",
+    "reads_as": "Knows the enrage timer without being told it.",
+    "status": "❓ OPEN — docs/04 §11.2 says the quirk is 'specced in doc 07, named here', and docs/07 does not spec it yet. Inert until it does; see docs/15 BL-58."
+  },
+  "backstory": [
+    {
+      "text": "Was the only one laughing.",
+      "tag": "unbothered_by_wipes",
+      "polarity": "positive",
+      "weight": 1.0
+    },
+    {
+      "text": "Does not raid well alone. Says he does.",
+      "tag": "needs_a_friend",
+      "polarity": "mixed",
+      "weight": 1.0
+    }
+  ],
+  "morale_rules": {
+    "_doc": "docs/04 §11.3, all three mechanisms.",
+    "subscribed_tags": [
+      "unbothered_by_wipes",
+      "needs_a_friend"
+    ],
+    "negative_multiplier": 0.35,
+    "positive_multiplier": 1.0,
+    "morale_floor": 40
+  },
+  "dialogue_barks": [
+    "Ninety seconds. Then it gets loud.",
+    "Someone stand near me. No reason.",
+    "That was funny. It was."
+  ]
+}

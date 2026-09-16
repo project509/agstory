@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "tier": 1,
+  "_source": "docs/10-content-and-encounters.md §9 (Tutorial content). Canon anchor: raw notes, *Adventure's Board* — \"Adventure 0 - 1 Trash mob (Just for learning - 1 crap trinket)\" and \"Tutorial Raid - 1 Boss (Just for learning - 1 crap trinket)\".",
+  "_notes": [
+    "THE SLOT KEYS ARE THE CONTRACT, NOT THE IDS. sim/core/Reputation.gd's tutorial award table is keyed on the literal strings \"A0\" and \"TR\" (data/reputation.json `tutorial_awards`), and so are `is_tutorial_slot`, the reputation-gate exemption in `content_unlocked`, sim/model/Encounter.gd's `TUTORIAL_SLOTS`, and the board's skip affordance. Any other key — \"TUT1\", or \"A0 \" with a stray space — costs ZERO errors and silently pays 0 RP, drops the skip button, and re-arms the reputation gate. Do not rename these.",
+    "HP IS RE-DERIVED AND THIS FILE DELIBERATELY DEPARTS FROM docs/10 §9.1's HP COLUMN. docs/10 §9.1 prints 350 HP for Adventure 0 and 1,055 for the Tutorial Raid, and its own derivation line says those came from '~58/round for 4 (1/3 of doc 08 §9.1 stage A) x 6' and '~88/round for 6 x 12'. Both are STAGE A figures — full Tier 1 Adventure gear — and the tutorials are played at stage 0 or below, because nothing has dropped yet. docs/15 BL-28 already found and corrected exactly this error for A1-A3: 'The 88 figure was 5.3x too high for A1.' docs/08 §9.1a publishes the correct row: stage 0 (canon starting armour, four pieces, no weapon, 0 Mana) = 16.5/round over the benchmark six (Warrior 4.0, Cleric 0.5, Rogue 3.8 each x2, Wizard 3.2, Mage 1.2), i.e. 2.75 per raider.",
+    "SO: hp_total = benchmark_dps(party) x target_rounds at stage 0. Adventure 0 at party 4 = 2.75 x 4 = 11.0/round x 6 rounds = 66. Tutorial Raid at party 6 = 16.5/round x 12 rounds = 198. Transcribing docs/10 §9.1's 350 and 1,055 would ship two unwinnable tutorials — 5.3x the HP a stage-0 party can chew — which is the one failure a tutorial cannot survive.",
+    "SWINGS ARE NOT RE-DERIVED. docs/10 §9.1's 20 raw x1 and 15 raw x2 are kept exactly as printed. They come from docs/08 §9.3's boss_auto_raw = tank_max_hp / (TANK_DEATH_CLOCK x (1 - mitigation)) evaluated at the stage-0 tank (7 AC, 120 HP, 18.9% mitigation), and docs/10 §9.1 states the resulting unhealed clocks (Adventure 0 ~7.4 rounds, Tutorial Raid 4.9 rounds against docs/08's 3.5) ON PURPOSE: 'a tutorial demonstrates a fail state, it does not impose one'. Softening or hardening these would delete the teaching beat.",
+    "TANKS REQUIRED 1, NOT docs/10 §9.1's 'no tanks required'. docs/15's per-fight tank ruling (the `tanks_required` question in the design register, sourced from docs/06 Q6/Q7 and docs/07 OQ-3) is the later DECIDED entry and is the tie-break: 'Per-fight tanks_required (default 2, tutorials 1)'. A literal 0 is also unauthorable — game/core/RaidPlan.gd's guard reads `> 0`, so an authored 0 is indistinguishable from an absent field and silently resolves to 2. sim/model/Encounter.gd now refuses 0 outright rather than letting that happen quietly.",
+    "ADVENTURE 0 CARRIES NO MECHANICS, AND THAT IS WHY THE VALIDATOR CHANGED. docs/10 §6 budgets one mechanic per star and `stars` may not be 0, so 'no mechanics' was literally unauthorable. sim/model/Encounter.gd now relaxes the equality DOWNWARD for the two tutorial slots only — a tutorial may carry fewer mechanics than its stars, never more. Adventure 0's whole teaching payload is the UI beat (roster select -> confirm -> watch -> read a mistake -> equip a drop); a boss mechanic on top of that teaches nothing the next rung would not. Proposed docs/15 build-loop entry: build/plan/q-tutorials.md.",
+    "THE SCRIPTED MISTAKE. docs/10 §9.1: 'Adventure 0 scripts one guaranteed mistake on round 3 regardless of morale rolls ... this is a content-level override flag on the encounter record (force_mistake_round: 3), and it exists on exactly one encounter in the game.' The field is now parsed by sim/model/Encounter.gd and validated against target_rounds. Reading the mistake in the log is the fifth of Adventure 0's five teaching beats and the one the game is named after, so it is scripted rather than left to a roll — especially since the tutorials also run the mistake system at a reduced rate (docs/07 OQ-9's decided answer).",
+    "THE TUTORIAL RAID'S ONE MECHANIC IS M01 TANK SWAP, authored against the shipped behaviour rather than against the doc's prose: sim/core/RaidSim.gd reads `stack_damage_pct` (applied BEFORE armour, so the answer to three stacks is the swap and not the AC) and `swap_at`, both stated here explicitly rather than left to the code's defaults. At tanks_required 1 there may be no off-tank to swap to; RaidSim says so out loud ('has nobody to swap with and holds it at N stacks') and the tank dies. That IS the Tutorial Raid's lesson — docs/10 §9.1 gives it 'a real fail state: a boss with one mechanic, an enrage timer, and the Wipe Report'.",
+    "ENRAGE IS VALIDATED, NOT AUTHORED: ceil(1.4 x target_rounds). Adventure 0 = ceil(8.4) = 9; Tutorial Raid = ceil(16.8) = 17, which matches docs/10 §9.1's printed 17 independently and is the one number in that table this file did not have to move.",
+    "LOOT: one 'trinket' slot each, per canon's '1 crap trinket' stated twice. The ITEMS themselves are docs/09 §10.2's pair (Cracked Charm of Power +1 Power, Cracked Charm of Health +2 HP), NOT docs/10 §9.2's placeholders — docs/09 owns item stat blocks and says so in terms at docs/09:541, and '+1 Damage' is not expressible on a trinket at all because docs/09 §12.2 restricts `damage` to weapons. The grant is a FIXED, ONCE-ONLY one made in game/core/GameState.record_attempt, not a roll: sim/core/Loot.gd's non-raid drop pool would otherwise hand a tutorial the real Adventure charms (+7 HP, +2 Power), which are the very items docs/10 §9.2 says the crap trinkets must be visibly worse than.",
+    "THE LESSON IS DATA (docs/15 BL-141, BL-119). `lesson` is the one line RaidView prints in a band over the log on a tutorial slot; `lesson_report` is the one line Results prints above the tally on the Tutorial Raid's WIPE branch only (over a clear it would be false). Neither screen carries a literal, so the words live here and only here. TR's `lesson_report` deliberately has no last sentence: the notice above already ends 'Read the Wipe Report; you will be seeing a lot of it' and prints on the same page as the epigraph — one punchline, once. `title` ('The Doorman') is the boss rung's role title for the plate's title slot; the enemy `name` stays canon's placeholder so no golden moves.",
+    "SKIPPABLE. Canon, verbatim: 'Tutorials can be skip, but will offer a special loot piece that is easy, players will be warned that they will miss out on reward if they skip tutorial'. Whether a skipped tutorial LEAVES the board (docs/01 §8.3 and docs/15 Q-90) or stays on it for gold (docs/10 §9.3) is a live fork; the board implements the register's answer behind a named switch. See build/plan/q-tutorials.md."
+  ],
+  "encounters": [
+    {
+      "id": "t1_tut_a0",
+      "display_name": "Adventure 0",
+      "tier": 1,
+      "slot": "A0",
+      "stars": 1,
+      "kind": "trash",
+      "party_size": 4,
+      "tanks_required": 1,
+      "enemies": [
+        {
+          "name": "Trash Mob",
+          "count": 1,
+          "hp": 66,
+          "raw_swing": 20,
+          "swings_per_round": 1,
+          "threat_rule": "standard"
+        }
+      ],
+      "mechanics": [],
+      "mistakes_invited": [
+        "warrior_lost_aggro"
+      ],
+      "loot_slots": [
+        "trinket"
+      ],
+      "target_rounds": 6,
+      "enrage_round": 9,
+      "force_mistake_round": 3,
+      "comedy_line": "One mob. Four volunteers. On the third round somebody will do something stupid, and that is the lesson.",
+      "lesson": "Round three: somebody does something stupid. Watch for the stamp — the log says who, and why."
+    },
+    {
+      "id": "t1_tut_tr",
+      "display_name": "Tutorial Raid",
+      "tier": 1,
+      "slot": "TR",
+      "stars": 1,
+      "kind": "main_boss",
+      "party_size": 6,
+      "tanks_required": 1,
+      "enemies": [
+        {
+          "name": "Tutorial Boss",
+          "count": 1,
+          "hp": 198,
+          "raw_swing": 15,
+          "swings_per_round": 2,
+          "threat_rule": "highest_threat"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "m01",
+          "params": { "stack_damage_pct": 50, "swap_at": 3 }
+        }
+      ],
+      "mistakes_invited": [
+        "warrior_missed_swap"
+      ],
+      "loot_slots": [
+        "trinket"
+      ],
+      "target_rounds": 12,
+      "enrage_round": 17,
+      "title": "The Doorman",
+      "comedy_line": "A boss with one trick, a timer, and six people who have brought one tank between them. Read the Wipe Report; you will be seeing a lot of it.",
+      "lesson": "One trick, one timer, one tank between six of them. When it goes wrong, the report says who.",
+      "lesson_report": "This is the Wipe Report. Who, what, and which round — it is all under 'By raider'."
+    }
+  ]
+}

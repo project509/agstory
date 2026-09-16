@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "tier": 0,
+  "source": "start",
+  "_source": {
+    "table": "docs/_source/lead-designer-notes-raw.md — Starting armor for common recruits (CANON, verbatim)",
+    "guidance": "docs/09-items-and-itemization.md §5",
+    "id_format": "docs/09-items-and-itemization.md §12.1"
+  },
+  "_notes": [
+    "What an Unknown-reputation Common recruit arrives wearing.",
+    "CANON: starting gear carries AC only. No HP, Power or Mana on any piece.",
+    "CANON: no weapon, off-hand or trinket — a Common recruit shows up unarmed.",
+    "NAME COLLISION, deliberate (docs/09 §5): 'Worn Leggings' is canon for both",
+    "Warrior/Bard at 2 AC and the three healers at 1 AC. Same name, two different",
+    "items. They are kept as separate entries disambiguated by family, exactly as",
+    "docs/09 proposes, so the collision never reaches the data layer as one item.",
+    "'Worn Trousers' (Monk, and Mage/Wizard) and 'Old Sandals' (Monk, and healers)",
+    "collide the same way but agree on stats.",
+    "Where canon gives two classes in one family different named pieces, the ID",
+    "carries a VARIANT suffix per docs/09 §12.1.",
+    "starting_sets is the contract the recruiter uses: class key -> item ids."
+  ],
+
+  "items": [
+    {
+      "id": "ITM_T0_START_WARBARD_HEAD",
+      "name": "Worn Iron Cap", "slot": "head", "family": "warrior_bard_head",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_WARBARD_CHEST",
+      "name": "Damaged Chainmail", "slot": "chest", "family": "warrior_bard_armor",
+      "stats": { "ac": 3 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_WARBARD_LEGS",
+      "name": "Worn Leggings", "slot": "legs", "family": "warrior_bard_armor",
+      "stats": { "ac": 2 }, "canon": true,
+      "note": "2 AC. The healers' identically-named Worn Leggings is 1 AC."
+    },
+    {
+      "id": "ITM_T0_START_WARBARD_FEET",
+      "name": "Old Boots", "slot": "feet", "family": "warrior_bard_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+
+    {
+      "id": "ITM_T0_START_MONKHEAD_HEAD",
+      "name": "Frayed Headband", "slot": "head", "family": "monk_head",
+      "stats": { "ac": 2 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_CHEST_MONK",
+      "name": "Worn Gi", "slot": "chest", "family": "monk_rogue_armor",
+      "stats": { "ac": 2 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_LEGS_MONK",
+      "name": "Worn Trousers", "slot": "legs", "family": "monk_rogue_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_FEET_MONK",
+      "name": "Old Sandals", "slot": "feet", "family": "monk_rogue_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+
+    {
+      "id": "ITM_T0_START_ROGUEHEAD_HEAD",
+      "name": "Worn Eyepatch", "slot": "head", "family": "rogue_head",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_CHEST_ROGUE",
+      "name": "Old Leather Jerkin", "slot": "chest", "family": "monk_rogue_armor",
+      "stats": { "ac": 2 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_LEGS_ROGUE",
+      "name": "Worn Leather Breeches", "slot": "legs", "family": "monk_rogue_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MONKROGUE_FEET_ROGUE",
+      "name": "Worn Boots", "slot": "feet", "family": "monk_rogue_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+
+    {
+      "id": "ITM_T0_START_HEALER_HEAD_CIRCLET",
+      "name": "Worn Circlet", "slot": "head", "family": "healer_armor",
+      "stats": { "ac": 1 }, "canon": true,
+      "note": "Cleric and Druid."
+    },
+    {
+      "id": "ITM_T0_START_HEALER_HEAD_HEADDRESS",
+      "name": "Worn Headdress", "slot": "head", "family": "healer_armor",
+      "stats": { "ac": 1 }, "canon": true,
+      "note": "Shaman only. Canon gives the Shaman a distinct head name at this rung."
+    },
+    {
+      "id": "ITM_T0_START_HEALER_CHEST_VESTMENTS",
+      "name": "Tattered Vestments", "slot": "chest", "family": "healer_armor",
+      "stats": { "ac": 2 }, "canon": true,
+      "note": "Cleric only."
+    },
+    {
+      "id": "ITM_T0_START_HEALER_CHEST_HIDE",
+      "name": "Tattered Hide Vest", "slot": "chest", "family": "healer_armor",
+      "stats": { "ac": 2 }, "canon": true,
+      "note": "Druid and Shaman."
+    },
+    {
+      "id": "ITM_T0_START_HEALER_LEGS",
+      "name": "Worn Leggings", "slot": "legs", "family": "healer_armor",
+      "stats": { "ac": 1 }, "canon": true,
+      "note": "1 AC. The Warrior/Bard item of the same canon name is 2 AC."
+    },
+    {
+      "id": "ITM_T0_START_HEALER_FEET",
+      "name": "Old Sandals", "slot": "feet", "family": "healer_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+
+    {
+      "id": "ITM_T0_START_MAGEWIZ_HEAD",
+      "name": "Worn Apprentice Cap", "slot": "head", "family": "mage_wizard_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MAGEWIZ_CHEST",
+      "name": "Tattered Robe", "slot": "chest", "family": "mage_wizard_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MAGEWIZ_LEGS",
+      "name": "Worn Trousers", "slot": "legs", "family": "mage_wizard_armor",
+      "stats": { "ac": 1 }, "canon": true
+    },
+    {
+      "id": "ITM_T0_START_MAGEWIZ_FEET",
+      "name": "Old Slippers", "slot": "feet", "family": "mage_wizard_armor",
+      "stats": { "ac": 1 }, "canon": true
+    }
+  ],
+
+  "starting_sets": {
+    "warrior": ["ITM_T0_START_WARBARD_HEAD", "ITM_T0_START_WARBARD_CHEST",
+                "ITM_T0_START_WARBARD_LEGS", "ITM_T0_START_WARBARD_FEET"],
+    "bard":    ["ITM_T0_START_WARBARD_HEAD", "ITM_T0_START_WARBARD_CHEST",
+                "ITM_T0_START_WARBARD_LEGS", "ITM_T0_START_WARBARD_FEET"],
+    "monk":    ["ITM_T0_START_MONKHEAD_HEAD", "ITM_T0_START_MONKROGUE_CHEST_MONK",
+                "ITM_T0_START_MONKROGUE_LEGS_MONK", "ITM_T0_START_MONKROGUE_FEET_MONK"],
+    "rogue":   ["ITM_T0_START_ROGUEHEAD_HEAD", "ITM_T0_START_MONKROGUE_CHEST_ROGUE",
+                "ITM_T0_START_MONKROGUE_LEGS_ROGUE", "ITM_T0_START_MONKROGUE_FEET_ROGUE"],
+    "cleric":  ["ITM_T0_START_HEALER_HEAD_CIRCLET", "ITM_T0_START_HEALER_CHEST_VESTMENTS",
+                "ITM_T0_START_HEALER_LEGS", "ITM_T0_START_HEALER_FEET"],
+    "druid":   ["ITM_T0_START_HEALER_HEAD_CIRCLET", "ITM_T0_START_HEALER_CHEST_HIDE",
+                "ITM_T0_START_HEALER_LEGS", "ITM_T0_START_HEALER_FEET"],
+    "shaman":  ["ITM_T0_START_HEALER_HEAD_HEADDRESS", "ITM_T0_START_HEALER_CHEST_HIDE",
+                "ITM_T0_START_HEALER_LEGS", "ITM_T0_START_HEALER_FEET"],
+    "mage":    ["ITM_T0_START_MAGEWIZ_HEAD", "ITM_T0_START_MAGEWIZ_CHEST",
+                "ITM_T0_START_MAGEWIZ_LEGS", "ITM_T0_START_MAGEWIZ_FEET"],
+    "wizard":  ["ITM_T0_START_MAGEWIZ_HEAD", "ITM_T0_START_MAGEWIZ_CHEST",
+                "ITM_T0_START_MAGEWIZ_LEGS", "ITM_T0_START_MAGEWIZ_FEET"]
+  }
+}

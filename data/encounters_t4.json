@@ -1,0 +1,349 @@
+{
+  "_notes": [
+    "GENERATED FILE. tools/gen_items.gd writes it; re-run rather than hand-editing.",
+    "HP and per-round raw are QUOTED from docs/08 §9.6, which derives them by",
+    "§9.1/§9.2/§9.3's own method — the same method that reproduces Tier 1's",
+    "published 2200/2500/3200/4100/7150 and 61/63/65/68/73 exactly.",
+    "target_rounds hold at docs/08 §9.2's 12/13/15/17/22 and enrage is",
+    "ceil(1.4 x target_rounds), which ContentDB validates on load.",
+    "MECHANIC SELECTION AND COMEDY ARE AUTHORED, not generated. docs/10 §10's",
+    "escalation rule caps a tier at two mechanics the player has not seen:",
+    "Tier 2 introduces M07 and M11, Tier 3 M10 and M12, Tiers 4-5 recombine.",
+    "Mechanic MAGNITUDES are derived: M02 and M03 off the cloth pool, M11 and",
+    "M12 off the tank channel, M06 off the enrage round.",
+    "Total HP steps DOWN at every tier boundary and that is correct: E1's",
+    "target length resets to 12 rounds while E5's was 22. The monotone",
+    "quantities across the whole 25-fight ladder are raid DPS at attempt and",
+    "boss raw per round, and docs/08 §9.6 says so.",
+    "Names are canon placeholders; tier 4 has not been named (docs/10 §2)."
+  ],
+  "_source": {
+    "generator": "tools/gen_items.gd (numbers); mechanics and comedy authored in it",
+    "mechanics": "docs/10 §10 vocabulary, §10's escalation and coverage rules",
+    "stat_blocks": "docs/08 §9.6, derived by the §9.1/§9.2/§9.3 method",
+    "structure": "docs/10 §4 (five-encounter ladder), §6 (16-field template)"
+  },
+  "encounters": [
+    {
+      "comedy_line": "A one-star fight whose entire mechanic is 'do not stand in front of it', which is where your Monk likes to stand.",
+      "display_name": "Raid 4 — Encounter 1",
+      "enemies": [
+        {
+          "count": 4,
+          "hp": 3473,
+          "name": "Trash",
+          "raw_swing": 44,
+          "swings_per_round": 1,
+          "threat_rule": "independent"
+        },
+        {
+          "count": 1,
+          "hp": 1208,
+          "name": "Late Add",
+          "raw_swing": 12,
+          "spawn_round": 5,
+          "swings_per_round": 1,
+          "threat_rule": "lowest_hp"
+        }
+      ],
+      "enrage_round": 17,
+      "id": "t4_raid_e1",
+      "kind": "trash",
+      "loot_slots": [
+        "feet",
+        "weapon_basic"
+      ],
+      "mechanics": [
+        {
+          "id": "m11",
+          "params": {
+            "damage": 21
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "rogue_faced_the_boss",
+        "monk_panicked_stance"
+      ],
+      "party_size": 12,
+      "slot": "E1",
+      "stars": 1,
+      "tanks_required": 2,
+      "target_rounds": 12,
+      "tier": 4
+    },
+    {
+      "comedy_line": "The swing grows, the room pulses, and somebody in your raid is doing the arithmetic out loud and getting it wrong.",
+      "display_name": "Raid 4 — Encounter 2",
+      "enemies": [
+        {
+          "count": 2,
+          "hp": 7526,
+          "name": "Elite",
+          "raw_swing": 96,
+          "swings_per_round": 1,
+          "threat_rule": "standard"
+        },
+        {
+          "count": 4,
+          "hp": 562,
+          "name": "Add",
+          "raw_swing": 13,
+          "spawn_round": 4,
+          "swings_per_round": 1,
+          "threat_rule": "lowest_hp"
+        }
+      ],
+      "enrage_round": 19,
+      "id": "t4_raid_e2",
+      "kind": "hard_trash",
+      "loot_slots": [
+        "legs",
+        "offhand_healer"
+      ],
+      "mechanics": [
+        {
+          "id": "m02",
+          "params": {
+            "damage": 44,
+            "every": 4,
+            "ignores_ac": true
+          }
+        },
+        {
+          "id": "m12",
+          "params": {
+            "from_round": 3,
+            "increment": 8
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "druid_skipped_heal",
+        "warrior_lost_aggro"
+      ],
+      "party_size": 12,
+      "slot": "E2",
+      "stars": 2,
+      "tanks_required": 2,
+      "target_rounds": 13,
+      "tier": 4
+    },
+    {
+      "comedy_line": "Silence, an interrupt check and a tank swap, all landing in the same round, on a raid that struggles with one of them.",
+      "display_name": "Raid 4 — Encounter 3",
+      "enemies": [
+        {
+          "count": 1,
+          "hp": 20473,
+          "name": "Mini Boss",
+          "raw_swing": 107,
+          "swings_per_round": 2,
+          "threat_rule": "standard"
+        },
+        {
+          "count": 3,
+          "hp": 359,
+          "name": "Add",
+          "raw_swing": 11,
+          "spawn_round": 6,
+          "swings_per_round": 1,
+          "threat_rule": "lowest_hp"
+        }
+      ],
+      "enrage_round": 21,
+      "id": "t4_raid_e3",
+      "kind": "mini_boss",
+      "loot_slots": [
+        "head"
+      ],
+      "mechanics": [
+        {
+          "id": "m01",
+          "params": {
+            "stack_damage_pct": 50,
+            "swap_at": 3
+          }
+        },
+        {
+          "id": "m05",
+          "params": {
+            "every": 5,
+            "requires_melee": 1,
+            "round": 4
+          }
+        },
+        {
+          "id": "m10",
+          "params": {
+            "every": 6,
+            "round": 5,
+            "rounds": 2
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "monk_panicked_stance",
+        "bard_wrong_song",
+        "cleric_wrong_target"
+      ],
+      "party_size": 12,
+      "slot": "E3",
+      "stars": 3,
+      "tanks_required": 2,
+      "target_rounds": 15,
+      "tier": 4
+    },
+    {
+      "comedy_line": "Four mechanics, twelve raiders, and a Mage who found an add nobody else could see and pulled it anyway.",
+      "display_name": "Raid 4 — Encounter 4",
+      "enemies": [
+        {
+          "count": 1,
+          "hp": 26350,
+          "name": "Mini Boss",
+          "raw_swing": 118,
+          "swings_per_round": 2,
+          "threat_rule": "standard"
+        }
+      ],
+      "enrage_round": 24,
+      "id": "t4_raid_e4",
+      "kind": "mini_boss",
+      "loot_slots": [
+        "chest",
+        "weapon_strong"
+      ],
+      "mechanics": [
+        {
+          "id": "m03",
+          "params": {
+            "damage_per_round": 42,
+            "escape_chance_bp": 5000
+          }
+        },
+        {
+          "id": "m04",
+          "params": {
+            "count": 2,
+            "every": 6,
+            "hp": 791,
+            "round": 5,
+            "swing": 14
+          }
+        },
+        {
+          "id": "m07",
+          "params": {
+            "damage": 17,
+            "every": 5,
+            "required": "stacked",
+            "round": 3,
+            "rounds": 2
+          }
+        },
+        {
+          "id": "m09",
+          "params": {
+            "every": 6,
+            "reduction_pct": 40,
+            "round": 4,
+            "rounds": 3,
+            "target": "active_tank"
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "mage_overpull",
+        "wizard_broke_the_ramp",
+        "rogue_faced_the_boss",
+        "shaman_bad_bounce"
+      ],
+      "party_size": 12,
+      "slot": "E4",
+      "stars": 4,
+      "tanks_required": 2,
+      "target_rounds": 17,
+      "tier": 4
+    },
+    {
+      "comedy_line": "Your best fight so far, ruined for the eleventh time by the exact same raider making a slightly different mistake.",
+      "display_name": "Raid 4 — Encounter 5",
+      "enemies": [
+        {
+          "count": 1,
+          "hp": 37800,
+          "name": "Main Boss",
+          "raw_swing": 135,
+          "swings_per_round": 2,
+          "threat_rule": "standard"
+        }
+      ],
+      "enrage_round": 31,
+      "id": "t4_raid_e5",
+      "kind": "main_boss",
+      "loot_slots": [
+        "capstone",
+        "trinket"
+      ],
+      "mechanics": [
+        {
+          "id": "m01",
+          "params": {
+            "stack_damage_pct": 50,
+            "swap_at": 3
+          }
+        },
+        {
+          "id": "m02",
+          "params": {
+            "damage": 51,
+            "every": 4,
+            "ignores_ac": true
+          }
+        },
+        {
+          "id": "m08",
+          "params": {
+            "every": 6,
+            "round": 5,
+            "rounds": 3
+          }
+        },
+        {
+          "id": "m12",
+          "params": {
+            "from_round": 3,
+            "increment": 11
+          }
+        },
+        {
+          "id": "m06",
+          "params": {
+            "damage_multiplier_pct": 200,
+            "round": 31
+          }
+        }
+      ],
+      "mistakes_invited": [
+        "warrior_lost_aggro",
+        "monk_panicked_stance",
+        "rogue_faced_the_boss",
+        "cleric_wrong_target",
+        "druid_skipped_heal",
+        "shaman_bad_bounce",
+        "mage_overpull",
+        "wizard_broke_the_ramp",
+        "bard_wrong_song"
+      ],
+      "party_size": 12,
+      "slot": "E5",
+      "stars": 5,
+      "tanks_required": 2,
+      "target_rounds": 22,
+      "tier": 4
+    }
+  ],
+  "schema_version": 1,
+  "tier": 4
+}

@@ -1,0 +1,48 @@
+# Godot
+.godot/
+*.translation
+
+# Scratch, including the atlas exports (.aseprite sources are tracked, output is
+# not). The CONTENTS are ignored rather than the directory itself, because the
+# .gdignore marker inside has to survive a clone: git cannot re-include a file
+# under an excluded directory. docs/14 §10.2 reserves build/atlas/ as the one
+# thing the game may consume; nothing under game/ loads from res://build today,
+# which is what makes a blanket marker on build/ safe. If something starts to,
+# the marker moves down to the scratch siblings instead.
+/build/*
+!/build/.gdignore
+# EXCEPTION: build/plan/ is not scratch — it is the autonomous loop's queue and
+# its paper trail (audit.json, the per-wave reports, the handoffs and the docs/15
+# proposals that committed code cites by path). An untracked queue cannot survive
+# a lost session, and a citation to an untracked file is a dead citation.
+!/build/plan/
+!/build/plan/**
+
+# Vendored editor binary (19MB+, not source), same treatment: docs/14 §4 requires
+# a .gdignore here or the importer re-scans the whole vendored tree.
+/Aseprite/*
+!/Aseprite/.gdignore
+
+# A Godot executable dropped beside the project so play.cmd runs without an
+# install (see godot/PUT-GODOT-HERE.txt). The binary is not source; the two
+# marker files are.
+/godot/*
+!/godot/.gdignore
+!/godot/PUT-GODOT-HERE.txt
+
+# OS / IDE
+.idea/
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Per-machine session state, not project state. `scheduled_tasks.lock` holds a
+# session id, a pid and a process start time; committing it means every session
+# opens on a dirty tree, and the loop brief's first instruction is to treat a
+# dirty tree as unfinished work. It was tracked and is now untracked.
+.claude/scheduled_tasks.lock
+
+# Verify gate scratch output
+.verify.log
+__pycache__/
+.godot_engine.lock/

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "_source": "docs/13 §9.5 (S17's credits block is DATA, read from this file and printed verbatim); docs/15 BL-73 (the ruling that shipped it inert); docs/15 Q-21 (the ideaboard provenance question, which blocks shipping at all and carries the same signature); audit M5-END-4 (the three things a person must supply). Read by game/screens/Completion.gd.",
+  "_notes": [
+    "THIS FILE IS DELIBERATELY EMPTY OF NAMES. A build loop cannot invent who made a game. Three things are a person's to supply and none of them is derivable from the repository: the names and roles that appear in the roll (the lead designer's own credit at minimum); the third-party attribution the shipped fonts, tools and any sourced assets owe (docs/16 W6 contemplates CC0 audio, and the Aseprite pipeline and every bundled font carry their own terms); and a ruling on docs/15 Q-21, whether the ideaboard screenshots' provenance permits shipping at all.",
+    "THE SHAPE IS THE ONE docs/15 BL-58 ALREADY USED for the Legendary quirks: ship it inert, carrying its own status line, rather than ship a plausible invention. The screen prints `status` verbatim when `lines` is empty, so what the player reads is the truth about the state of the roll and not a placeholder pretending to be one.",
+    "TO ANSWER IT: put the roll in `lines`, one entry per printed line, in the order it should read. A blank string is a spacer. The screen prints `lines` instead of `status` the moment the array is non-empty, and nothing in code has to change. Clear `status` only when the roll is signed off - it is the record of why the file was empty.",
+    "THE DERIVABLE ROWS WERE DRAFTED 2026-09-15 (W6-LEDGER; DESIGNER-05, AUDIO-17, UI-48b): the engine's licence, the two bundled faces under the OFL (the licence texts ship beside them as game/assets/fonts/OFL-*.txt and the pack's README names them — the screen's line stays short because the ending's sidebar has to fit at 150% text scale), and the sound line — every shipped sample is generated in-tree by tools/audio/gen_sfx.py, nothing was sourced, so no third-party audio notice is owed. The one `[designer credit pending]` line is a MARKER: game/screens/Completion.gd prints only lines that are not markers, so the player never reads it and the roll is honest about who is missing. The person's signature replaces the marker with the names and roles; `status` clears with it."
+  ],
+  "status": "The roll is not signed yet: the derivable attribution is drafted in `lines` and the one blank is the designer's own credit (the `[designer credit pending]` marker). Who this game credits, and docs/15 Q-21's provenance answer, are one signature — audit M5-END-4.",
+  "lines": [
+    "[designer credit pending]",
+    "Made with Godot Engine (MIT)",
+    "Fira Sans and Grenze Gotisch: SIL Open Font License 1.1",
+    "Sound generated in-house from physical models"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+ "schema_version": 1,
+ "_source": "docs/09 §11.4 'Tier word table for Tiers 2-5'; docs/10 §2 'Do not invent lore names, in code, in UI, or in asset filenames.'",
+ "_notes": [
+  "One material word and one title word per tier, with the cloth line and the healer line",
+  "carrying their own, exactly as docs/09 §11.4's table is shaped. Every item name in tiers",
+  "2-5 is GENERATED from these words, which is why they are data and not literals.",
+  "",
+  "TIERS 2-5 ARE PENDING AND THIS FILE DOES NOT NAME THEM. `pending: true` is the whole",
+  "point: tools/gen_items.gd stamps `name_pending` on every row of a pending tier and",
+  "refuses to call a tier finished, and docs/15 records the failure mode this avoids —",
+  "'Ship placeholders -> 300+ items named by accident'. The `candidates` below are the words",
+  "docs/09 §11.4 and docs/15 already wrote down as DISCUSSION CANDIDATES. They are recorded",
+  "here so the designer is choosing between rendered names rather than reading a blank table;",
+  "nothing reads them, and a generator that used one would be inventing lore.",
+  "",
+  "TIER 1 IS ANSWERED, and its words are read off canon's own item names rather than",
+  "asserted: 'Iron Adventurer's Helm' and 'Blessed Adventurer's Circlet' in",
+  "data/items_t1_adventure.json, 'Reinforced Spellweave Robe' in docs/09 §10.2's cloth row,",
+  "'Raider's Boots' and 'Basic Raid Sword' in data/items_t1_raid.json — so `raid_adj` is 'Raid',",
+  "the {RaidTitle-adj} slot of docs/09 §11.3's `Basic {RaidTitle-adj} {WeaponNoun}`; it held 'Basic'",
+  "until 2026-09-15 and would have rendered 'Basic Basic Sword' (DESIGNER-02; corrected by W6-LEDGER).",
+  "",
+  "ONE KNOWN WRINKLE, recorded rather than smoothed over: at Tier 1 the monk and rogue line",
+  "reads 'Reinforced Leather Vest', not 'Iron Leather Vest', so canon's T1 leather line uses",
+  "a fourth word that the generator's single `material` column does not have. It does not",
+  "bite today because Tier 1 is READ from the canon files and never generated — but a tier-2",
+  "leather piece will render as '<material> Leather Vest', and if the designer wants the",
+  "leather line to keep its own word, this table needs a fifth column and so does",
+  "docs/09 §11.4.",
+  "",
+  "FIVE COLUMNS PER TIER, PLUS THE LEATHER DECISION (2026-09-15, W6-LEDGER; CONTENT-04). tools/gen_items.gd",
+  "reads five word keys — material, cloth, healer, raid_title, raid_adj — not the two docs/09 §11.4 tabled",
+  "before this date, so every pending tier's `candidates` block now lists all five, with null where no",
+  "candidate was ever written down (cloth, healer, raid_adj). `leather` is the sixth: canon's T1 leather line",
+  "reads 'Reinforced', and the top-level `leather_column` records the one structural choice the designer",
+  "makes with the words — its own word per tier (then `leather` fills), or shared with `material` from Tier 2",
+  "on (the recommended default; nothing reads `leather` until it is chosen). The designer's page carries",
+  "the whole sheet as one answer line per tier.",
+  "",
+  "THE ARENA IS A TIER KEY TOO (2026-09-15, W7-STAGE; CONTENT-26, CRITIC-C15, docs/15 Q-96 RESOLVED):",
+  "`scene` names the plate a tier's fights are shown on, per kind — {\"adventure\": …, \"raid\": …} — read",
+  "by ContentDB.tier_scene(tier, kind) and by nothing else; SceneStage.arena_for(encounter) takes it when",
+  "the tier row names one and otherwise applies Q-96's kind rule (E-slots in the dungeon, A/TR in the",
+  "cave). Tier 1 names both plates explicitly so the rule and the row agree; a pending tier carries no",
+  "`scene` and inherits the kind rule until a designer authors its plate (BL-100). A scene name here is",
+  "the JSON's basename under game/assets/scenes/, never a path: the content layer knows nothing of art.",
+  "",
+  "PENDING TIERS CARRY NO WORD KEYS AT ALL, deliberately. tools/gen_items.gd falls back to the",
+  "token `TIER<n>` when a column is absent, so a generated name reads 'TIER2 Adventurer's Helm'",
+  "— unmistakably a placeholder. Empty strings were tried first and are worse: they render as",
+  "\"'s Boots\", which looks like a bug rather than like an unanswered question."
+ ],
+ "tiers": {
+  "1": {
+   "material": "Iron",
+   "cloth": "Spellweave",
+   "healer": "Blessed",
+   "raid_title": "Raider",
+   "raid_adj": "Raid",
+   "pending": false,
+   "leather": "Reinforced",
+   "scene": {
+    "adventure": "stage_arena_cave",
+    "raid": "stage_arena_dungeon"
+   }
+  },
+  "2": {
+   "pending": true,
+   "candidates": {
+    "material": "Steel",
+    "cloth": null,
+    "healer": null,
+    "raid_title": "Vanquisher",
+    "raid_adj": null,
+    "leather": null
+   }
+  },
+  "3": {
+   "pending": true,
+   "candidates": {
+    "material": "Mithril",
+    "cloth": null,
+    "healer": null,
+    "raid_title": "Conqueror",
+    "raid_adj": null,
+    "leather": null
+   }
+  },
+  "4": {
+   "pending": true,
+   "candidates": {
+    "material": "Adamant",
+    "cloth": null,
+    "healer": null,
+    "raid_title": "Ascendant",
+    "raid_adj": null,
+    "leather": null
+   }
+  },
+  "5": {
+   "pending": true,
+   "candidates": {
+    "material": "Runegold",
+    "cloth": null,
+    "healer": null,
+    "raid_title": "Immortal",
+    "raid_adj": null,
+    "leather": null
+   }
+  }
+ },
+ "leather_column": {
+  "decision": "pending",
+  "options": [
+   "shares material from Tier 2 on",
+   "its own word per tier (the leather key fills)"
+  ],
+  "recommended_default": "shares material from Tier 2 on",
+  "why": "canon's T1 Monk/Rogue line already mixes Ironbound and Reinforced (docs/09 §11.3), so a shared metal word from Tier 2 is not a new inconsistency; the designer's page asks the question beside the twenty words."
+ }
+}

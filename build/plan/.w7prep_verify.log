@@ -1,0 +1,80 @@
+
+[1m== 0/5  rebuilding global class cache ==[0m
+  [32mPASS[0m  class cache regenerated
+
+[1m== 0/8  lint: no cross-file class_name refs ==[0m
+  [32mPASS[0m  LINT OK  no cross-file class_name references in sim/ or game/
+  [32mPASS[0m  MOTION LINT OK  tweens and morale glyphs each go through one door (docs/13 §12.2, §13)
+
+[1m== 1/8  script parse ==[0m
+  [32mPASS[0m  PARSE_CHECK scanned 190 script(s)
+  [32mPASS[0m  COPY LINT OK  no player-facing string under game/ admits an unfinished feature (ship plan §0.2; 20 allow-listed fall-throughs, all present)
+
+[1m== 2/8  generated content matches its generator ==[0m
+  [32mPASS[0m  16 generated file(s) agree with tools/gen_items.gd
+
+[1m== 2b/8  generated art matches its generator ==[0m
+  [32mPASS[0m  ART CHECK  generators=7  runtime files: 204 agree  0 DIFFERS  0 MISSING
+
+[1m== 3/8  unit tests ==[0m
+  [31mFAIL[0m  unit tests
+SCRIPT ERROR: Parse Error: Identifier "LOOT_ACT_W" not declared in the current scope.
+SCRIPT ERROR: Parse Error: Identifier "LOOT_REASON_W" not declared in the current scope.
+SCRIPT ERROR: Parse Error: Too many arguments for "_wrapped_reason()" call. Expected at most 1 but received 2.
+SCRIPT ERROR: Invalid call. Nonexistent function '_story_row' in base 'Control'.
+SCRIPT ERROR: Cannot call method 'get_children' on a null value.
+SCRIPT ERROR: Cannot call method 'get_children' on a null value.
+SCRIPT ERROR: Cannot call method 'get_children' on a null value.
+SCRIPT ERROR: Cannot call method 'get_parent' on a null value.
+SCRIPT ERROR: Invalid call. Nonexistent function '_story_row' in base 'Control'.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Cannot call method 'get_children' on a null value.
+SCRIPT ERROR: Cannot call method 'get_index' on a null value.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid call. Nonexistent function '_refresh_morale' in base 'Control'.
+SCRIPT ERROR: Invalid access to property or key 'autowrap_mode' on a base object of type 'Nil'.
+SCRIPT ERROR: Cannot call method 'get_parent' on a null value.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'disabled' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'text' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'disabled' on a base object of type 'Nil'.
+SCRIPT ERROR: Cannot call method 'get_child' on a null value.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'name' on a base object of type 'Nil'.
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+SCRIPT ERROR: Invalid access to property or key 'texture' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid call. Nonexistent function '_mistake_id' in base 'GDScript'.
+SCRIPT ERROR: Invalid call. Nonexistent function '_story_row' in base 'Control'.
+SCRIPT ERROR: Invalid access to property or key 'text' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid access to property or key 'text' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid call. Nonexistent function 'reputation_earned' in base 'GDScript'.
+SCRIPT ERROR: Invalid access to property or key 'disabled' on a base object of type 'Nil'.
+SCRIPT ERROR: Invalid call. Nonexistent function 'fallen_metrics' in base 'GDScript'.
+SCRIPT ERROR: Invalid call. Nonexistent function 'fallen_metrics' in base 'GDScript'.
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+
+[1m== 4/8  headless boot ==[0m
+  [33mSKIP[0m  --fast
+
+[1m== 5/8  keyboard access ==[0m
+  [33mSKIP[0m  --fast
+
+[1m== 6/8  balance sweep ==[0m
+  [33mSKIP[0m  --fast
+
+[1m== 6b/8  balance drift vs the committed baseline ==[0m
+  [33mSKIP[0m  --fast
+
+[1m== 7/8  playtest — the whole campaign ==[0m
+  [33mSKIP[0m  --fast
+
+[1m== 8/8  latency budget — mount and frame time per screen ==[0m
+  [33mSKIP[0m  --fast
+
+[1;31mVERIFY FAILED[0m  (full log: .verify.log)

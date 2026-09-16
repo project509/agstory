@@ -1,0 +1,10 @@
+slot,gear,rarity,morale,runs,clears,clear_rate,wilson_lo,wilson_hi,median_rounds,p10_rounds,p90_rounds,deaths_per_clear,mean_deaths,mean_mistakes,top_wipe_cause,victory,wipe,soft_wipe,attrition
+A1,starting,common,55,200,82,0.4100,0.3442,0.4792,14,9,17,0.134,1.135,12.73,MIS_TAUNT_LAPSE,82,1,60,57
+A2,adventure,common,55,200,199,0.9950,0.9722,0.9991,8,7,10,0.025,0.030,8.85,MIS_HEAL_WRONG,199,0,1,0
+A3,adventure,common,55,200,195,0.9750,0.9428,0.9893,10,9,11,0.410,0.535,13.40,MIS_HEAL_WRONG,195,3,0,2
+E1,adventure,common,55,200,200,1.0000,0.9812,1.0000,15,14,17,0.000,0.000,30.97,-,200,0,0,0
+E2,raid_entry,common,55,200,200,1.0000,0.9812,1.0000,10,9,11,0.005,0.005,19.80,-,200,0,0,0
+E3,raid_entry,common,55,200,200,1.0000,0.9812,1.0000,12,11,12,0.035,0.035,24.75,-,200,0,0,0
+E4,raid_entry,common,55,200,200,1.0000,0.9812,1.0000,16,15,17,0.670,0.670,46.92,-,200,0,0,0
+E5,raid_entry,common,55,200,161,0.8050,0.7446,0.8539,31,27,36,2.075,2.935,79.45,MIS_HEAL_WRONG,161,0,0,39
+A3,after_a2,common,55,200,0,0.0000,0.0000,0.0188,16,14,20,0.000,6.000,15.76,MIS_HEAL_WRONG,0,200,0,0

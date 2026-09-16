@@ -1,0 +1,680 @@
+{
+  "body": {
+    "attempts": {
+      "t1_raid_e1": 3.0
+    },
+    "autosave_index": 1.0,
+    "board_rolled": true,
+    "bullet_tier": 1.0,
+    "bullet_triggers": {
+      "start_05": {
+        "blames_the_healers": 3.0
+      },
+      "start_06": {
+        "blames_the_healers": 2.0
+      },
+      "start_07": {
+        "unbothered_by_wipes": 3.0
+      }
+    },
+    "cleared": {},
+    "consumables": {},
+    "crisis_strikes": 2.0,
+    "day": 18.0,
+    "facility_tier": 0.0,
+    "flags": {},
+    "furnishings": {
+      "start_04": [
+        "straw_cot"
+      ]
+    },
+    "gold": 3020.0,
+    "guild_furnishings": [],
+    "guild_name": "The Least Worst",
+    "guild_seed": "1337",
+    "legendary_classes_found": [],
+    "legendary_warned": [],
+    "market_tier": 1.0,
+    "morale_ledger": {
+      "ever": {
+        "start_04|peer_dismissed|start_10": true,
+        "start_05|peer_dismissed|start_10": true,
+        "start_06|peer_dismissed|start_10": true,
+        "start_07|peer_dismissed|start_10": true,
+        "start_09|peer_dismissed|start_10": true
+      },
+      "last_fired": {
+        "start_00|brought|": 2.0,
+        "start_00|knocked_out|": 0.0,
+        "start_00|wipe|": 2.0,
+        "start_01|brought|": 2.0,
+        "start_01|knocked_out|": 2.0,
+        "start_01|wipe|": 2.0,
+        "start_02|brought|": 2.0,
+        "start_02|knocked_out|": 2.0,
+        "start_02|wipe|": 2.0,
+        "start_03|brought|": 2.0,
+        "start_03|knocked_out|": 2.0,
+        "start_03|wipe|": 2.0,
+        "start_04|brought|": 2.0,
+        "start_04|knocked_out|": 2.0,
+        "start_04|peer_dismissed|start_10": 3.0,
+        "start_04|wipe|": 2.0,
+        "start_05|brought|": 2.0,
+        "start_05|knocked_out|": 2.0,
+        "start_05|peer_dismissed|start_10": 3.0,
+        "start_05|wipe|": 2.0,
+        "start_06|brought|": 2.0,
+        "start_06|knocked_out|": 1.0,
+        "start_06|peer_dismissed|start_10": 3.0,
+        "start_06|wipe|": 2.0,
+        "start_07|brought|": 2.0,
+        "start_07|knocked_out|": 0.0,
+        "start_07|peer_dismissed|start_10": 3.0,
+        "start_07|wipe|": 2.0,
+        "start_08|brought|": 2.0,
+        "start_08|knocked_out|": 2.0,
+        "start_08|wipe|": 2.0,
+        "start_09|brought|": 2.0,
+        "start_09|knocked_out|": 1.0,
+        "start_09|peer_dismissed|start_10": 3.0,
+        "start_09|wipe|": 2.0,
+        "start_10|brought|": 2.0,
+        "start_10|knocked_out|": 2.0,
+        "start_10|wipe|": 2.0,
+        "start_11|brought|": 2.0,
+        "start_11|knocked_out|": 0.0,
+        "start_11|wipe|": 2.0
+      },
+      "session": 3.0,
+      "session_totals": {
+        "start_00|brought|": 2.55,
+        "start_00|wipe|": 10.8,
+        "start_01|brought|": 2.55,
+        "start_01|knocked_out|": 4.05,
+        "start_01|wipe|": 16.0,
+        "start_02|brought|": 2.55,
+        "start_02|knocked_out|": 4.05,
+        "start_02|wipe|": 10.8,
+        "start_03|brought|": 2.55,
+        "start_03|knocked_out|": 4.05,
+        "start_03|wipe|": 16.0,
+        "start_04|brought|": 2.55,
+        "start_04|knocked_out|": 4.05,
+        "start_04|peer_dismissed|start_10": 2.7,
+        "start_04|wipe|": 10.8,
+        "start_05|brought|": 2.55,
+        "start_05|knocked_out|": 6.0,
+        "start_05|peer_dismissed|start_10": 2.7,
+        "start_05|wipe|": 10.8,
+        "start_06|brought|": 2.55,
+        "start_06|peer_dismissed|start_10": 2.7,
+        "start_06|wipe|": 10.8,
+        "start_07|brought|": 2.55,
+        "start_07|peer_dismissed|start_10": 2.7,
+        "start_07|wipe|": 5.4,
+        "start_08|brought|": 2.55,
+        "start_08|knocked_out|": 4.05,
+        "start_08|wipe|": 10.8,
+        "start_09|brought|": 2.55,
+        "start_09|peer_dismissed|start_10": 2.7,
+        "start_09|wipe|": 10.8,
+        "start_10|brought|": 2.55,
+        "start_10|knocked_out|": 4.05,
+        "start_10|wipe|": 16.0,
+        "start_11|brought|": 2.55,
+        "start_11|wipe|": 10.8
+      },
+      "tick": 3.0,
+      "window": {}
+    },
+    "onboarding_complete": false,
+    "pending_loot": [],
+    "played_seconds": 2730.0,
+    "recruit_pity": 16.0,
+    "reputation_points": 0.0,
+    "reputation_rank": "unknown",
+    "rerolls_since_run": 0.0,
+    "roster": [
+      {
+        "at_risk_strikes": 2.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "class_rival:mage",
+            "text": "Refuses to speak to Mages.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "negative",
+            "tag": "wants_to_tank",
+            "text": "Has strong opinions about being hit, all of them wrong.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -3.0,
+        "big_dumb_active": false,
+        "class_id": "shaman",
+        "comfort_floor": 3.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Nigel",
+        "equipment": {
+          "chest": "ITM_T0_START_HEALER_CHEST_HIDE",
+          "feet": "ITM_T0_START_HEALER_FEET",
+          "head": "ITM_T0_START_HEALER_HEAD_HEADDRESS",
+          "legs": "ITM_T0_START_HEALER_LEGS"
+        },
+        "id": "start_04",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 6.0,
+        "morale_exact": 5.775,
+        "morale_log": [
+          {
+            "day": 2.0,
+            "morale": 31.0,
+            "note": "wipe"
+          },
+          {
+            "day": 4.0,
+            "morale": 20.0,
+            "note": "wipe"
+          },
+          {
+            "day": 6.0,
+            "morale": 8.0,
+            "note": "wipe"
+          }
+        ],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 3.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 3.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 3.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "wants_to_tank",
+            "text": "Insists he is a tank. He is not.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "negative",
+            "tag": "blames_the_healers",
+            "text": "Died standing in the fire, and has questions for the Cleric.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -3.0,
+        "big_dumb_active": false,
+        "class_id": "rogue",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Greg",
+        "equipment": {
+          "chest": "ITM_T0_START_MONKROGUE_CHEST_ROGUE",
+          "feet": "ITM_T0_START_MONKROGUE_FEET_ROGUE",
+          "head": "ITM_T0_START_ROGUEHEAD_HEAD",
+          "legs": "ITM_T0_START_MONKROGUE_LEGS_ROGUE"
+        },
+        "id": "start_05",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 0.0,
+        "morale_exact": 0.0,
+        "morale_log": [
+          {
+            "day": 2.0,
+            "morale": 29.0,
+            "note": "wipe"
+          },
+          {
+            "day": 4.0,
+            "morale": 16.0,
+            "note": "wipe"
+          },
+          {
+            "day": 6.0,
+            "morale": 3.0,
+            "note": "wipe"
+          }
+        ],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 3.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 3.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 3.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "hates_being_benched",
+            "text": "Keeps a written record of every night he sat out.",
+            "weight": 1.5
+          },
+          {
+            "polarity": "negative",
+            "tag": "blames_the_healers",
+            "text": "Says he was not healed. He was healed.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -3.0,
+        "big_dumb_active": false,
+        "class_id": "rogue",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Pauline",
+        "equipment": {
+          "chest": "ITM_T0_START_MONKROGUE_CHEST_ROGUE",
+          "feet": "ITM_T0_START_MONKROGUE_FEET_ROGUE",
+          "head": "ITM_T0_START_ROGUEHEAD_HEAD",
+          "legs": "ITM_T0_START_MONKROGUE_LEGS_ROGUE"
+        },
+        "id": "start_06",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 6.0,
+        "morale_exact": 5.925,
+        "morale_log": [
+          {
+            "day": 2.0,
+            "morale": 29.0,
+            "note": "wipe"
+          },
+          {
+            "day": 4.0,
+            "morale": 16.0,
+            "note": "wipe"
+          },
+          {
+            "day": 6.0,
+            "morale": 9.0,
+            "note": "wipe"
+          }
+        ],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 3.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 3.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 0.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "wants_to_tank",
+            "text": "Insists he is a tank. He is not.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "positive",
+            "tag": "unbothered_by_wipes",
+            "text": "Has died more times than he can count and finds that funny.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": 0.0,
+        "big_dumb_active": false,
+        "class_id": "monk",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Yvonne",
+        "equipment": {
+          "chest": "ITM_T0_START_MONKROGUE_CHEST_MONK",
+          "feet": "ITM_T0_START_MONKROGUE_FEET_MONK",
+          "head": "ITM_T0_START_MONKHEAD_HEAD",
+          "legs": "ITM_T0_START_MONKROGUE_LEGS_MONK"
+        },
+        "id": "start_07",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 33.0,
+        "morale_exact": 33.075,
+        "morale_log": [
+          {
+            "day": 2.0,
+            "morale": 39.0,
+            "note": "wipe"
+          },
+          {
+            "day": 4.0,
+            "morale": 37.0,
+            "note": "wipe"
+          },
+          {
+            "day": 6.0,
+            "morale": 36.0,
+            "note": "wipe"
+          }
+        ],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 3.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 3.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 2.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "class_rival:druid",
+            "text": "Has a long-standing grievance with Druids. Will explain it.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "mixed",
+            "tag": "glory_hound",
+            "text": "Describes his best night to anyone who stands still.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -1.0,
+        "big_dumb_active": false,
+        "class_id": "wizard",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Gary",
+        "equipment": {
+          "chest": "ITM_T0_START_MAGEWIZ_CHEST",
+          "feet": "ITM_T0_START_MAGEWIZ_FEET",
+          "head": "ITM_T0_START_MAGEWIZ_HEAD",
+          "legs": "ITM_T0_START_MAGEWIZ_LEGS"
+        },
+        "id": "start_09",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 12.0,
+        "morale_exact": 11.825,
+        "morale_log": [
+          {
+            "day": 2.0,
+            "morale": 33.0,
+            "note": "wipe"
+          },
+          {
+            "day": 4.0,
+            "morale": 22.0,
+            "note": "wipe"
+          },
+          {
+            "day": 6.0,
+            "morale": 15.0,
+            "note": "wipe"
+          }
+        ],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 3.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 3.0,
+        "wishlist": [],
+        "xp": 0.0
+      }
+    ],
+    "save_counter": 5.0,
+    "save_slot": 0.0,
+    "save_version": 13,
+    "skipped_tutorials": [],
+    "sold_recently": [],
+    "stalled": false,
+    "tavern_board": [
+      {
+        "at_risk_strikes": 0.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "in_debt",
+            "text": "Asked when payday is, then asked again.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "positive",
+            "tag": "gear_indifferent",
+            "text": "Passes on upgrades without being asked.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": 0.0,
+        "big_dumb_active": false,
+        "class_id": "wizard",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Brenda",
+        "equipment": {},
+        "id": "rec_891879945",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 45.0,
+        "morale_exact": 45.0,
+        "morale_log": [],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 0.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 0.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 0.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "homesick",
+            "text": "Talks about going home a lot.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "mixed",
+            "tag": "only_here_for_loot",
+            "text": "Would leave for a better shield. Told you so, unprompted.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -1.0,
+        "big_dumb_active": false,
+        "class_id": "monk",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Dave",
+        "equipment": {},
+        "id": "rec_215571766",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 44.0,
+        "morale_exact": 44.0,
+        "morale_log": [],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 0.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 0.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 0.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "scared_of_wipes",
+            "text": "Goes very quiet for a day after a bad night.",
+            "weight": 1.5
+          },
+          {
+            "polarity": "mixed",
+            "tag": "needs_a_friend",
+            "text": "Does not raid well alone. Says he does.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": -2.0,
+        "big_dumb_active": false,
+        "class_id": "bard",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Marv",
+        "equipment": {},
+        "id": "rec_967008645",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 43.0,
+        "morale_exact": 43.0,
+        "morale_log": [],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 0.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 0.0,
+        "wishlist": [],
+        "xp": 0.0
+      },
+      {
+        "at_risk_strikes": 0.0,
+        "backstory": [
+          {
+            "polarity": "negative",
+            "tag": "wants_to_tank",
+            "text": "Stands in front regardless of instruction.",
+            "weight": 1.0
+          },
+          {
+            "polarity": "positive",
+            "tag": "gear_indifferent",
+            "text": "Genuinely does not know what he is wearing.",
+            "weight": 1.0
+          }
+        ],
+        "backstory_offset": 0.0,
+        "big_dumb_active": false,
+        "class_id": "shaman",
+        "comfort_floor": 0.0,
+        "consecutive_benched": 0.0,
+        "display_name": "Janice",
+        "equipment": {},
+        "id": "rec_270874960",
+        "legendary_def_id": "",
+        "level": 0.0,
+        "loot_received": 0.0,
+        "mistake_chance_base": 0.0,
+        "mistake_chance_ceiling": 0.0,
+        "mistake_chance_floor": 0.0,
+        "morale": 45.0,
+        "morale_exact": 45.0,
+        "morale_log": [],
+        "portrait_id": "",
+        "raid_experience": 0.0,
+        "rarity": "common",
+        "recruited_at_rank": "unknown",
+        "recruited_at_tier": 1.0,
+        "runs_attended": 0.0,
+        "status": "active",
+        "traits": [],
+        "wipes_witnessed": 0.0,
+        "wishlist": [],
+        "xp": 0.0
+      }
+    ],
+    "tavern_tier": 1.0,
+    "tier_bonus_awarded": [],
+    "trophy_witnesses": {},
+    "wipe_streaks": {
+      "t1_raid_e1": {
+        "start_04": 3.0,
+        "start_05": 3.0,
+        "start_06": 3.0,
+        "start_07": 3.0,
+        "start_09": 3.0
+      }
+    }
+  },
+  "header": {
+    "content_version": 1.0,
+    "created_at": "2026-09-15T21:30:47",
+    "engine_version": "4.7.1-stable (official)",
+    "guild_name": "The Least Worst",
+    "played_seconds": 2730.0,
+    "save_version": 13,
+    "sequence": 5.0
+  }
+}

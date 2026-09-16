@@ -1,0 +1,183 @@
+config_version=5
+
+[application]
+config/name="A Guild Story"
+config/description="Manage a guild of incompetent raiders."
+; The version MainMenu prints bottom-left (TOWN-12). Matches export_presets.cfg's
+; application/product_version; move both together.
+config/version="0.1.0"
+run/main_scene="res://game/ui/Boot.tscn"
+config/features=PackedStringArray("4.7")
+; res://icon.svg never existed — the default the template writes, never replaced.
+; The icon is the game's own mark: the emblem the Home lockup draws
+; (art/ref/specs/01 §5, game/ui/Frame.gd), set on a GROUND_PAGE plate at 256x256
+; square by tools/art/gen_wordmark.py, which also writes the Windows .ico the
+; export preset names (docs/15 BL-67 deferred it; CRITIC-G01 closed it). Not a
+; second mark: the plate is packaging, the art is the emblem.
+config/icon="res://game/assets/ui/icon_256.png"
+; The first frame of the exported build is ours, not the engine's logo: the
+; Home lockup at 2x on Palette.GROUND_PAGE (same generator). bg_color is the
+; SAME colour as the image's ground, so the splash has no visible edge on any
+; window shape. tests/unit/test_export.gd pins both to Palette.GROUND_PAGE.
+boot_splash/image="res://game/assets/ui/splash.png"
+boot_splash/bg_color=Color(0.011764706, 0.043137256, 0.07450981, 1)
+
+[autoload]
+
+GameState="*res://game/core/GameState.gd"
+ScreenRouter="*res://game/core/ScreenRouter.gd"
+GameSettings="*res://game/core/GameSettings.gd"
+; Fourth and last autoload. It must not read GameSettings in `_init` — the
+; registry above is the boot order, and Audio is registered after it, so the
+; levels are pulled in `_ready`. See game/core/Audio.gd.
+Audio="*res://game/core/Audio.gd"
+
+[audio]
+
+; docs/13 §15.1: four buses, master / music / UI / voice-of-the-scribe. Stated
+; explicitly rather than relying on Godot's implicit default path, so a reader
+; of this file can see that the game has a mixer at all — the previous state of
+; this project was a Settings screen with volume rows and no buses behind them.
+buses/default_bus_layout="res://default_bus_layout.tres"
+
+[display]
+; The reference concepts (ideaboard/Reference Concepts) are 1536x1024 at 1:1 and
+; are the target framebuffer, so the base viewport IS that size. Wider displays
+; KEEP the 3:2 composition (letterbox): the scene plates are the concepts' own
+; pixels at fixed size, so "expand" exposed their baked-in chrome beside ours
+; (verified with a 1920x1080 shot). Expand stays available as an opt-in switch.
+; art/ref/specs/11 §1.
+window/size/viewport_width=1536
+window/size/viewport_height=1024
+window/size/window_width_override=1536
+window/size/window_height_override=1024
+; SHIP-06: the window opens FULLSCREEN (3 = borderless fullscreen at the
+; desktop's own size), so a fresh install is never larger than its screen
+; before Boot has run — a 1536x1024 window on a 1366x768 laptop put every
+; commit row 256px below the desktop. GameSettings.window_mode ("borderless"
+; default | "windowed", a 3:2 window sized to the desktop) is applied by
+; game/ui/Boot.gd in _ready() and by the Options row; F11 / Alt+Enter
+; (nav_fullscreen below) swap them anywhere. The overrides above are what a
+; windowed choice starts from on a desktop with room for them.
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+; PIPE-15 (W4-CURSOR): the pointer over a 2D-HD scene is the kit's, not the
+; OS's — tools/aseprite/gen_ui.lua's 32x32 cream arrow with the warm-dark
+; outline, hotspot on its tip. The pointing hand (every BaseButton's default
+; shape) is cursor_hand.png beside it, registered at runtime through
+; Input.set_custom_mouse_cursor because this setting carries one image only.
+; A cursor is an OS image at native pixels, never stretched with the canvas.
+mouse_cursor/custom_image="res://game/assets/ui/cursor_arrow.png"
+mouse_cursor/custom_image_hotspot=Vector2(1, 1)
+
+[importer_defaults]
+; 2D art authored at display density: lossless, no mipmaps. art/ref/specs/11 §4.
+texture={
+"compress/mode": 0,
+"mipmaps/generate": false,
+"process/fix_alpha_border": true,
+"process/premult_alpha": false,
+"detect_3d/compress_to": 0
+}
+
+[input]
+
+; docs/13 §13.1's keyboard map. Godot already ships six of the eleven keyboard
+; rows — `ui_accept` (Enter), `ui_cancel` (Esc), `ui_focus_next`/`ui_focus_prev`
+; (Tab / Shift+Tab) and `ui_up`/`ui_down`/`ui_left`/`ui_right` (the arrows) — so
+; only the other five are declared as new actions below.
+;
+; Codes are PHYSICAL for the new actions. §13.1 names QWERTY positions (`Q`/`E`
+; step the subject, `1`-`4` sort, `F` filters), and a physical code keeps those
+; three fingers in the same place on AZERTY instead of scattering them.
+;
+; The joypad events are §13.2's stated equivalents for the SAME actions — `X`
+; toggle, `Y` cycle filters, `View`/`Back` codex, `Start` Settings — which cost
+; nothing to bind here. §13.2's `LB`/`RB` (focus group), `LT`/`RT`
+; (previous/next subject) and the right stick are NOT bound: the first needs the
+; built-in Tab actions given joypad events a screen would then have to interpret
+; as group steps, and the other two are analog axes, not buttons. Reasons and
+; the exact remaining work: build/plan/handoff-a11y-keys.md.
+;
+; TWO BUILT-INS ARE RESTATED, `ui_accept` and `ui_cancel`, and that is
+; deliberate. Measured on 4.7.1 in this project, `InputMap.action_get_events`
+; returned NO joypad event for either — only `ui_up`/`ui_left`/... ship with
+; `joy btn` and axis events. So §13.2's two most important rows, `A` (primary /
+; enter a building) and `B` (back / cancel a modal), were unbound and a
+; controller could not confirm or cancel anything. Redefining a built-in
+; REPLACES its whole event list, so each list below restates the engine's own
+; keyboard events EXACTLY as it reported them (Enter 4194309, KP Enter 4194310
+; and Space 32 for accept; Escape 4194305 for cancel) and only ADDS the joypad
+; button. `tests/unit/test_a11y.gd::test_the_builtin_half_of_the_map_is_still_intact`
+; is the tripwire: if a later edit here drops Enter or Esc, the suite says so.
+
+nav_toggle={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)]
+}
+nav_prev_subject={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_next_subject={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_cycle_filter={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":false,"script":null)]
+}
+nav_codex={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194332,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)]
+}
+nav_sort_1={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":49,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_sort_2={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":50,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_sort_3={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":51,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_sort_4={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":52,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+nav_settings={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)]
+}
+; SHIP-06: F11 (4194342) and Alt+Enter (4194309 with alt) swap borderless
+; fullscreen and windowed from anywhere — ScreenRouter.toggle_fullscreen().
+; Keycodes, not physical: F11 and Enter sit in the same place on every layout.
+nav_fullscreen={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194342,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":true,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)]
+}
+ui_accept={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194309,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194310,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)]
+}
+ui_cancel={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194305,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null), Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)]
+}
+
+[rendering]
+; Linear, not nearest: the art is dense 1:1 pixel art, and nearest sampling at the
+; fractional scales "expand" produces shimmers. At exactly 1536x1024 the two are
+; identical, which is where the pixel-diff measures. art/ref/specs/11 §2.
+textures/canvas_textures/default_texture_filter=1
+; The letterbox bars beside the 3:2 frame on a wider display (window/stretch/
+; aspect="keep" above) are painted with this colour and nothing else, so they
+; are Palette.GROUND_PAGE — the colour behind everything — not the engine's grey.
+; tests/unit/test_export.gd pins it.
+environment/defaults/default_clear_color=Color(0.011764706, 0.043137256, 0.07450981, 1)
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="mobile"
+viewport/hdr_2d=true

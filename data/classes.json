@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "_source": {
+    "roles_and_descriptions": "docs/_source/lead-designer-notes-raw.md — Classes (CANON, verbatim)",
+    "families": "docs/_source/ideaboard-transcription.md §1 equipment slot matrix (CANON)",
+    "base_hp": "docs/08-stats-and-formulas.md §6 (PROPOSED — canon states no base HP)",
+    "primary_stats": "docs/06-classes-and-roles.md §8 (PROPOSED)"
+  },
+  "_notes": [
+    "base_hp is PROPOSED, not canon. Canon gives +HP on gear but never a base.",
+    "rarity_hp_multiplier ships at 1.00 for every rarity on purpose (docs/08 §6.1):",
+    "a Legendary raider is better because they do not make mistakes, not because",
+    "they have a bigger health bar. The hook exists if the designer wants it.",
+    "family keys must match sim/model/Enums.gd FAMILY_KEYS exactly."
+  ],
+
+  "rarity_hp_multiplier": {
+    "common": 1.0,
+    "uncommon": 1.0,
+    "rare": 1.0,
+    "epic": 1.0,
+    "legendary": 1.0
+  },
+
+  "classes": [
+    {
+      "key": "warrior",
+      "name": "Warrior",
+      "role": "main_tank",
+      "role_group": "tank",
+      "description": "High survivability, high threat",
+      "base_hp": 120,
+      "primary_stat": "ac",
+      "secondary_stats": ["hp", "power"],
+      "families": {
+        "head": "warrior_bard_head",
+        "body": "warrior_bard_armor",
+        "main_hand": "wrb_one_hand",
+        "off_hand": "warrior_shield"
+      },
+      "two_handed": false,
+      "dual_wield": false
+    },
+    {
+      "key": "monk",
+      "name": "Monk",
+      "role": "melee_dps_offtank",
+      "role_group": "dps",
+      "description": "High DPS + emergency tank",
+      "base_hp": 100,
+      "primary_stat": "power",
+      "secondary_stats": ["ac", "hp"],
+      "families": {
+        "head": "monk_head",
+        "body": "monk_rogue_armor",
+        "main_hand": "monk_two_hand",
+        "off_hand": null
+      },
+      "two_handed": true,
+      "dual_wield": false
+    },
+    {
+      "key": "rogue",
+      "name": "Rogue",
+      "role": "melee_dps",
+      "role_group": "dps",
+      "description": "Position-dependent burst DPS",
+      "base_hp": 85,
+      "primary_stat": "power",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "rogue_head",
+        "body": "monk_rogue_armor",
+        "main_hand": "wrb_one_hand",
+        "off_hand": "wrb_one_hand"
+      },
+      "two_handed": false,
+      "dual_wield": true
+    },
+    {
+      "key": "cleric",
+      "name": "Cleric",
+      "role": "main_tank_healer",
+      "role_group": "healer",
+      "description": "Efficient single-target healing",
+      "base_hp": 75,
+      "primary_stat": "mana",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "healer_armor",
+        "body": "healer_armor",
+        "main_hand": "cleric_weapon",
+        "off_hand": "healer_off_hand"
+      },
+      "two_handed": false,
+      "dual_wield": false
+    },
+    {
+      "key": "druid",
+      "name": "Druid",
+      "role": "raid_healer",
+      "role_group": "healer",
+      "description": "Small heal to the entire raid every round",
+      "base_hp": 75,
+      "primary_stat": "mana",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "healer_armor",
+        "body": "healer_armor",
+        "main_hand": "druid_weapon",
+        "off_hand": "healer_off_hand"
+      },
+      "two_handed": false,
+      "dual_wield": false
+    },
+    {
+      "key": "shaman",
+      "name": "Shaman",
+      "role": "chain_healer",
+      "role_group": "healer",
+      "description": "Chain heal that bounces: medium, medium, small",
+      "base_hp": 75,
+      "primary_stat": "mana",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "healer_armor",
+        "body": "healer_armor",
+        "main_hand": "shaman_weapon",
+        "off_hand": "healer_off_hand"
+      },
+      "two_handed": false,
+      "dual_wield": false
+    },
+    {
+      "key": "bard",
+      "name": "Bard",
+      "role": "support",
+      "role_group": "support",
+      "description": "Random song effects",
+      "base_hp": 90,
+      "primary_stat": "mana",
+      "secondary_stats": ["power"],
+      "families": {
+        "head": "warrior_bard_head",
+        "body": "warrior_bard_armor",
+        "main_hand": "wrb_one_hand",
+        "off_hand": "instrument"
+      },
+      "two_handed": false,
+      "dual_wield": false
+    },
+    {
+      "key": "mage",
+      "name": "Mage",
+      "role": "aoe_caster",
+      "role_group": "dps",
+      "description": "Raid spell buff + AoE damage",
+      "base_hp": 65,
+      "primary_stat": "mana",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "mage_wizard_armor",
+        "body": "mage_wizard_armor",
+        "main_hand": "mage_two_hand",
+        "off_hand": null
+      },
+      "two_handed": true,
+      "dual_wield": false
+    },
+    {
+      "key": "wizard",
+      "name": "Wizard",
+      "role": "single_target_caster",
+      "role_group": "dps",
+      "description": "Very high single-target DPS",
+      "base_hp": 65,
+      "primary_stat": "mana",
+      "secondary_stats": ["hp"],
+      "families": {
+        "head": "mage_wizard_armor",
+        "body": "mage_wizard_armor",
+        "main_hand": "wizard_two_hand",
+        "off_hand": null
+      },
+      "two_handed": true,
+      "dual_wield": false
+    }
+  ]
+}
